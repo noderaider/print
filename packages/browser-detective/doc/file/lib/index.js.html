@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">lib/index.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/cchamberlain/browser-detective" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-detectBrowser">detectBrowser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-detectUserAgent">detectUserAgent</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { assert } from &apos;chai&apos;
+
+const tridentRegex = /Trident\/(\d+)/i
+const msieRegex = /MSIE (\d+)/i
+const chromeRegex = /Chrome\/(\d+)/i
+const firefoxRegex = /Firefox\/(\d+)/i
+const safariRegex = /Safari\/(\d+)/i
+
+const windowsRegex = /Windows (NT \d\.\d+|Windows 9[\d]|Windows 98; Win 9x 4\.90|Windows CE)/i
+
+/** Trident represents the actual browser version. */
+const tridentMap = new Map( [ [&apos;8&apos;, 11]
+                            , [&apos;7&apos;, 11]
+                            , [&apos;6&apos;, 10]
+                            , [&apos;5&apos;, 9]
+                            , [&apos;4&apos;, 8]
+                            ])
+
+const windowsMap = new Map( [ [ &apos;NT 6.3&apos;, &apos;8.1&apos; ]
+                            , [ &apos;NT 6.2&apos;, &apos;8&apos; ]
+                            , [ &apos;NT 6.1&apos;, &apos;7&apos; ]
+                            , [ &apos;NT 6.0&apos;, &apos;Vista&apos; ]
+                            , [ &apos;NT 5.2&apos;, &apos;Server 2003&apos; ]
+                            , [ &apos;NT 5.1&apos;, &apos;XP&apos; ]
+                            , [ &apos;NT 5.01&apos;, &apos;2000 SP1&apos; ]
+                            , [ &apos;NT 5.0&apos;, &apos;2000&apos; ]
+                            , [ &apos;NT 4.0&apos;, &apos;NT 4.0&apos; ]
+                            , [ &apos;98; Win 9x 4.90&apos;, &apos;ME&apos;]
+                            , [ &apos;98&apos;, &apos;98&apos; ]
+                            , [ &apos;95&apos;, &apos;95&apos; ]
+                            , [ &apos;CE&apos;, &apos;CE&apos; ]
+                            ] )
+
+const findMatch = (regex, input) =&gt; {
+  const result = regex.exec(input)
+  if(result &amp;&amp; result.length &gt; 1)
+    return result[1]
+}
+
+export const detectUserAgent = () =&gt; {
+  assert(typeof window === &apos;object&apos;, &apos;user agent can only be detected in browser environment&apos;)
+  assert.ok(window.navigator, &apos;window.navigator is required for user agent detection&apos;)
+  assert.ok(window.navigator.userAgent, &apos;window.navigator is required for user agent detection&apos;)
+  return window.navigator.userAgent
+}
+
+export const detectBrowser = (userAgent = detectUserAgent()) =&gt; {
+  const trident = findMatch(tridentRegex, userAgent)
+  const msie = findMatch(msieRegex, userAgent)
+  const chrome = findMatch(chromeRegex, userAgent)
+  const firefox = findMatch(firefoxRegex, userAgent)
+  const safari = findMatch(safariRegex, userAgent)
+
+  let name = null
+  let title = null
+  let version = null
+  let emulatedVersion = null
+  let platform = null
+  let platformVersion = null
+
+  if(trident || msie) {
+    name = &apos;ie&apos;
+    title = &apos;Internet Explorer&apos;
+    version = trident ? tridentMap.get(trident) : msie
+    emulatedVersion = msie || version
+
+    let windowsPlatform = findMatch(windowsRegex, userAgent)
+    if(windowsPlatform) {
+      platform = &apos;Windows&apos;
+      platformVersion = windowsMap.get(windowsPlatform)
+    }
+  } else if(chrome) {
+    name = &apos;chrome&apos;
+    title = &apos;Chrome&apos;
+    version = chrome
+    emulatedVersion = chrome
+  } else if(firefox) {
+    name = &apos;firefox&apos;
+    title = &apos;Firefox&apos;
+    version = firefox
+    emulatedVersion = firefox
+  } else if(safari) {
+    name = &apos;safari&apos;
+    title = &apos;Safari&apos;
+    version = safari
+    emulatedVersion = safari
+  }
+  return { name, title, version, emulatedVersion, platform, platformVersion }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
