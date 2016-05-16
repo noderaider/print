@@ -10,16 +10,37 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { assert } from 'chai'\r\n\r\nconst tridentRegex = /Trident\\/(\\d+)/i\r\nconst msieRegex = /MSIE (\\d+)/i\r\nconst chromeRegex = /Chrome\\/(\\d+)/i\r\nconst firefoxRegex = /Firefox\\/(\\d+)/i\r\nconst safariRegex = /Safari\\/(\\d+)/i\r\n\r\nconst windowsRegex = /Windows (NT \\d\\.\\d+|Windows 9[\\d]|Windows 98; Win 9x 4\\.90|Windows CE)/i\r\n\r\n/** Trident represents the actual browser version. */\r\nconst tridentMap = new Map( [ ['8', 11]\r\n                            , ['7', 11]\r\n                            , ['6', 10]\r\n                            , ['5', 9]\r\n                            , ['4', 8]\r\n                            ])\r\n\r\nconst windowsMap = new Map( [ [ 'NT 6.3', '8.1' ]\r\n                            , [ 'NT 6.2', '8' ]\r\n                            , [ 'NT 6.1', '7' ]\r\n                            , [ 'NT 6.0', 'Vista' ]\r\n                            , [ 'NT 5.2', 'Server 2003' ]\r\n                            , [ 'NT 5.1', 'XP' ]\r\n                            , [ 'NT 5.01', '2000 SP1' ]\r\n                            , [ 'NT 5.0', '2000' ]\r\n                            , [ 'NT 4.0', 'NT 4.0' ]\r\n                            , [ '98; Win 9x 4.90', 'ME']\r\n                            , [ '98', '98' ]\r\n                            , [ '95', '95' ]\r\n                            , [ 'CE', 'CE' ]\r\n                            ] )\r\n\r\nconst findMatch = (regex, input) => {\r\n  const result = regex.exec(input)\r\n  if(result && result.length > 1)\r\n    return result[1]\r\n}\r\n\r\nexport const detectUserAgent = () => {\r\n  assert(typeof window === 'object', 'user agent can only be detected in browser environment')\r\n  assert.ok(window.navigator, 'window.navigator is required for user agent detection')\r\n  assert.ok(window.navigator.userAgent, 'window.navigator is required for user agent detection')\r\n  return window.navigator.userAgent\r\n}\r\n\r\nexport const detectBrowser = (userAgent = detectUserAgent()) => {\r\n  const trident = findMatch(tridentRegex, userAgent)\r\n  const msie = findMatch(msieRegex, userAgent)\r\n  const chrome = findMatch(chromeRegex, userAgent)\r\n  const firefox = findMatch(firefoxRegex, userAgent)\r\n  const safari = findMatch(safariRegex, userAgent)\r\n\r\n  let name = null\r\n  let title = null\r\n  let version = null\r\n  let emulatedVersion = null\r\n  let platform = null\r\n  let platformVersion = null\r\n\r\n  if(trident || msie) {\r\n    name = 'ie'\r\n    title = 'Internet Explorer'\r\n    version = trident ? tridentMap.get(trident) : msie\r\n    emulatedVersion = msie || version\r\n\r\n    let windowsPlatform = findMatch(windowsRegex, userAgent)\r\n    if(windowsPlatform) {\r\n      platform = 'Windows'\r\n      platformVersion = windowsMap.get(windowsPlatform)\r\n    }\r\n  } else if(chrome) {\r\n    name = 'chrome'\r\n    title = 'Chrome'\r\n    version = chrome\r\n    emulatedVersion = chrome\r\n  } else if(firefox) {\r\n    name = 'firefox'\r\n    title = 'Firefox'\r\n    version = firefox\r\n    emulatedVersion = firefox\r\n  } else if(safari) {\r\n    name = 'safari'\r\n    title = 'Safari'\r\n    version = safari\r\n    emulatedVersion = safari\r\n  }\r\n  return { name, title, version, emulatedVersion, platform, platformVersion }\r\n}\r\n"
+    "content": "import { assert } from 'chai'\r\nconst IS_BROWSER = typeof window === 'object'\r\nconst noop = () => {}\r\n\r\nconst tridentRegex = /Trident\\/(\\d+)/i\r\nconst msieRegex = /MSIE (\\d+)/i\r\nconst chromeRegex = /Chrome\\/(\\d+)/i\r\nconst firefoxRegex = /Firefox\\/(\\d+)/i\r\nconst safariRegex = /Safari\\/(\\d+)/i\r\n\r\nconst windowsRegex = /Windows (NT \\d\\.\\d+|Windows 9[\\d]|Windows 98; Win 9x 4\\.90|Windows CE)/i\r\n\r\n/** Trident represents the actual browser version. */\r\nconst tridentMap = new Map( [ ['8', 11]\r\n                            , ['7', 11]\r\n                            , ['6', 10]\r\n                            , ['5', 9]\r\n                            , ['4', 8]\r\n                            ])\r\n\r\nconst windowsMap = new Map( [ [ 'NT 6.3', '8.1' ]\r\n                            , [ 'NT 6.2', '8' ]\r\n                            , [ 'NT 6.1', '7' ]\r\n                            , [ 'NT 6.0', 'Vista' ]\r\n                            , [ 'NT 5.2', 'Server 2003' ]\r\n                            , [ 'NT 5.1', 'XP' ]\r\n                            , [ 'NT 5.01', '2000 SP1' ]\r\n                            , [ 'NT 5.0', '2000' ]\r\n                            , [ 'NT 4.0', 'NT 4.0' ]\r\n                            , [ '98; Win 9x 4.90', 'ME']\r\n                            , [ '98', '98' ]\r\n                            , [ '95', '95' ]\r\n                            , [ 'CE', 'CE' ]\r\n                            ] )\r\n\r\nconst findMatch = (regex, input) => {\r\n  const result = regex.exec(input)\r\n  if(result && result.length > 1)\r\n    return result[1]\r\n}\r\n\r\nexport const detectUserAgent = () => {\r\n  assert(typeof window === 'object', 'user agent can only be detected in browser environment')\r\n  assert.ok(window.navigator, 'window.navigator is required for user agent detection')\r\n  assert.ok(window.navigator.userAgent, 'window.navigator is required for user agent detection')\r\n  return window.navigator.userAgent\r\n}\r\n\r\nexport const detectBrowser = (userAgent = IS_BROWSER ? detectUserAgent() : noop()) => {\r\n  if(!userAgent)\r\n    return { error: true, name: 'unknown', message: 'user agent could not be detected and was not provided.' }\r\n  const trident = findMatch(tridentRegex, userAgent)\r\n  const msie = findMatch(msieRegex, userAgent)\r\n  const chrome = findMatch(chromeRegex, userAgent)\r\n  const firefox = findMatch(firefoxRegex, userAgent)\r\n  const safari = findMatch(safariRegex, userAgent)\r\n\r\n  let name = null\r\n  let title = null\r\n  let version = null\r\n  let emulatedVersion = null\r\n  let platform = null\r\n  let platformVersion = null\r\n\r\n  if(trident || msie) {\r\n    name = 'ie'\r\n    title = 'Internet Explorer'\r\n    version = trident ? tridentMap.get(trident) : msie\r\n    emulatedVersion = msie || version\r\n\r\n    let windowsPlatform = findMatch(windowsRegex, userAgent)\r\n    if(windowsPlatform) {\r\n      platform = 'Windows'\r\n      platformVersion = windowsMap.get(windowsPlatform)\r\n    }\r\n  } else if(chrome) {\r\n    name = 'chrome'\r\n    title = 'Chrome'\r\n    version = chrome\r\n    emulatedVersion = chrome\r\n  } else if(firefox) {\r\n    name = 'firefox'\r\n    title = 'Firefox'\r\n    version = firefox\r\n    emulatedVersion = firefox\r\n  } else if(safari) {\r\n    name = 'safari'\r\n    title = 'Safari'\r\n    version = safari\r\n    emulatedVersion = safari\r\n  }\r\n  return { name, title, version, emulatedVersion, platform, platformVersion }\r\n}\r\n"
   },
   {
     "__docId__": 1,
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "tridentRegex",
+    "name": "IS_BROWSER",
     "memberof": "lib/index.js",
-    "longname": "lib/index.js~tridentRegex",
+    "longname": "lib/index.js~IS_BROWSER",
+    "access": null,
+    "export": false,
+    "importPath": "browser-detective",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 2,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "noop",
+    "memberof": "lib/index.js",
+    "longname": "lib/index.js~noop",
     "access": null,
     "export": false,
     "importPath": "browser-detective",
@@ -29,28 +50,7 @@
     "undocument": true,
     "type": {
       "types": [
-        "object"
-      ]
-    }
-  },
-  {
-    "__docId__": 2,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "msieRegex",
-    "memberof": "lib/index.js",
-    "longname": "lib/index.js~msieRegex",
-    "access": null,
-    "export": false,
-    "importPath": "browser-detective",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
-    "type": {
-      "types": [
-        "object"
+        "*"
       ]
     }
   },
@@ -59,9 +59,9 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "chromeRegex",
+    "name": "tridentRegex",
     "memberof": "lib/index.js",
-    "longname": "lib/index.js~chromeRegex",
+    "longname": "lib/index.js~tridentRegex",
     "access": null,
     "export": false,
     "importPath": "browser-detective",
@@ -80,9 +80,9 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "firefoxRegex",
+    "name": "msieRegex",
     "memberof": "lib/index.js",
-    "longname": "lib/index.js~firefoxRegex",
+    "longname": "lib/index.js~msieRegex",
     "access": null,
     "export": false,
     "importPath": "browser-detective",
@@ -101,9 +101,9 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "safariRegex",
+    "name": "chromeRegex",
     "memberof": "lib/index.js",
-    "longname": "lib/index.js~safariRegex",
+    "longname": "lib/index.js~chromeRegex",
     "access": null,
     "export": false,
     "importPath": "browser-detective",
@@ -122,9 +122,30 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "windowsRegex",
+    "name": "firefoxRegex",
     "memberof": "lib/index.js",
-    "longname": "lib/index.js~windowsRegex",
+    "longname": "lib/index.js~firefoxRegex",
+    "access": null,
+    "export": false,
+    "importPath": "browser-detective",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "object"
+      ]
+    }
+  },
+  {
+    "__docId__": 7,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "safariRegex",
+    "memberof": "lib/index.js",
+    "longname": "lib/index.js~safariRegex",
     "access": null,
     "export": false,
     "importPath": "browser-detective",
@@ -139,7 +160,28 @@
     }
   },
   {
-    "__docId__": 7,
+    "__docId__": 8,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "windowsRegex",
+    "memberof": "lib/index.js",
+    "longname": "lib/index.js~windowsRegex",
+    "access": null,
+    "export": false,
+    "importPath": "browser-detective",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "object"
+      ]
+    }
+  },
+  {
+    "__docId__": 9,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -151,7 +193,7 @@
     "importPath": "browser-detective",
     "importStyle": null,
     "description": "Trident represents the actual browser version.",
-    "lineNumber": 12,
+    "lineNumber": 14,
     "type": {
       "types": [
         "Map"
@@ -159,7 +201,7 @@
     }
   },
   {
-    "__docId__": 8,
+    "__docId__": 10,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -171,7 +213,7 @@
     "importPath": "browser-detective",
     "importStyle": null,
     "description": null,
-    "lineNumber": 19,
+    "lineNumber": 21,
     "undocument": true,
     "type": {
       "types": [
@@ -180,7 +222,7 @@
     }
   },
   {
-    "__docId__": 9,
+    "__docId__": 11,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -192,7 +234,7 @@
     "importPath": "browser-detective",
     "importStyle": null,
     "description": null,
-    "lineNumber": 34,
+    "lineNumber": 36,
     "undocument": true,
     "type": {
       "types": [
@@ -201,7 +243,7 @@
     }
   },
   {
-    "__docId__": 10,
+    "__docId__": 12,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -213,7 +255,7 @@
     "importPath": "browser-detective",
     "importStyle": "{detectUserAgent}",
     "description": null,
-    "lineNumber": 40,
+    "lineNumber": 42,
     "undocument": true,
     "type": {
       "types": [
@@ -222,7 +264,7 @@
     }
   },
   {
-    "__docId__": 11,
+    "__docId__": 13,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -234,7 +276,7 @@
     "importPath": "browser-detective",
     "importStyle": "{detectBrowser}",
     "description": null,
-    "lineNumber": 47,
+    "lineNumber": 49,
     "undocument": true,
     "type": {
       "types": [
@@ -243,7 +285,7 @@
     }
   },
   {
-    "__docId__": 13,
+    "__docId__": 15,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -256,7 +298,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 14,
+    "__docId__": 16,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -269,7 +311,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 15,
+    "__docId__": 17,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -282,7 +324,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 16,
+    "__docId__": 18,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -295,7 +337,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 17,
+    "__docId__": 19,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -308,7 +350,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 18,
+    "__docId__": 20,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -321,7 +363,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 19,
+    "__docId__": 21,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -334,7 +376,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 20,
+    "__docId__": 22,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -347,7 +389,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 21,
+    "__docId__": 23,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -360,7 +402,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 22,
+    "__docId__": 24,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -373,7 +415,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 23,
+    "__docId__": 25,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -386,7 +428,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 24,
+    "__docId__": 26,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -399,7 +441,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 25,
+    "__docId__": 27,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -412,7 +454,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 26,
+    "__docId__": 28,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -425,7 +467,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 27,
+    "__docId__": 29,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -438,7 +480,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 28,
+    "__docId__": 30,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -451,7 +493,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 29,
+    "__docId__": 31,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -464,7 +506,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 30,
+    "__docId__": 32,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -477,7 +519,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 31,
+    "__docId__": 33,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -490,7 +532,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 32,
+    "__docId__": 34,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -503,7 +545,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 33,
+    "__docId__": 35,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -516,7 +558,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 34,
+    "__docId__": 36,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -529,7 +571,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 35,
+    "__docId__": 37,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -542,7 +584,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 36,
+    "__docId__": 38,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -555,7 +597,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 37,
+    "__docId__": 39,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -568,7 +610,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 38,
+    "__docId__": 40,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -581,7 +623,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 39,
+    "__docId__": 41,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -594,7 +636,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 40,
+    "__docId__": 42,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -607,7 +649,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 41,
+    "__docId__": 43,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -620,7 +662,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 42,
+    "__docId__": 44,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -633,7 +675,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 43,
+    "__docId__": 45,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -646,7 +688,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 44,
+    "__docId__": 46,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -659,7 +701,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 45,
+    "__docId__": 47,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -672,7 +714,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 46,
+    "__docId__": 48,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -685,7 +727,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 47,
+    "__docId__": 49,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -698,7 +740,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 48,
+    "__docId__": 50,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -711,7 +753,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 49,
+    "__docId__": 51,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -724,7 +766,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 50,
+    "__docId__": 52,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -737,7 +779,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 51,
+    "__docId__": 53,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -750,7 +792,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 52,
+    "__docId__": 54,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -763,7 +805,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 53,
+    "__docId__": 55,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -776,7 +818,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 54,
+    "__docId__": 56,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -789,7 +831,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 55,
+    "__docId__": 57,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -802,7 +844,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 56,
+    "__docId__": 58,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -815,7 +857,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 57,
+    "__docId__": 59,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -828,7 +870,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 58,
+    "__docId__": 60,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -841,7 +883,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 59,
+    "__docId__": 61,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -854,7 +896,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 61,
+    "__docId__": 63,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -867,7 +909,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 62,
+    "__docId__": 64,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -880,7 +922,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 63,
+    "__docId__": 65,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -893,7 +935,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 64,
+    "__docId__": 66,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -906,7 +948,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 65,
+    "__docId__": 67,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -919,7 +961,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 66,
+    "__docId__": 68,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -932,7 +974,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 67,
+    "__docId__": 69,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -945,7 +987,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 68,
+    "__docId__": 70,
     "kind": "external",
     "static": true,
     "variation": null,
