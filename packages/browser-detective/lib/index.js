@@ -9,6 +9,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _chai = require('chai');
 
+var IS_BROWSER = (typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object';
+var noop = function noop() {};
+
 var tridentRegex = /Trident\/(\d+)/i;
 var msieRegex = /MSIE (\d+)/i;
 var chromeRegex = /Chrome\/(\d+)/i;
@@ -35,8 +38,9 @@ var detectUserAgent = exports.detectUserAgent = function detectUserAgent() {
 };
 
 var detectBrowser = exports.detectBrowser = function detectBrowser() {
-  var userAgent = arguments.length <= 0 || arguments[0] === undefined ? detectUserAgent() : arguments[0];
+  var userAgent = arguments.length <= 0 || arguments[0] === undefined ? IS_BROWSER ? detectUserAgent() : noop() : arguments[0];
 
+  if (!userAgent) return { error: true, name: 'unknown', message: 'user agent could not be detected and was not provided.' };
   var trident = findMatch(tridentRegex, userAgent);
   var msie = findMatch(msieRegex, userAgent);
   var chrome = findMatch(chromeRegex, userAgent);

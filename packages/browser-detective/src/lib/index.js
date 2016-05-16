@@ -1,4 +1,6 @@
 import { assert } from 'chai'
+const IS_BROWSER = typeof window === 'object'
+const noop = () => {}
 
 const tridentRegex = /Trident\/(\d+)/i
 const msieRegex = /MSIE (\d+)/i
@@ -44,7 +46,9 @@ export const detectUserAgent = () => {
   return window.navigator.userAgent
 }
 
-export const detectBrowser = (userAgent = detectUserAgent()) => {
+export const detectBrowser = (userAgent = IS_BROWSER ? detectUserAgent() : noop()) => {
+  if(!userAgent)
+    return { error: true, name: 'unknown', message: 'user agent could not be detected and was not provided.' }
   const trident = findMatch(tridentRegex, userAgent)
   const msie = findMatch(msieRegex, userAgent)
   const chrome = findMatch(chromeRegex, userAgent)
