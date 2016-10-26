@@ -3,7 +3,7 @@
   "description": "Print utilities for client web applications.",
   "version": "0.1.0",
   "main": "lib/index.js",
-  "browser": "dist/bundle.umd.js",
+  "browser": "dist/bundle.js",
   "files": [
     "lib",
     "dist"
