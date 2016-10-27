@@ -9,18 +9,16 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 exports.default = printEvents;
 function printEvents() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref$preprint = _ref.preprint,
-      preprint = _ref$preprint === undefined ? function () {} : _ref$preprint,
-      _ref$postprint = _ref.postprint,
-      postprint = _ref$postprint === undefined ? function () {} : _ref$postprint;
+      preprint = _ref.preprint,
+      postprint = _ref.postprint;
 
   if ((typeof window === 'undefined' ? 'undefined' : _typeof(window)) !== 'object') return;
-  if (window.matchMedia) {
-    window.matchMedia('print').addListener(function (mql) {
-      return (mql.matches ? preprint : postprint)();
-    });
+  if (window.onbeforeprint !== undefined && window.onafterprint !== undefined) {
+    if (preprint) window.onbeforeprint = preprint;
+    if (postprint) window.onafterprint = postprint;
   } else {
-    window.onbeforeprint = preprint;
-    window.onafterprint = postprint;
+    if (preprint || postprint) window.matchMedia('print').addListener(function (mql) {
+      return mql.matches ? preprint && preprint() : postprint && postprint();
+    });
   }
 }

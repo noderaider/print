@@ -1,10 +1,13 @@
-export default function printEvents({ preprint = () => {}, postprint = () => {} } = {}) {
+export default function printEvents({ preprint, postprint } = {}) {
   if(typeof window !== 'object')
     return
-  if(window.matchMedia) {
-    window.matchMedia('print').addListener((mql) => (mql.matches ? preprint : postprint)())
+  if(window.onbeforeprint !== undefined && window.onafterprint !== undefined) {
+    if(preprint)
+      window.onbeforeprint = preprint
+    if(postprint)
+      window.onafterprint = postprint
   } else {
-    window.onbeforeprint = preprint
-    window.onafterprint = postprint
+    if(preprint || postprint)
+      window.matchMedia('print').addListener((mql) => mql.matches ? (preprint && preprint()) : (postprint && postprint()))
   }
 }
