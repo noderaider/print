@@ -13,4 +13,13 @@ Object.defineProperty(exports, 'onPrint', {
   }
 });
 
+var _usePrintFrame = require('./usePrintFrame');
+
+Object.defineProperty(exports, 'usePrintFrame', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_usePrintFrame).default;
+  }
+});
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

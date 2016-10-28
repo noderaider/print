@@ -1,26 +1,29 @@
 import onPrint from './onPrint'
+import util from 'util'
 
 export default function usePrintFrame(
   { selectFrame = (doc) => doc.getElementById('content-frame')
   , selectHeightElement = (doc) => doc.querySelector('[data-iframe-height]') || doc.body
   , selectWidthElement = (doc) => doc.querySelector('[data-iframe-width]') || doc.body
   , selectContainerStyle = (doc, heightElement, widthElement) => (
-      { position: 'fixed !important'
-      , display: 'inline-block !important'
-      , height: '100% !important'
-      , width: '100% !important'
-      }
+    /*
+      { position: 'fixed'
+      , display: 'inline-block'
+      , height: '100%'
+      , width: '100%'
+      */
+      {}
     )
   , selectFrameStyle = (doc, heightElement, widthElement) => (
-      { position: 'fixed !important'
-      , display: 'inline-block !important'
-      , minHeight: `${heightElement.offsetHeight}px !important`
-      , minWidth: `${widthElement.offsetWidth}px !important`
+      { position: 'fixed'
+      , display: 'inline-block'
+      , minHeight: `${heightElement.offsetHeight}px`
+      , minWidth: `${widthElement.offsetWidth}px`
       }
     )
   , selectAncestorStyle = (doc, heightElement, widthElement) => (
-      { display: 'inline-block !important'
-      , position: 'static !important'
+      { display: 'inline-block'
+      , position: 'static'
       }
     )
   , postDelay = 500
@@ -40,7 +43,7 @@ export default function usePrintFrame(
   styleElement.setAttribute('type', 'text/css')
   styleElement.setAttribute('media', 'print')
   const styles = `
-* {
+body * {
   display: none !important;
   position: static !important;
   margin: 0 !important;
@@ -51,15 +54,20 @@ export default function usePrintFrame(
   const undoStyles = () => document.head.removeChild(styleElement)
 
   const undos = []
+  console.info('REGISTER ON PRINT')
   const disposePrint = onPrint(
     { preprint() {
+        console.log('--PREPRINT--')
         const { frame, container, doc, ancestors } = selectNodes(selectFrame(document))
+
         const heightElement = selectHeightElement(doc)
         const widthElement = selectWidthElement(doc)
 
         const containerStyle = selectContainerStyle(doc, heightElement, widthElement)
         const frameStyle = selectFrameStyle(doc, heightElement, widthElement)
         const ancestorStyle = selectAncestorStyle(doc, heightElement, widthElement)
+
+        console.info('--preprint--')
 
         undos.push(setStyles(container, containerStyle))
         undos.push(setStyles(frame, frameStyle))
@@ -89,16 +97,20 @@ function selectNodes (frame) {
   let current = container
   while(current.parentNode) {
     current = current.parentNode
-    ancestors.push(current)
+    if(current.style)
+      ancestors.push(current)
   }
   return { frame, container, doc, ancestors }
 }
 
 function setStyles (element, styles) {
-  const prevStyles = Object.entries(styles).reduce((_, [ key, next ]) => {
-    const __ = { ..._, [key]: element.style[key] }
-    element.style[key] = next
-    return __
+  const prevStyles = Object.entries(styles).reduce((prev, [ key, next ]) => {
+    prev[key] = element.style[key]
+    if(next)
+      element.style.setProperty(key, next, 'important')
+    else
+      element.style.removeProperty(key)
+    return prev
   }, {})
   return function undoStyles () {
     setStyles (element, prevStyles)
