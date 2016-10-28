@@ -6,8 +6,18 @@ export default function printEvents({ preprint, postprint } = {}) {
       window.onbeforeprint = preprint
     if(postprint)
       window.onafterprint = postprint
+    return function dispose () {
+      window.onbeforeprint = null
+      window.onafterprint = null
+    }
   } else {
-    if(preprint || postprint)
-      window.matchMedia('print').addListener((mql) => mql.matches ? (preprint && preprint()) : (postprint && postprint()))
+    if(preprint || postprint) {
+      const listener = (mql) => mql.matches ? (preprint && preprint()) : (postprint && postprint())
+      window.matchMedia('print').addListener(listener)
+      return function disposeMedia () {
+        window.matchMedia('print').removeListener(listener)
+      }
+    }
+    return () => {}
   }
 }
