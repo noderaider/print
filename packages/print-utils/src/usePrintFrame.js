@@ -1,11 +1,12 @@
 import onPrint from './onPrint'
-import util from 'util'
+import parseCSSProperty from './utils/parseCSSProperty'
+import serializeCSSProperty from './utils/serializeCSSProperty'
 
-export default function usePrintFrame(
-  { selectFrame = (doc) => doc.getElementById('content-frame')
-  , selectHeightElement = (doc) => doc.querySelector('[data-iframe-height]') || doc.body
+
+export default function usePrintFrame( frame
+, { selectHeightElement = (doc) => doc.querySelector('[data-iframe-height]') || doc.body
   , selectWidthElement = (doc) => doc.querySelector('[data-iframe-width]') || doc.body
-  , selectContainerStyle = (doc, heightElement, widthElement) => (
+  , selectContainerStyle = ({ doc, heightElement, widthElement } = {}) => (
     /*
       { position: 'fixed'
       , display: 'inline-block'
@@ -14,51 +15,64 @@ export default function usePrintFrame(
       */
       {}
     )
-  , selectFrameStyle = (doc, heightElement, widthElement) => (
-      { position: 'fixed'
-      , display: 'inline-block'
-      , minHeight: `${heightElement.offsetHeight}px`
-      , minWidth: `${widthElement.offsetWidth}px`
+  , selectHeightElementStyle = ({ doc, heightElement, widthElement } = {}) => (
+      {}
+    )
+  , selectWidthElementStyle = ({ doc, heightElement, widthElement } = {}) => (
+      {}
+    )
+  , selectFrameBodyStyle = ({ doc, heightElement, widthElement } = {}) => (
+      {}
+    )
+  , selectFrameStyle = ({ doc, heightElement, widthElement } = {}) => (
+      { position: 'absolute !important'
+      , display: 'inline-block !important'
+      /*
+      , 'min-height': `${heightElement.offsetHeight}px !important`
+      , 'min-width': `${widthElement.offsetWidth}px !important`
+      */
+      , border: 'none !important'
+      , width: '0px !important'
+      , height: '0px !important'
+      , bottom: '0px !important'
+      , left: '0px !important'
+      }
+      /*
+      border:none;position:absolute;width:0px;height:0px;bottom:0px;left:0px;
+      */
+    )
+  , selectAncestorStyle = ({ doc, heightElement, widthElement } = {}) => (
+      { display: 'inline-block !important'
+      , position: 'static !important'
       }
     )
-  , selectAncestorStyle = (doc, heightElement, widthElement) => (
-      { display: 'inline-block'
-      , position: 'static'
-      }
-    )
-  , postDelay = 500
-  } = {}
-) {
-  if(typeof window !== 'object')
-    return
-
-
-  const stylesID = 'print-frame-styles'
-  if(document.getElementById(stylesID))
-    throw new Error('usePrintFrame should not be registered twice - call dispose first.')
-
-
-  const styleElement = document.createElement('style')
-  styleElement.setAttribute('id', stylesID)
-  styleElement.setAttribute('type', 'text/css')
-  styleElement.setAttribute('media', 'print')
-  const styles = `
+  , topPrintCSS = `
 body * {
   display: none !important;
   position: static !important;
   margin: 0 !important;
 }
 `
-  styleElement.innerHTML = styles
-  document.head.appendChild(styleElement)
-  const undoStyles = () => document.head.removeChild(styleElement)
+  , framePrintCSS = ''
+  , postDelay = 500
+  } = {}
+) {
+  if(typeof window !== 'object')
+    return
+  if(!frame)
+    throw new Error('usePrintFrame must be provided the frame element.')
+
+  const undoTopCSS = topPrintCSS ? setPrintCSS(document, topPrintCSS) : () => {}
+  const undoFrameCSS = framePrintCSS ? setPrintCSS(resolveDocument(frame), framePrintCSS) : () => {}
+
+
 
   const undos = []
   console.info('REGISTER ON PRINT')
   const disposePrint = onPrint(
     { preprint() {
         console.log('--PREPRINT--')
-        const { frame, container, doc, ancestors } = selectNodes(selectFrame(document))
+        const { container, doc, ancestors } = selectNodes(frame)
 
         const heightElement = selectHeightElement(doc)
         const widthElement = selectWidthElement(doc)
@@ -84,8 +98,9 @@ body * {
   )
 
   return function dispose () {
+    undoTopCSS()
+    undoFrameCSS()
     undoStyles()
-    disposePrint()
   }
 }
 
@@ -103,13 +118,50 @@ function selectNodes (frame) {
   return { frame, container, doc, ancestors }
 }
 
+/*
+overflow: hidden; min-width: 990px; height: 385px; width: 990px;
+overflow: hidden; min-width: 377px !important; height: 385px; width: 990px; position: fixed !important; display: inline-block !important; min-height: 286px !important;
+overflow: hidden; min-width: 990px !important; height: 385px; width: 990px;
+*/
+
+function resolveDocument(obj) {
+  if(obj.contentDocument)
+    return obj.contentDocument
+  else if(obj.contentWindow)
+    return obj.contentWindow.contentDocument
+  else if(obj.document)
+    return obj.document
+  throw new Error('resolveDocument found no document object')
+}
+
+const stylesID = 'use-print-frame-styles'
+function setPrintCSS(doc, css) {
+  if(doc.getElementById(stylesID))
+    throw new Error('setPrintCSS should not be registered twice on the same document - call undoPrintCSS first.')
+  const styleElement = doc.createElement('style')
+  styleElement.setAttribute('id', stylesID)
+  styleElement.setAttribute('type', 'text/css')
+  styleElement.setAttribute('media', 'print')
+  styleElement.innerHTML = css
+  doc.head.appendChild(styleElement)
+  return function undoPrintCSS () {
+    doc.head.removeChild(styleElement)
+  }
+}
+
+
 function setStyles (element, styles) {
   const prevStyles = Object.entries(styles).reduce((prev, [ key, next ]) => {
-    prev[key] = element.style[key]
-    if(next)
-      element.style.setProperty(key, next, 'important')
-    else
+    const prop = { value: element.style.getPropertyValue(key), priority: element.style.getPropertyPriority(key) }
+    console.info('SET STYLES', key, next, prop)
+    const serialized = prop.value ? serializeCSSProperty(prop) : null
+    Object.defineProperty(prev, key, { value: serialized, enumerable: true })
+    if(next) {
+      const { value, priority } = parseCSSProperty(next)
+      element.style.setProperty(key, value, priority)
+    } else {
       element.style.removeProperty(key)
+    }
     return prev
   }, {})
   return function undoStyles () {
