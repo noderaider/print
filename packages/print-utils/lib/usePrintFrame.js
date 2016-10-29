@@ -24,6 +24,17 @@ var _serializeCSSProperty2 = _interopRequireDefault(_serializeCSSProperty);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function round(num) {
+  return Math.floor(num * 100) / 100;
+}
+var scaleToWidth = 800;
+function getScale(width) {
+  return round(scaleToWidth / width);
+}
 function usePrintFrame(frame) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
       _ref$selectHeightElem = _ref.selectHeightElement,
@@ -41,84 +52,141 @@ function usePrintFrame(frame) {
         heightElement = _ref2.heightElement,
         widthElement = _ref2.widthElement;
 
-    return (
+    return { position: 'absolute !important'
       /*
-        { position: 'fixed'
-        , display: 'inline-block'
-        , height: '100%'
-        , width: '100%'
-        */
-      {}
-    );
+      , width: 'unset !important'
+      , height: 'unset !important'
+      , width: `${widthElement.offsetWidth}px`
+      , height: `${heightElement.offsetHeight}px`
+      */
+      , 'min-width': '900px !important',
+      'min-height': 'unset !important',
+      'max-width': 'unset !important',
+      'max-height': 'unset !important',
+      top: '0px !important',
+      bottom: '0px !important',
+      left: '0px !important',
+      right: '0px !important',
+      border: '2px dashed blue !important'
+      //, border: '0px !important'
+      , overflow: 'visible !important'
+    }
+    /*
+      , display: 'inline-block'
+      , height: '100%'
+      , width: '100%'
+      */
+    ;
   } : _ref$selectContainerS,
-      _ref$selectHeightElem2 = _ref.selectHeightElementStyle,
-      selectHeightElementStyle = _ref$selectHeightElem2 === undefined ? function () {
+      _ref$selectFrameStyle = _ref.selectFrameStyle,
+      selectFrameStyle = _ref$selectFrameStyle === undefined ? function () {
+    var _ref4;
+
     var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         doc = _ref3.doc,
         heightElement = _ref3.heightElement,
         widthElement = _ref3.widthElement;
 
-    return {};
-  } : _ref$selectHeightElem2,
-      _ref$selectWidthEleme2 = _ref.selectWidthElementStyle,
-      selectWidthElementStyle = _ref$selectWidthEleme2 === undefined ? function () {
-    var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        doc = _ref4.doc,
-        heightElement = _ref4.heightElement,
-        widthElement = _ref4.widthElement;
-
-    return {};
-  } : _ref$selectWidthEleme2,
-      _ref$selectFrameBodyS = _ref.selectFrameBodyStyle,
-      selectFrameBodyStyle = _ref$selectFrameBodyS === undefined ? function () {
+    return _ref4 = { position: 'absolute !important',
+      display: 'inline-block !important',
+      transform: 'translate('
+      /*
+      , width: `${widthElement.offsetWidth}px`
+      , height: `${heightElement.offsetHeight}px`
+      */
+      /*
+      , 'min-width': 'unset !important'
+      , 'min-height': 'unset !important'
+      , 'max-width': 'unset !important'
+      , 'max-height': 'unset !important'
+      */
+      , top: '0px !important',
+      bottom: '0px !important',
+      left: '0px !important',
+      right: '0px !important',
+      border: '1px dashed green !important'
+      //, border: '0px !important'
+      , margin: '0px !important',
+      padding: '0px !important',
+      'padding-top': '0px !important',
+      'padding-bottom': '0px !important',
+      overflow: 'visible !important'
+    }, _defineProperty(_ref4, 'transform', 'initial !important'), _defineProperty(_ref4, 'box-shadow', 'none !important'), _defineProperty(_ref4, 'background-color', 'transparent !important'), _defineProperty(_ref4, 'border-radius', '0 !important'), _ref4;
+    /*
+    , 'min-height': `${heightElement.offsetHeight}px !important`
+    , 'min-width': `${widthElement.offsetWidth}px !important`
+    */
+    /*
+    .print-target {
+    display: inline-block;
+    /* position: fixed !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    height: 100% !important;
+    width: 1500px;
+    border:none;position:absolute;width:0px;height:0px;bottom:0px;left:0px;
+    */
+  } : _ref$selectFrameStyle,
+      _ref$selectHeightElem2 = _ref.selectHeightElementStyle,
+      selectHeightElementStyle = _ref$selectHeightElem2 === undefined ? function () {
     var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         doc = _ref5.doc,
         heightElement = _ref5.heightElement,
         widthElement = _ref5.widthElement;
 
     return {};
-  } : _ref$selectFrameBodyS,
-      _ref$selectFrameStyle = _ref.selectFrameStyle,
-      selectFrameStyle = _ref$selectFrameStyle === undefined ? function () {
+  } : _ref$selectHeightElem2,
+      _ref$selectWidthEleme2 = _ref.selectWidthElementStyle,
+      selectWidthElementStyle = _ref$selectWidthEleme2 === undefined ? function () {
     var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         doc = _ref6.doc,
         heightElement = _ref6.heightElement,
         widthElement = _ref6.widthElement;
 
-    return { position: 'absolute !important',
-      display: 'inline-block !important'
-      /*
-      , 'min-height': `${heightElement.offsetHeight}px !important`
-      , 'min-width': `${widthElement.offsetWidth}px !important`
-      */
-      , border: 'none !important',
-      width: '0px !important',
-      height: '0px !important',
-      bottom: '0px !important',
-      left: '0px !important'
-    }
-    /*
-    border:none;position:absolute;width:0px;height:0px;bottom:0px;left:0px;
-    */
-    ;
-  } : _ref$selectFrameStyle,
-      _ref$selectAncestorSt = _ref.selectAncestorStyle,
-      selectAncestorStyle = _ref$selectAncestorSt === undefined ? function () {
+    return {};
+  } : _ref$selectWidthEleme2,
+      _ref$selectFrameBodyS = _ref.selectFrameBodyStyle,
+      selectFrameBodyStyle = _ref$selectFrameBodyS === undefined ? function () {
     var _ref7 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         doc = _ref7.doc,
         heightElement = _ref7.heightElement,
         widthElement = _ref7.widthElement;
 
+    return { margin: '0px !important'
+      //, 'margin-right': '40px !important'
+      , padding: '0px !important'
+      //, 'padding-right': '30px !important'
+      , 'padding-top': '0px !important',
+      'padding-bottom': '0px !important',
+      'position': 'fixed !important',
+      top: '0px !important',
+      bottom: '0px !important',
+      left: '0px !important',
+      right: '0px !important',
+      overflow: 'visible !important'
+    };
+  } : _ref$selectFrameBodyS,
+      _ref$selectAncestorSt = _ref.selectAncestorStyle,
+      selectAncestorStyle = _ref$selectAncestorSt === undefined ? function () {
+    var _ref8 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        doc = _ref8.doc,
+        heightElement = _ref8.heightElement,
+        widthElement = _ref8.widthElement;
+
     return { display: 'inline-block !important',
-      position: 'static !important'
+      position: 'static !important',
+      overflow: 'visible !important'
     };
   } : _ref$selectAncestorSt,
       _ref$topPrintCSS = _ref.topPrintCSS,
-      topPrintCSS = _ref$topPrintCSS === undefined ? '\nbody * {\n  display: none !important;\n  position: static !important;\n  margin: 0 !important;\n}\n' : _ref$topPrintCSS,
+      topPrintCSS = _ref$topPrintCSS === undefined ? '\nbody {\n  display: inline-block !important;\n  border: 3px solid red !important;\n}\nbody * {\n  display: none !important;\n  position: unset !important;\n  margin: 0 !important;\n  padding: 0 !important;\n}\n' : _ref$topPrintCSS,
       _ref$framePrintCSS = _ref.framePrintCSS,
-      framePrintCSS = _ref$framePrintCSS === undefined ? '' : _ref$framePrintCSS,
-      _ref$postDelay = _ref.postDelay,
-      postDelay = _ref$postDelay === undefined ? 500 : _ref$postDelay;
+      framePrintCSS = _ref$framePrintCSS === undefined ? '' : _ref$framePrintCSS;
 
   if ((typeof window === 'undefined' ? 'undefined' : _typeof(window)) !== 'object') return;
   if (!frame) throw new Error('usePrintFrame must be provided the frame element.');
@@ -126,38 +194,65 @@ function usePrintFrame(frame) {
   var undoTopCSS = topPrintCSS ? setPrintCSS(document, topPrintCSS) : function () {};
   var undoFrameCSS = framePrintCSS ? setPrintCSS(resolveDocument(frame), framePrintCSS) : function () {};
 
-  var undos = [];
-  console.info('REGISTER ON PRINT');
+  //setStyles(document.body, { border: '1px dashed red !important' })
+
+  //const undoPrelimFrameStyle = setStyles(frame, { 'will-change': 'position display width height min-width min-height max-width max-height !important' })
+
+  var undos = new Set();
   var disposePrint = (0, _onPrint2.default)({
     preprint: function preprint() {
-      console.log('--PREPRINT--');
-
       var _selectNodes = selectNodes(frame),
           container = _selectNodes.container,
           doc = _selectNodes.doc,
           ancestors = _selectNodes.ancestors;
 
+      if (!doc) throw new Error('Could not find doc in frame.');
+
       var heightElement = selectHeightElement(doc);
       var widthElement = selectWidthElement(doc);
+      if (!heightElement) throw new Error('Could not find height element in frame.');
+      if (!widthElement) throw new Error('Could not find width element in frame.');
 
-      var containerStyle = selectContainerStyle(doc, heightElement, widthElement);
-      var frameStyle = selectFrameStyle(doc, heightElement, widthElement);
-      var ancestorStyle = selectAncestorStyle(doc, heightElement, widthElement);
+      var containerStyle = selectContainerStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
+      var frameStyle = selectFrameStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
+      var frameBodyStyle = selectFrameBodyStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
+      var heightElementStyle = selectHeightElementStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
+      var widthElementStyle = selectWidthElementStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
+      var ancestorStyle = selectAncestorStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
 
-      console.info('--preprint--');
-
-      undos.push(setStyles(container, containerStyle));
-      undos.push(setStyles(frame, frameStyle));
-      undos.concat(ancestors.map(function (ancestor) {
+      undos = new Set([setStyles(container, containerStyle), setStyles(frame, frameStyle), setStyles(doc.body, heightElementStyle), setStyles(doc.body, widthElementStyle), setStyles(doc.body, frameBodyStyle)].concat(_toConsumableArray(ancestors.map(function (ancestor) {
         return setStyles(ancestor, ancestorStyle);
-      }));
+      }))));
+      console.log('--preprint--', undos.size);
     },
     postprint: function postprint() {
-      setTimeout(function () {
-        while (undos.length > 0) {
-          undos.pop()();
+      console.log('--postprint--', undos.size);
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = undos[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var undo = _step.value;
+
+          undo();
         }
-      }, postDelay);
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      undos.clear();
     }
   });
 
@@ -170,7 +265,7 @@ function usePrintFrame(frame) {
 
 function selectNodes(frame) {
   var container = frame.parentNode;
-  var doc = frame.contentDocument;
+  var doc = resolveDocument(frame);
 
   var ancestors = [];
   var current = container;
@@ -178,7 +273,7 @@ function selectNodes(frame) {
     current = current.parentNode;
     if (current.style) ancestors.push(current);
   }
-  return { frame: frame, container: container, doc: doc, ancestors: ancestors };
+  return { container: container, doc: doc, ancestors: ancestors };
 }
 
 /*
@@ -207,10 +302,10 @@ function setPrintCSS(doc, css) {
 }
 
 function setStyles(element, styles) {
-  var prevStyles = Object.entries(styles).reduce(function (prev, _ref8) {
-    var _ref9 = _slicedToArray(_ref8, 2),
-        key = _ref9[0],
-        next = _ref9[1];
+  var prevStyles = Object.entries(styles).reduce(function (prev, _ref9) {
+    var _ref10 = _slicedToArray(_ref9, 2),
+        key = _ref10[0],
+        next = _ref10[1];
 
     var prop = { value: element.style.getPropertyValue(key), priority: element.style.getPropertyPriority(key) };
     console.info('SET STYLES', key, next, prop);

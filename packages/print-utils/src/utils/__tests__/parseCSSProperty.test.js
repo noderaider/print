@@ -25,4 +25,10 @@ describe('parseCSSProperty', () => {
   it('gets correct value for string "1px solid black !important"', () => {
     expect(parseCSSProperty('1px solid black !important')).toEqual({ value: '1px solid black', priority: 'important' })
   })
+  it('gets correct value for string "scale(0.75)"', () => {
+    expect(parseCSSProperty('scale(0.75)')).toEqual({ value: 'scale(0.75)', priority: '' })
+  })
+  it('gets correct value for string "scale(0.75) !important"', () => {
+    expect(parseCSSProperty('scale(0.75) !important')).toEqual({ value: 'scale(0.75)', priority: 'important' })
+  })
 })
