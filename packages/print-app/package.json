@@ -1,14 +1,14 @@
 {
   "name": "print-app",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "devDependencies": {
     "react-scripts": "0.7.0"
   },
   "dependencies": {
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "print-utils": "^0.2.2",
-    "react-focus": "^0.2.2"
+    "print-utils": "^0.2.3",
+    "react-focus": "^0.2.3"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,6 +1,6 @@
 {
   "name": "react-focus",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "lib/index.js",
   "browser": "dist/bundle.js",
   "files": [
@@ -16,7 +16,7 @@
     "preversion": "npm run build"
   },
   "dependencies": {
-    "print-utils": "^0.2.2"
+    "print-utils": "^0.2.3"
   },
   "devDependencies": {
     "bin-utils": "latest",
