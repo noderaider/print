@@ -1,0 +1,25 @@
+{
+  "folders":
+  [
+    {
+      "folder_exclude_patterns": [ "node_modules" ],
+      "name": "print-app",
+      "path": "../packages/print-app"
+    },
+    {
+      "folder_exclude_patterns": [ "node_modules" ],
+      "name": "print-utils",
+      "path": "../packages/print-utils"
+    },
+    {
+      "folder_exclude_patterns": [ "node_modules" ],
+      "name": "react-focus",
+      "path": "../packages/react-focus"
+    },
+    {
+      "folder_exclude_patterns": [ "node_modules" ],
+      "name": "@raider/print",
+      "path": "../"
+    }
+  ]
+}

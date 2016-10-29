@@ -1,0 +1,1377 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"select",
+				"selectMetadata"
+			],
+			[
+				"createBrowserS",
+				"createBrowserStateAccessor"
+			],
+			[
+				"REMOVE",
+				"REMOVE_ERROR_AT_POS"
+			],
+			[
+				"REMOVE_ERR",
+				"REMOVE_ERROR_AT_POS_REDUCER"
+			],
+			[
+				"fout",
+				"foutStyles"
+			],
+			[
+				"SetEnvP",
+				"SetEnvPSModulePath"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "\n /$$$$$$$$        /$$                 /$$$$$$$$             /$$\n|__  $$__/       | $$                | $$_____/            | $$\n   | $$  /$$$$$$ | $$$$$$$   /$$$$$$$| $$       /$$   /$$ /$$$$$$    /$$$$$$  /$$$$$$\n   | $$ |____  $$| $$__  $$ /$$_____/| $$$$$   |  $$ /$$/|_  $$_/   /$$__  $$|____  $$\n   | $$  /$$$$$$$| $$  \\ $$|  $$$$$$ | $$__/    \\  $$$$/   | $$    | $$  \\__/ /$$$$$$$\n   | $$ /$$__  $$| $$  | $$ \\____  $$| $$        >$$  $$   | $$ /$$| $$      /$$__  $$\n   | $$|  $$$$$$$| $$$$$$$/ /$$$$$$$/| $$$$$$$$ /$$/\\  $$  |  $$$$/| $$     |  $$$$$$$\n   |__/ \\_______/|_______/ |_______/ |________/|__/  \\__/   \\___/  |__/      \\_______/\n\n\n======================================================================================\n\nMenu format upgraded to version (1.6.0). To pick up these changes, do one of the\nfollowing:\n\n1. If using the override menu, select \"Preferences->Package Settings->TabsExtra->Install/Upgrade Default Override Menu\"\n   from Sublime's menu.\n\n2. If using the default menu, select \"Preferences->Package Settings->TabsExtra->Install/Upgrade TabsExtra Menu\"\n   from the menu\" from Sublime's menu.\n\n======================================================================================\n\nChanges:\n- Add 'Move' command\n",
+			"settings":
+			{
+				"buffer_size": 1248,
+				"line_ending": "Windows",
+				"name": "TabsExtra Message",
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 41.0,
+		"last_filter": "error",
+		"selected_items":
+		[
+			[
+				"error",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"err",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"erro",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"reindent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"set syntax babel",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"set syntax html",
+				"Set Syntax: HTML (ASP)"
+			],
+			[
+				"postcss",
+				"Run PostCSS Sorting"
+			],
+			[
+				"set syntax html asp",
+				"Set Syntax: HTML (ASP)"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"sort",
+				"Run PostCSS Sorting"
+			],
+			[
+				"select",
+				"OmniSharpSublime: Select Server Version"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"set syntax asp",
+				"Set Syntax: HTML (ASP)"
+			],
+			[
+				"lint",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"show error",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"babel",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"user ",
+				"Preferences: Settings - User"
+			],
+			[
+				"clear ca",
+				"SublimeLinter: Clear Caches"
+			],
+			[
+				"show all",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"lint this vi",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"clear",
+				"SublimeLinter: Clear Caches"
+			],
+			[
+				"lint this",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"show",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"clear c",
+				"SublimeLinter: Clear Caches"
+			],
+			[
+				"lint this v",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"bab",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"SNIPPet",
+				"Snippet: React: class component"
+			],
+			[
+				"babe",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"set syntax bab",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"lint error",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"ind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"sublime",
+				"SublimeLinter: Clear Caches"
+			],
+			[
+				"choose ",
+				"SublimeLinter: Choose Gutter Theme"
+			],
+			[
+				"choose li",
+				"SublimeLinter: Choose Lint Mode"
+			],
+			[
+				"cache",
+				"SublimeLinter: Clear Caches"
+			],
+			[
+				"prefere",
+				"Preferences: SublimeLinter Settings – Default"
+			],
+			[
+				"eslint",
+				"SublimeLinter: Choose Lint Mode"
+			],
+			[
+				"remove p",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove package",
+				"Package Control: Remove Package"
+			],
+			[
+				"install pack",
+				"Package Control: Install Package"
+			],
+			[
+				"snippet",
+				"Snippet: #!/usr/bin/env"
+			],
+			[
+				"syntax babel",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"syntax: bab",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"set syntax",
+				"Set Syntax: LESS"
+			],
+			[
+				"set syntax: java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"powershell",
+				"Set Syntax: PowerShell"
+			]
+		],
+		"width": 402.0
+	},
+	"console":
+	{
+		"height": 247.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/cchamberlain/noderaider/print"
+	],
+	"file_history":
+	[
+		"/C/Users/cchamberlain/noderaider/print-utils/src/index.js",
+		"/C/Users/cchamberlain/noderaider/print-utils/src/utils/parseCSSProperty.js",
+		"/C/Users/cchamberlain/noderaider/print-utils/src/onPrint.js",
+		"/C/Users/cchamberlain/noderaider/modular/etc/modular.sublime-project",
+		"/C/Users/cchamberlain/noderaider/modular/packages/bin-utils/template/create-umd-module/src/index.js",
+		"/C/Users/cchamberlain/noderaider/modular/packages/create-package/package.json",
+		"/C/Users/cchamberlain/noderaider/modular/package.json",
+		"/C/Users/cchamberlain/noderaider/print-utils/package.json",
+		"/C/Users/cchamberlain/noderaider/modular/README.md",
+		"/C/Users/cchamberlain/noderaider/modular/packages/bin-utils/template/create-cli-module/src/index.js",
+		"/C/Users/cchamberlain/noderaider/modular/packages/bin-utils/packages/create-cli-module.json",
+		"/C/Users/cchamberlain/noderaider/modular/packages/bin-utils/packages/create-umd-module.json",
+		"/C/Users/cchamberlain/noderaider/modular/packages/bin-utils/template/create-umd-module/package.json",
+		"/C/Users/cchamberlain/noderaider/modular/packages/bin-utils/template/create-cli-module/bin.js",
+		"/C/Users/cchamberlain/noderaider/modular/packages/bin-utils/template/create-cli-module/src/cli.js",
+		"/C/Users/cchamberlain/noderaider/modular/packages/install/package.json",
+		"/C/Users/cchamberlain/noderaider/modular/packages/create-package/src/lib/index.js",
+		"/C/Users/cchamberlain/noderaider/modular/packages/which/src/cli.js",
+		"/C/Users/cchamberlain/noderaider/modular/packages/which/README.md",
+		"/C/Users/cchamberlain/noderaider/modular/packages/install/README.md",
+		"/C/Users/cchamberlain/noderaider/modular/packages/which/src/index.js",
+		"/C/Users/cchamberlain/noderaider/modular/packages/install/src/index.js",
+		"/C/Users/cchamberlain/noderaider/modular/packages/which/package.json",
+		"/C/Users/cchamberlain/noderaider/modular/packages/create-package/.babelrc",
+		"/C/Users/cchamberlain/noderaider/modular/packages/install/src/utils/shouldUseYarn.js",
+		"/C/Users/cchamberlain/noderaider/modular/packages/create-package/src/lib/utils/detectInPath.js",
+		"/C/Users/cchamberlain/noderaider/modular/packages/which/bin.js",
+		"/C/Users/cchamberlain/noderaider/modular/packages/install/bin.js",
+		"/C/Users/cchamberlain/noderaider/modular/packages/bin-utils/package.json",
+		"/C/Users/cchamberlain/noderaider/modular/packages/install/src/cli.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/src/scripts/createInit.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/src/scripts/create-css-module/init.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-package/src/lib/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/package.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/README.md",
+		"/C/Users/cchamberlain/noderaider/create-react-app/packages/create-react-app/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/packages/create-css-module.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/.npmignore",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-package/src/lib/utils/install.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/template/create-css-module/src/config.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/packages/create-css-module/template.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/packages/create-css-module/devDependencies.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/src/scripts/create-css-module/dependencies.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/template/create-css-module/src/lib/styles.css",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/template/create-css-module/npmignore",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/src/scripts/create-css-module/devDependencies.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/packages/create-css-module/dependencies.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-package/src/lib/utils/detectInPath.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/template/create-css-module/README.md",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-component-module/package.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-deploy-module/package.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-express-module/package.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-koa-module/package.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-sass-module/package.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/scaffold-test/__tests__/create-css-module.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-css-module/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-css-module/package.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-css-module/bin.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/scaffold-test/package.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-package/package.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-repo/package.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/package.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/etc/scaffold.sublime-project",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/src/bin/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/src/lib/mkdirp.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/src/lib/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/src/lib/ncp.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/src/lib/stat.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/src/lib/__tests__/sync.test.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/src/lib/__tests__/index.test.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/src/lib/rimraf.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-package/lib/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-package/README.md",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/scaffold-test/README.md",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/src/lib/createPackage.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-repo/src/bin/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-repo/src/lib/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-package/package.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-repo/src/lib/__tests__/index.test.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/README.md",
+		"/C/Users/cchamberlain/noderaider/scaffold/lerna.json",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-package/src/lib/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-css-module/src/lib/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-package/src/lib/__tests__/index.test.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-css-module/src/lib/__tests__/index.test.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-repo/README.md",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-package/README.md",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-package/src/bin/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-css-module/src/bin/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-css-module/CNAME",
+		"/C/Users/cchamberlain/noderaider/scaffold/etc/design.sublime-project",
+		"/C/Users/cchamberlain/noderaider/design/packages/data/src/lib/index.js",
+		"/C/Users/cchamberlain/noderaider/design/packages/api/src/lib/index.js",
+		"/C/Users/cchamberlain/noderaider/design/packages/api/src/lib/utils/hashPassword.js",
+		"/C/Users/cchamberlain/noderaider/design/packages/api/src/bin/api.js",
+		"/C/Users/cchamberlain/noderaider/gun/gun.js",
+		"/C/Users/cchamberlain/noderaider/gun/package.json",
+		"/C/Users/cchamberlain/noderaider/design/packages/data/.babelrc",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/aws.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/file.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/http.js",
+		"/C/Users/cchamberlain/noderaider/gun/examples/http.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/Gun.obsolete.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/Gun.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/api.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/list.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/s3.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/server.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/set.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/unbuild.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/ws.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/wsp.js",
+		"/C/Users/cchamberlain/noderaider/gun/lib/wsp.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/index.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/adapters/wsp.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/adapters/localStorage.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/adapters/index.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/State.js",
+		"/C/Users/cchamberlain/noderaider/design/packages/api/.babelrc",
+		"/C/Users/cchamberlain/noderaider/gun/lib/gun/Type.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/Type.js",
+		"/C/Users/cchamberlain/noderaider/gun/lib/gun/index.js",
+		"/C/Users/cchamberlain/noderaider/gun/lib/gun/api.js",
+		"/C/Users/cchamberlain/noderaider/gun/lib/gun/Gun.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/Val.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/Node.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/Graph.js",
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/HAM.js"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 92.0,
+		"where_history":
+		[
+			"C:\\Users\\cchamberlain\\noderaider\\scaffold\\packages\\create-package",
+			"C:\\Users\\cchamberlain\\noderaider\\scaffold\\packages\\bin-utils",
+			"C:\\Users\\cchamberlain\\noderaider\\scaffold\\packages\\create-react-package",
+			"C:\\Users\\cchamberlain\\noderaider\\scaffold\\packages\\create-react-repo",
+			"C:\\Users\\cchamberlain\\noderaider\\scaffold\\packages\\create-css-module",
+			"C:\\Users\\cchamberlain\\noderaider\\gun\\src",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\api",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\data",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\styles",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\delivery",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\proxy",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\design\\src",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\design",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\utils",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\hooks",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\\t",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\webpack-react-themes",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\webpack-react-styles",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\webpack-react",
+			"C:\\Users\\cchamberlain\\noderaider\\design\t",
+			"C:\\Users\\cchamberlain\\noderaider\\design",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\config",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\design",
+			"C:\\Users\\cchamberlain\\noderaider\\design\\packages\\design\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\packages\\superfilter",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\packages\\js\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\packages\\js\\src\\lib\\utils\\__tests__\\frames.test.js",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\packages\\js\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\node_modules",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src\\",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src\\app,C:\\Users\\cchamberlain\\tixinc\\js\\src\\lib",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js",
+			"C:\\Users\\cchamberlain\\cchamberlain\\redux-webpack-boilerplate\\src,C:\\Users\\cchamberlain\\cchamberlain\\repackage\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\react-redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-addons\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-middleware\\src,C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-redux\\src,C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-react-redux\\src,C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-core\\src,C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-react\\src,C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-subgrid-plugin\\src",
+			"C:\\Users\\cchamberlain\\cchamberlain\\redux-webpack-boilerplate\\src,C:\\Users\\cchamberlain\\cchamberlain\\repackage\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\react-redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-addons\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-middleware\\src, C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-redux\\src, C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-react-redux\\src, C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-core\\src, C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-react\\src, C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-subgrid-plugin\\src",
+			"C:\\Users\\cchamberlain\\cchamberlain\\redux-webpack-boilerplate\\src,C:\\Users\\cchamberlain\\cchamberlain\\repackage\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\react-redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-addons\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-middleware\\src,C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-redux\\src,C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-react-redux\\src,C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-core\\src,C:\\Users\\cchamberlain\\cchamberlain\\griddle-overhaul-react\\src",
+			"C:\\Users\\cchamberlain\\cchamberlain\\redux-webpack-boilerplate\\src,C:\\Users\\cchamberlain\\cchamberlain\\repackage\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\react-redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-addons\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-middleware\\src\t",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src,C:\\Users\\cchamberlain\\cchamberlain\\repackage\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\react-redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-addons\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-middleware\\src\t",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\react-redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-addons\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-middleware\\src\t",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\react-redux-idle-monitor\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-addons\\src,C:\\Users\\cchamberlain\\cchamberlain\\redux-middleware\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src,C:\\Users\\cchamberlain\\tixinc\\tix.com,-*.min.js",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src,C:\\Users\\cchamberlain\\tixinc\\tix.com",
+			"C:\\Users\\cchamberlain\\tixinc\\js",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src,C:\\Users\\cchamberlain\\tixinc\\tix.com",
+			"<current file>",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src,C:\\Users\\cchamberlain\\tixinc\\tix.com",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\config\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src",
+			"C:\\Users\\cchamberlain\\cchamberlain\\react-idle-timer\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\config\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js",
+			"C:\\Users\\cchamberlain\\tixinc\\config\\src\\json",
+			"C:\\Users\\cchamberlain\\tixinc\\config\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\config",
+			"C:\\Users\\cchamberlain\\tixinc\\js",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\config\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\config\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\config",
+			"C:\\Users\\cchamberlain\\tixinc\\js",
+			"C:\\Users\\cchamberlain\\tixinc\\js\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\js",
+			"C:\\Users\\cchamberlain\\tixinc\\services",
+			"C:\\Users\\cchamberlain\\tixinc\\net",
+			"C:\\Users\\cchamberlain\\tixinc\\config",
+			"C:\\Users\\cchamberlain\\tixinc\\tixinc-js",
+			"C:\\Users\\cchamberlain\\tixinc\\tixinc-js\\src",
+			"C:\\Users\\cchamberlain\\tixinc\\tixinc-js",
+			"C:\\Users\\cchamberlain\\cchamberlain\\powerapi",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"block",
+			"create-react-repo",
+			"create-css-module",
+			"jwt-autorefresh",
+			"Gun.chain.on",
+			"Gun.val",
+			"Gun.Val",
+			"data",
+			"raider/js",
+			"utils",
+			"gridiron",
+			"TixInc",
+			"tixinc",
+			"styles.bottom",
+			"indexRoute",
+			"indexComponent",
+			"224, 224, 224",
+			"tixinc",
+			"getFavorites",
+			"BrowserStor ",
+			"payload:",
+			"www.raiderjs",
+			"www.raider.com",
+			"www.raiderjs",
+			"raiderjsraider",
+			"staticMeta.metadata",
+			"Response triggered",
+			"classic",
+			"star.raiderjs",
+			"classicraider",
+			"readPfx",
+			"selectAppClaim",
+			"./ext",
+			"/ext",
+			"ClassicBar",
+			"react-formula",
+			"reactFormula",
+			"react-formula",
+			"TIX",
+			"Tix",
+			"PanelHeader",
+			"@raider/config/ext",
+			"TIX",
+			"OrganizationSettingsPanel",
+			"OrgOptions",
+			"TIX",
+			"Tix",
+			"tix",
+			"cssModules",
+			"gcss",
+			"gcss'",
+			"sweetalert.gcss",
+			"window.Tix",
+			"window.tix",
+			"Tix",
+			"TixInc",
+			"github.com/TixInc",
+			"Tix",
+			"tix",
+			"tixinc",
+			"tixinc-js",
+			"tixinc",
+			"\"tixinc\"",
+			"raider\\js",
+			"tixinc\\",
+			"tixinc-js",
+			"tixinc",
+			"@raider/js",
+			"@tixinc",
+			"@tixinc/js",
+			"@raider/js",
+			"@tixinc",
+			"@noderaider",
+			"@tixinc/config",
+			"@raider/config",
+			"@tixinc/config",
+			"@tixinc/",
+			"tix",
+			"tixinc/js",
+			"@tixinc/config",
+			"@tixinc",
+			"@tixinc/js",
+			"tix",
+			"filterDynamic",
+			"pure-stamp",
+			"pureStamp",
+			"superfilter",
+			"pureStamp",
+			"pure-stamp",
+			"userId: ",
+			"WidgetList",
+			"apiMiddleware",
+			"apx",
+			"location.reload",
+			"reactPre",
+			"!react-dom",
+			"170px",
+			".mobile",
+			"logo-40",
+			"defer",
+			"defer.js",
+			"onLoginAttempt",
+			"Favorites",
+			"favoriteswidget",
+			"appCompare",
+			"section:",
+			"OutsideClick",
+			"outside click",
+			"outsideClick",
+			"outsideclick",
+			"ignoreOutsideClick",
+			"location.reload()",
+			"createPayloadSelector",
+			"<TopBar",
+			"<ClassicBanner",
+			"compareUrls",
+			"enableSessionSync",
+			"Status: Authorized",
+			"enableSessionSync",
+			"'OLD',",
+			"META PROPS",
+			"CREATE META PROPS",
+			"DEAUTHORIZE",
+			"DEAUTHORIZE_REDIRECT",
+			"case 'trigger",
+			"fetchingProps",
+			"export function storeSelector",
+			"storeSelector"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"create-package",
+			"bin-utils",
+			"create-react-package",
+			"create-react-repo",
+			"create-css-module",
+			"api",
+			"raider/design",
+			"data",
+			"design",
+			"raider",
+			"raiderjs.com",
+			"raiderjs",
+			"webpack-react",
+			"webpackReact",
+			"webpack-react",
+			"RAIDER",
+			"window.raider",
+			"Raider",
+			"noderaider",
+			"gitlab.com/noderaider",
+			"raider",
+			"@raider/design",
+			"\"raider\"",
+			"raider\\design",
+			"raider\\",
+			"design",
+			"@raider",
+			"@raider/design",
+			"@raider",
+			"@raider/config",
+			"@raider/",
+			"noderaider/design",
+			"@noderaider/design",
+			"superfilter",
+			"pureStamp",
+			"superfilter",
+			"from 'app/elements/",
+			"rooted",
+			"_absolute",
+			"modules",
+			"modules/redux-idle",
+			"'app/redux/",
+			"'redux/",
+			"'./redux/",
+			"'../redux/",
+			"'lib/redux",
+			"'app/redux",
+			"useLocalStore",
+			"useFastStore",
+			"initialValue",
+			"fragmentType",
+			"domElement",
+			"props.fragmentType",
+			"getFragmentType",
+			"data-fragment-type",
+			"Static",
+			"Expander",
+			"popHTMLControl",
+			"resetComponents",
+			"criteria-component",
+			"componentRadioAll",
+			"componentRadioNone",
+			"componentRadioChoose",
+			"componentRadio",
+			"ClientIDMode=\"Predictable\"",
+			"byIDPrefix",
+			"byIDSuffix",
+			"'ext"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1248,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1248,
+								1248
+							]
+						],
+						"settings":
+						{
+							"default_dir": "C:\\Users\\cchamberlain\\noderaider\\print",
+							"font_face": "Courier New",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tabs_extra_last_activated": 1477761544.79,
+							"tabs_extra_last_activated_sheet_index": 0,
+							"vintage":
+							{
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							},
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 126.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Kulture/ASP.NET.sublime-build",
+	"project": "print.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"topbar",
+				"@raider\\design\\app\\elements\\nav\\TopBar.js"
+			],
+			[
+				"frameloader",
+				"@raider\\design\\app\\routes\\components\\FrameLoader.js"
+			],
+			[
+				"knowledge",
+				"@raider\\design\\app\\elements\\widgets\\KnowledgeBase.js"
+			],
+			[
+				"classicsections",
+				"noderaider\\design\\packages\\design\\public\\doc\\ast\\source\\nav\\ClassicSections.js.json"
+			],
+			[
+				"dashboardpanel",
+				"@raider\\design\\app\\elements\\panels\\DashboardPanel.js"
+			],
+			[
+				"classicbar.js",
+				"@raider\\design\\app\\elements\\nav\\ClassicBanner.js"
+			],
+			[
+				"fout-loading",
+				"@raider\\design\\app\\styles\\fout-loading.gcss"
+			],
+			[
+				"monikertypeahead.gcss",
+				"@raider\\design\\app\\elements\\typeaheads\\MonikerTypeahead.gcss"
+			],
+			[
+				"maintenancepanel",
+				"js\\packages\\js\\src\\app\\elements\\panels\\MaintenancePanel.js"
+			],
+			[
+				"widgetlist",
+				"@tixinc\\js\\app\\elements\\widgets\\WidgetList.js"
+			],
+			[
+				"sessionsync",
+				"@tixinc\\js\\app\\routes\\components\\SessionSync.js"
+			],
+			[
+				"session",
+				"@tixinc\\js\\app\\routes\\components\\SessionSync.js"
+			],
+			[
+				"sessionsync.js",
+				"@tixinc\\js\\app\\routes\\components\\SessionSync.js"
+			],
+			[
+				"app.js",
+				"js\\packages\\js\\src\\app\\routes\\components\\App.js"
+			],
+			[
+				"dcmegamenu.gcss",
+				"@tixinc\\js\\app\\entry\\legacy\\styles\\dcmegamenu.gcss"
+			],
+			[
+				"dcmega",
+				"@tixinc\\js\\app\\elements\\nav\\dcMegaMenu.js"
+			],
+			[
+				"management.js",
+				"@tixinc\\js\\app\\elements\\widgets\\Management.js"
+			],
+			[
+				"createpanel.js",
+				"js\\packages\\js\\src\\app\\elements\\panels\\core\\createPanel.js"
+			],
+			[
+				"timeoutpanel.js",
+				"@tixinc\\js\\app\\elements\\panels\\TimeoutPanel.js"
+			],
+			[
+				"createpanel",
+				"@tixinc\\js\\app\\elements\\panels\\core\\createPanel.js"
+			],
+			[
+				"identitypanel.js",
+				"@tixinc\\js\\app\\elements\\panels\\IdentityPanel.js"
+			],
+			[
+				"adminpanel",
+				"js\\packages\\js\\src\\app\\elements\\panels\\AdminPanel.js"
+			],
+			[
+				"identitypanel",
+				"@tixinc\\js\\app\\elements\\panels\\IdentityPanel.js"
+			],
+			[
+				"sidebar.js",
+				"@tixinc\\js\\app\\elements\\nav\\SideBar.js"
+			],
+			[
+				"topright.js",
+				"js\\packages\\js\\src\\app\\elements\\nav\\TopRight.js"
+			],
+			[
+				"timeout.js",
+				"js\\packages\\js\\src\\app\\routes\\components\\Timeout.js"
+			],
+			[
+				"topmenu.js",
+				"js\\packages\\js\\src\\app\\elements\\nav\\TopMenu.js"
+			],
+			[
+				"topright",
+				"@tixinc\\js\\app\\elements\\nav\\TopRight.js"
+			],
+			[
+				"management",
+				"@tixinc\\js\\app\\routes\\components\\Management.js"
+			],
+			[
+				"legacy",
+				"@tixinc\\js\\app\\entry\\legacy.css"
+			],
+			[
+				"legacy.js",
+				"@tixinc\\js\\app\\entry\\legacy.js"
+			],
+			[
+				"footerbar.js",
+				"js\\packages\\js\\src\\app\\elements\\nav\\FooterBar.js"
+			],
+			[
+				".dev.js",
+				"js\\packages\\js\\src\\app\\redux\\store\\configureBrowserStore.dev.js"
+			],
+			[
+				".prod.js",
+				"js\\packages\\js\\src\\app\\redux\\store\\configureBrowserStore.prod.js"
+			],
+			[
+				"footerb",
+				"@tixinc\\js\\app\\elements\\nav\\FooterBar.css"
+			],
+			[
+				"api.js",
+				"C:\\Users\\cchamberlain\\tixinc\\js\\packages\\js\\src\\lib\\redux\\selectors\\api.js"
+			],
+			[
+				"topmenu",
+				"js\\packages\\js\\src\\app\\elements\\nav\\TopMenu.js"
+			],
+			[
+				"maintenancepanel.js",
+				"js\\packages\\js\\src\\app\\elements\\panels\\MaintenancePanel.js"
+			],
+			[
+				"maintenance.js",
+				"js\\packages\\js\\src\\app\\routes\\routes\\Identity\\routes\\Maintenance\\components\\Maintenance.js"
+			],
+			[
+				"topbar.js",
+				"js\\packages\\js\\src\\app\\elements\\nav\\TopBar.js"
+			],
+			[
+				"classicbanner",
+				"js\\packages\\js\\src\\app\\elements\\nav\\ClassicBanner.js"
+			],
+			[
+				"ticketsalesaccordion",
+				"js\\packages\\js\\src\\app\\routes\\routes\\Tickets\\components\\elements\\TicketSalesAccordion.js"
+			],
+			[
+				"subscribestore",
+				"C:\\Users\\cchamberlain\\tixinc\\js\\packages\\js\\src\\lib\\redux\\store\\subscribeStore.js"
+			],
+			[
+				"authorized.js",
+				"js\\packages\\js\\src\\app\\routes\\components\\Authorized.js"
+			],
+			[
+				"classicsections.js",
+				"js\\packages\\js\\src\\app\\elements\\nav\\ClassicSections.js"
+			],
+			[
+				"identity.js",
+				"js\\packages\\js\\src\\app\\routes\\routes\\Identity\\components\\Identity.js"
+			],
+			[
+				"timeout.",
+				"js\\packages\\js\\src\\app\\routes\\components\\Timeout.js"
+			],
+			[
+				"identity",
+				"js\\packages\\js\\src\\app\\routes\\routes\\Identity\\components\\Identity.js"
+			],
+			[
+				"authorized",
+				"@tixinc\\js-app\\routes\\components\\Authorized.js"
+			],
+			[
+				"login.js",
+				"@tixinc\\js-app\\routes\\routes\\Identity\\routes\\Login\\components\\Login.js"
+			],
+			[
+				"timeoutpanel",
+				"@tixinc\\js-app\\elements\\panels\\TimeoutPanel.js"
+			],
+			[
+				"grid.js",
+				"@tixinc\\js-test\\grid.js"
+			],
+			[
+				"components/identity",
+				"@tixinc\\js-app\\routes\\routes\\Identity\\components\\Identity.js"
+			],
+			[
+				"timeout",
+				"js\\src\\app\\containers\\Timeout.jsx"
+			],
+			[
+				"classicbar",
+				"js\\src\\app\\elements\\nav\\ClassicBar.jsx"
+			],
+			[
+				"timeout.jsx",
+				"js\\src\\app\\containers\\Timeout.jsx"
+			],
+			[
+				"legacy.css",
+				"js\\src\\app\\entry\\legacy\\styles\\legacy.css"
+			],
+			[
+				"classicbar.jsx",
+				"js\\src\\app\\elements\\nav\\ClassicBar.jsx"
+			],
+			[
+				"classicsections.",
+				"js\\src\\app\\elements\\nav\\ClassicSections.jsx"
+			],
+			[
+				"sidebar",
+				"js\\src\\app\\elements\\nav\\SideBar.jsx"
+			],
+			[
+				"hatch.jsx",
+				"js\\src\\app\\controls\\hatch.jsx"
+			],
+			[
+				"polyfill.js",
+				"js\\src\\public\\static\\polyfill.js"
+			],
+			[
+				"loading.js",
+				"js\\src\\app\\entry\\loading.jsx"
+			],
+			[
+				"tixadmin",
+				"tix.com\\Clients\\TixAdmin\\TixAdmin.master"
+			],
+			[
+				"tixadmin.ma",
+				"tix.com\\Clients\\TixAdmin\\TixAdmin.master"
+			],
+			[
+				"package.json",
+				"tix.com\\package.json"
+			],
+			[
+				"theme.js",
+				"js\\src\\app\\theme.js"
+			],
+			[
+				"palette",
+				"js\\src\\app\\palette.js"
+			],
+			[
+				"tixadmin.master",
+				"tix.com\\Clients\\TixAdmin\\TixAdmin.master"
+			],
+			[
+				"tix.css",
+				"js\\src\\app\\legacy\\styles\\skins\\tix.css"
+			],
+			[
+				"global.asa",
+				"tix.com\\Global.asa"
+			],
+			[
+				"dcmegamen",
+				"tix.com\\Clients\\Tix\\CSS\\dcmegamenu.css"
+			],
+			[
+				"megamenu.css",
+				"js\\src\\app\\legacy\\styles\\dcmegamenu.css"
+			],
+			[
+				"legacy.jsx",
+				"js\\src\\app\\legacy\\elements\\render.jsx"
+			],
+			[
+				"headbottom.asp",
+				"tix.com\\Asp\\Include\\HeadBottom.asp"
+			],
+			[
+				"apphead",
+				"tix.com\\Asp\\Include\\AppHead.asp"
+			],
+			[
+				"managementinclude.asp",
+				"tix.com\\Include\\ManagementInclude.asp"
+			],
+			[
+				"default.asp",
+				"tix.com\\Management\\Default.asp"
+			],
+			[
+				"pagetopin",
+				"tix.com\\PageTopInclude.asp"
+			],
+			[
+				"nocachein",
+				"tix.com\\NoCacheInclude.asp"
+			],
+			[
+				"pagetopinclude.asp",
+				"tix.com\\PageTopInclude.asp"
+			],
+			[
+				"privatelab",
+				"tix.com\\PrivateLabelInclude.asp"
+			],
+			[
+				"banner.html",
+				"tix.com\\Clients\\Tix\\Banner.html"
+			],
+			[
+				"apphead.asp",
+				"tix.com\\Asp\\Include\\AppHead.asp"
+			],
+			[
+				"head",
+				"tix.com\\Forms\\Controls\\AppHead.ascx"
+			],
+			[
+				"tooltip",
+				"js\\src\\app\\legacy\\elements\\Tooltip.jsx"
+			],
+			[
+				"expander",
+				"js\\src\\app\\legacy\\elements\\Expander.jsx"
+			],
+			[
+				"micro.jsx",
+				"js\\src\\app\\elements\\micro\\core\\Micro.jsx"
+			],
+			[
+				"tooltip.jsx",
+				"js\\src\\app\\legacy\\elements\\Tooltip.jsx"
+			],
+			[
+				"timeout.css",
+				"js\\src\\app\\containers\\Timeout.css"
+			],
+			[
+				"hatch.less",
+				"js\\src\\app\\controls\\hatch.less"
+			],
+			[
+				"footer",
+				"js\\src\\app\\elements\\nav\\FooterBar.jsx"
+			],
+			[
+				"footerbar",
+				"js\\src\\app\\elements\\nav\\FooterBar.jsx"
+			],
+			[
+				"identity.jsx",
+				"js\\src\\app\\controls\\identity.jsx"
+			],
+			[
+				"themepanel",
+				"js\\app\\elements\\panels\\ThemePanel.jsx"
+			],
+			[
+				"messagetemplateediotr.js",
+				"js\\obsolete\\tix.com\\UserControls\\Javascript\\MessageTemplateEditor.obsolete.js"
+			],
+			[
+				"messagetemplateeditor",
+				"tix.com\\UserControls\\MessageTemplateEditor.ascx"
+			],
+			[
+				"web.config",
+				"tix.com\\web.config"
+			],
+			[
+				"seatstatus",
+				"tix.com\\UserControls\\SeatStatus.ascx"
+			],
+			[
+				"eventselection",
+				"tix.com\\UserControls\\EventSelection.ascx"
+			],
+			[
+				"criteriacontrol.js",
+				"js\\src\\app\\legacy\\CriteriaControl.js"
+			],
+			[
+				"criteriacontrol",
+				"js\\app\\legacy\\CriteriaControl.js"
+			],
+			[
+				"render.jsx",
+				"js\\app\\legacy\\elements\\render.jsx"
+			],
+			[
+				"render",
+				"js\\src\\app\\legacy\\elements\\render.jsx"
+			],
+			[
+				"renderer",
+				"config\\src\\app\\controls\\renderer.jsx"
+			],
+			[
+				"criteriacomponent",
+				"js\\src\\app\\legacy\\elements\\CriteriaComponent.jsx"
+			],
+			[
+				"eventselection.ascx.cs",
+				"tix.com\\UserControls\\EventSelection.ascx.cs"
+			],
+			[
+				"eventselection.ascx",
+				"tix.com\\UserControls\\EventSelection.ascx"
+			],
+			[
+				"eventdetailreport.aspx",
+				"tix.com\\Reports\\EventDetailReport.aspx"
+			],
+			[
+				"organizationsettings",
+				"tix.com\\Management\\OrganizationSettings.aspx"
+			],
+			[
+				"organizationsettings.aspx.cs",
+				"tix.com\\Management\\OrganizationSettings.aspx.cs"
+			],
+			[
+				"organizationsett",
+				"tix.com\\Management\\OrganizationSettings.aspx"
+			],
+			[
+				"organizationsettings.aspx",
+				"tix.com\\Management\\OrganizationSettings.aspx"
+			],
+			[
+				"organizationoptions.",
+				"tix.com\\Management\\OrganizationOptions.asp"
+			],
+			[
+				"criteria",
+				"tix.com\\UserControls\\CriteriaControl.ascx"
+			],
+			[
+				"package.",
+				"tix.com\\package.json"
+			],
+			[
+				"adminpane",
+				"js\\src\\app\\elements\\panels\\AdminPanel.jsx"
+			],
+			[
+				"entry/command",
+				"config\\src\\entry\\commandify.jsx"
+			],
+			[
+				"client.jsx",
+				"js\\src\\app\\elements\\Client.jsx"
+			],
+			[
+				"identitycontroller",
+				"net\\Tix.Web.Core\\Controllers\\Api\\IdentityController.cs"
+			],
+			[
+				"host.jsx",
+				"js\\src\\app\\elements\\Host.jsx"
+			],
+			[
+				"topbar.jsx",
+				"config\\src\\app\\nav\\TopBar.jsx"
+			],
+			[
+				"sidemenu",
+				"js\\src\\app\\elements\\nav\\SideMenu.jsx"
+			],
+			[
+				"debugpan",
+				"js\\src\\app\\elements\\panels\\DebugPanel.jsx"
+			],
+			[
+				"reauthroz",
+				"js\\client\\controls\\reauthorize.jsx"
+			],
+			[
+				"app.jsx",
+				"config\\src\\app.jsx"
+			],
+			[
+				"api/index",
+				"tixinc-js\\src\\app\\api\\index.js"
+			],
+			[
+				"reactrenderer",
+				"tixinc-js\\src\\app\\ReactRenderer.jsx"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 375.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 458.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"_vintageous_reset_during_init": true,
+		"vintage":
+		{
+			"_cmdline_cd": "C:\\Program Files\\Sublime Text 3"
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 478.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
