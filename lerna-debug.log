@@ -1,16 +1,8 @@
 lerna(info)    Lerna v2.0.0-beta.30
-lerna(debug)   Attempting running ImportCommand.initialize
-lerna(error)   Errored while running ImportCommand.initialize
-    Error: Command failed: git log --format="%h" -1
-    fatal: your current branch 'master' does not have any commits yet
-    
-        at checkExecSyncError (child_process.js:483:13)
-        at Object.execSync (child_process.js:523:13)
-        at execSync (C:\Users\cchamberlain\local\npm\node_modules\lerna\lib\ChildProcessUtilities.js:69:40)
-        at ImportCommand.initialize (C:\Users\cchamberlain\local\npm\node_modules\lerna\lib\commands\ImportCommand.js:104:64)
-        at ImportCommand._attempt (C:\Users\cchamberlain\local\npm\node_modules\lerna\lib\Command.js:161:21)
-        at ImportCommand.runCommand (C:\Users\cchamberlain\local\npm\node_modules\lerna\lib\Command.js:145:12)
-        at ImportCommand.run (C:\Users\cchamberlain\local\npm\node_modules\lerna\lib\Command.js:69:12)
-        at Object.<anonymous> (C:\Users\cchamberlain\local\npm\node_modules\lerna\bin\lerna.js:58:11)
-        at Module._compile (module.js:570:32)
-        at Object.Module._extensions..js (module.js:579:10)
+lerna(debug)   Attempting running ExecCommand.initialize
+lerna(info)    Ignoring packages that match *-app
+lerna(debug)   Successfully ran ExecCommand.initialize
+lerna(debug)   Attempting running ExecCommand.execute
+lerna(error)   Errored while running command 'npm' with arguments 'start' in 'react-focus'
+lerna(error)   Errored while running ExecCommand.execute
+    Command failed: npm start
