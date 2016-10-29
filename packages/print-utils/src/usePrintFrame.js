@@ -5,30 +5,42 @@ import serializeCSSProperty from './utils/serializeCSSProperty'
 function round(num) {
   return Math.floor(num * 100) / 100
 }
-const scaleToWidth = 800
+const scaleToWidth = 700
 function getScale (width) {
   return round(scaleToWidth / width)
+}
+function descaleHeight (height, scaleFactor) {
+  return height * scaleFactor
 }
 export default function usePrintFrame( frame
 , { selectHeightElement = (doc) => doc.querySelector('[data-iframe-height]') || doc.body
   , selectWidthElement = (doc) => doc.querySelector('[data-iframe-width]') || doc.body
   , selectContainerStyle = ({ doc, heightElement, widthElement } = {}) => (
       { position: 'absolute !important'
+      , display: 'inline !important'
       /*
       , width: 'unset !important'
       , height: 'unset !important'
-      , width: `${widthElement.offsetWidth}px`
-      , height: `${heightElement.offsetHeight}px`
       */
-      , 'min-width': '900px !important'
+      , width: `${scaleToWidth}px !important`
+      , height: '4000px !important'// `${descaleHeight(heightElement.offsetHeight, getScale(widthElement.offsetWidth))}px !important`
+      //, height: '100% !important' //`${heightElement.offsetHeight}px !important`
+      /*
+      , zoom: `${getScale(widthElement.offsetWidth)} !important`
+      */
+
+      /*
+      , 'min-width': 'unset !important'
       , 'min-height': 'unset !important'
       , 'max-width': 'unset !important'
-      , 'max-height': 'unset !important'
+      */
+      //, 'max-height': '100vh !important'
       , top: '0px !important'
-      , bottom: '0px !important'
       , left: '0px !important'
       , right: '0px !important'
-      , border: '2px dashed blue !important'
+      , margin: '0px 0px 0px 0px !important'
+      //, bottom: '0px !important'
+      , border: '0 !important'
       //, border: '0px !important'
       , overflow: 'visible !important'
       }
@@ -43,9 +55,16 @@ export default function usePrintFrame( frame
       return (
         { position: 'absolute !important'
         , display: 'inline-block !important'
+        /*
         , transform: `scale(${getScale(widthElement.offsetWidth)}) !important`
+        , 'transform-origin': 'left top !important'
+        */
+        , visibility: 'visible !important'
         , width: `${widthElement.offsetWidth}px !important`
         , height: `${heightElement.offsetHeight}px !important`
+        , 'min-height': '100% !important'
+        , transform: `scale(${getScale(widthElement.offsetWidth)}) !important`
+        , 'transform-origin': 'left top !important'
         /*
         , 'min-width': 'unset !important'
         , 'min-height': 'unset !important'
@@ -56,13 +75,13 @@ export default function usePrintFrame( frame
         , bottom: '0px !important'
         , left: '0px !important'
         , right: '0px !important'
-        , border: '1px dashed green !important'
+        , border: '0 !important'
         //, border: '0px !important'
         , margin: '0px !important'
         , padding: '0px !important'
         , 'padding-top': '0px !important'
         , 'padding-bottom': '0px !important'
-        , overflow: 'visible !important'
+        , overflow: 'auto !important'
         , 'box-shadow': 'none !important'
         , 'background-color': 'transparent !important'
         , 'border-radius': '0 !important'
@@ -116,15 +135,15 @@ export default function usePrintFrame( frame
       }
     )
   , topPrintCSS = `
-body {
-  display: inline-block !important;
-  border: 3px solid red !important;
+* {
+  overflow: visible !important;
 }
 body * {
   display: none !important;
   position: unset !important;
   margin: 0 !important;
   padding: 0 !important;
+  width: 0 !important;
 }
 `
   , framePrintCSS = ''
@@ -146,7 +165,18 @@ body * {
   let undos = new Set()
   const disposePrint = onPrint(
     { preprint() {
+
         const { container, doc, ancestors } = selectNodes(frame)
+        frame.setAttribute('width', '0')
+        frame.setAttribute('height', '0')
+        frame.contentWindow.focus()
+
+        const i = doc.createElement('input')
+        i.style.display = 'none'
+        doc.body.appendChild(i)
+        i.focus()
+        doc.body.removeChild(i)
+
         if(!doc)
           throw new Error('Could not find doc in frame.')
 
@@ -168,8 +198,8 @@ body * {
         undos = new Set(
           [ setStyles(container, containerStyle)
           , setStyles(frame, frameStyle)
-          , setStyles(doc.body, heightElementStyle)
-          , setStyles(doc.body, widthElementStyle)
+          , setStyles(heightElement, heightElementStyle)
+          , setStyles(widthElement, widthElementStyle)
           , setStyles(doc.body, frameBodyStyle)
           , ...ancestors.map((ancestor) => setStyles(ancestor, ancestorStyle))
           ]

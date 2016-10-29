@@ -31,4 +31,16 @@ describe('serializeCSSProperty', () => {
   it('gets correct value for string "scale(0.75) !important"', () => {
     expect(serializeCSSProperty({ value: 'scale(0.75)', priority: 'important' })).toBe('scale(0.75) !important')
   })
+  it('gets correct value for string "0"', () => {
+    expect(serializeCSSProperty({ value: '0', priority: '' })).toBe('0')
+  })
+  it('gets correct value for string "0 !important"', () => {
+    expect(serializeCSSProperty({ value: '0', priority: 'important' })).toBe('0 !important')
+  })
+  it('gets correct value for string "100%"', () => {
+    expect(serializeCSSProperty({ value: '100%', priority: '' })).toEqual('100%')
+  })
+  it('gets correct value for string "100% !important"', () => {
+    expect(serializeCSSProperty({ value: '100%', priority: 'important' })).toEqual('100% !important')
+  })
 })

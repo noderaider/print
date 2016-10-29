@@ -26,14 +26,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function round(num) {
   return Math.floor(num * 100) / 100;
 }
-var scaleToWidth = 800;
+var scaleToWidth = 700;
 function getScale(width) {
   return round(scaleToWidth / width);
+}
+function descaleHeight(height, scaleFactor) {
+  return height * scaleFactor;
 }
 function usePrintFrame(frame) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
@@ -52,22 +53,31 @@ function usePrintFrame(frame) {
         heightElement = _ref2.heightElement,
         widthElement = _ref2.widthElement;
 
-    return { position: 'absolute !important'
+    return { position: 'absolute !important',
+      display: 'inline !important'
       /*
       , width: 'unset !important'
       , height: 'unset !important'
-      , width: `${widthElement.offsetWidth}px`
-      , height: `${heightElement.offsetHeight}px`
       */
-      , 'min-width': '900px !important',
-      'min-height': 'unset !important',
-      'max-width': 'unset !important',
-      'max-height': 'unset !important',
-      top: '0px !important',
-      bottom: '0px !important',
+      , width: scaleToWidth + 'px !important',
+      height: '4000px !important' // `${descaleHeight(heightElement.offsetHeight, getScale(widthElement.offsetWidth))}px !important`
+      //, height: '100% !important' //`${heightElement.offsetHeight}px !important`
+      /*
+      , zoom: `${getScale(widthElement.offsetWidth)} !important`
+      */
+
+      /*
+      , 'min-width': 'unset !important'
+      , 'min-height': 'unset !important'
+      , 'max-width': 'unset !important'
+      */
+      //, 'max-height': '100vh !important'
+      , top: '0px !important',
       left: '0px !important',
       right: '0px !important',
-      border: '2px dashed blue !important'
+      margin: '0px 0px 0px 0px !important'
+      //, bottom: '0px !important'
+      , border: '0 !important'
       //, border: '0px !important'
       , overflow: 'visible !important'
     }
@@ -80,20 +90,23 @@ function usePrintFrame(frame) {
   } : _ref$selectContainerS,
       _ref$selectFrameStyle = _ref.selectFrameStyle,
       selectFrameStyle = _ref$selectFrameStyle === undefined ? function () {
-    var _ref4;
-
     var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         doc = _ref3.doc,
         heightElement = _ref3.heightElement,
         widthElement = _ref3.widthElement;
 
-    return _ref4 = { position: 'absolute !important',
-      display: 'inline-block !important',
-      transform: 'translate('
+    return { position: 'absolute !important',
+      display: 'inline-block !important'
       /*
-      , width: `${widthElement.offsetWidth}px`
-      , height: `${heightElement.offsetHeight}px`
+      , transform: `scale(${getScale(widthElement.offsetWidth)}) !important`
+      , 'transform-origin': 'left top !important'
       */
+      , visibility: 'visible !important',
+      width: widthElement.offsetWidth + 'px !important',
+      height: heightElement.offsetHeight + 'px !important',
+      'min-height': '100% !important',
+      transform: 'scale(' + getScale(widthElement.offsetWidth) + ') !important',
+      'transform-origin': 'left top !important'
       /*
       , 'min-width': 'unset !important'
       , 'min-height': 'unset !important'
@@ -104,14 +117,17 @@ function usePrintFrame(frame) {
       bottom: '0px !important',
       left: '0px !important',
       right: '0px !important',
-      border: '1px dashed green !important'
+      border: '0 !important'
       //, border: '0px !important'
       , margin: '0px !important',
       padding: '0px !important',
       'padding-top': '0px !important',
       'padding-bottom': '0px !important',
-      overflow: 'visible !important'
-    }, _defineProperty(_ref4, 'transform', 'initial !important'), _defineProperty(_ref4, 'box-shadow', 'none !important'), _defineProperty(_ref4, 'background-color', 'transparent !important'), _defineProperty(_ref4, 'border-radius', '0 !important'), _ref4;
+      overflow: 'auto !important',
+      'box-shadow': 'none !important',
+      'background-color': 'transparent !important',
+      'border-radius': '0 !important'
+    };
     /*
     , 'min-height': `${heightElement.offsetHeight}px !important`
     , 'min-width': `${widthElement.offsetWidth}px !important`
@@ -134,28 +150,28 @@ function usePrintFrame(frame) {
   } : _ref$selectFrameStyle,
       _ref$selectHeightElem2 = _ref.selectHeightElementStyle,
       selectHeightElementStyle = _ref$selectHeightElem2 === undefined ? function () {
+    var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        doc = _ref4.doc,
+        heightElement = _ref4.heightElement,
+        widthElement = _ref4.widthElement;
+
+    return {};
+  } : _ref$selectHeightElem2,
+      _ref$selectWidthEleme2 = _ref.selectWidthElementStyle,
+      selectWidthElementStyle = _ref$selectWidthEleme2 === undefined ? function () {
     var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         doc = _ref5.doc,
         heightElement = _ref5.heightElement,
         widthElement = _ref5.widthElement;
 
     return {};
-  } : _ref$selectHeightElem2,
-      _ref$selectWidthEleme2 = _ref.selectWidthElementStyle,
-      selectWidthElementStyle = _ref$selectWidthEleme2 === undefined ? function () {
+  } : _ref$selectWidthEleme2,
+      _ref$selectFrameBodyS = _ref.selectFrameBodyStyle,
+      selectFrameBodyStyle = _ref$selectFrameBodyS === undefined ? function () {
     var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         doc = _ref6.doc,
         heightElement = _ref6.heightElement,
         widthElement = _ref6.widthElement;
-
-    return {};
-  } : _ref$selectWidthEleme2,
-      _ref$selectFrameBodyS = _ref.selectFrameBodyStyle,
-      selectFrameBodyStyle = _ref$selectFrameBodyS === undefined ? function () {
-    var _ref7 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        doc = _ref7.doc,
-        heightElement = _ref7.heightElement,
-        widthElement = _ref7.widthElement;
 
     return { margin: '0px !important'
       //, 'margin-right': '40px !important'
@@ -173,10 +189,10 @@ function usePrintFrame(frame) {
   } : _ref$selectFrameBodyS,
       _ref$selectAncestorSt = _ref.selectAncestorStyle,
       selectAncestorStyle = _ref$selectAncestorSt === undefined ? function () {
-    var _ref8 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        doc = _ref8.doc,
-        heightElement = _ref8.heightElement,
-        widthElement = _ref8.widthElement;
+    var _ref7 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        doc = _ref7.doc,
+        heightElement = _ref7.heightElement,
+        widthElement = _ref7.widthElement;
 
     return { display: 'inline-block !important',
       position: 'static !important',
@@ -184,7 +200,7 @@ function usePrintFrame(frame) {
     };
   } : _ref$selectAncestorSt,
       _ref$topPrintCSS = _ref.topPrintCSS,
-      topPrintCSS = _ref$topPrintCSS === undefined ? '\nbody {\n  display: inline-block !important;\n  border: 3px solid red !important;\n}\nbody * {\n  display: none !important;\n  position: unset !important;\n  margin: 0 !important;\n  padding: 0 !important;\n}\n' : _ref$topPrintCSS,
+      topPrintCSS = _ref$topPrintCSS === undefined ? '\n* {\n  overflow: visible !important;\n}\nbody * {\n  display: none !important;\n  position: unset !important;\n  margin: 0 !important;\n  padding: 0 !important;\n  width: 0 !important;\n}\n' : _ref$topPrintCSS,
       _ref$framePrintCSS = _ref.framePrintCSS,
       framePrintCSS = _ref$framePrintCSS === undefined ? '' : _ref$framePrintCSS;
 
@@ -206,6 +222,16 @@ function usePrintFrame(frame) {
           doc = _selectNodes.doc,
           ancestors = _selectNodes.ancestors;
 
+      frame.setAttribute('width', '0');
+      frame.setAttribute('height', '0');
+      frame.contentWindow.focus();
+
+      var i = doc.createElement('input');
+      i.style.display = 'none';
+      doc.body.appendChild(i);
+      i.focus();
+      doc.body.removeChild(i);
+
       if (!doc) throw new Error('Could not find doc in frame.');
 
       var heightElement = selectHeightElement(doc);
@@ -220,7 +246,7 @@ function usePrintFrame(frame) {
       var widthElementStyle = selectWidthElementStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
       var ancestorStyle = selectAncestorStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
 
-      undos = new Set([setStyles(container, containerStyle), setStyles(frame, frameStyle), setStyles(doc.body, heightElementStyle), setStyles(doc.body, widthElementStyle), setStyles(doc.body, frameBodyStyle)].concat(_toConsumableArray(ancestors.map(function (ancestor) {
+      undos = new Set([setStyles(container, containerStyle), setStyles(frame, frameStyle), setStyles(heightElement, heightElementStyle), setStyles(widthElement, widthElementStyle), setStyles(doc.body, frameBodyStyle)].concat(_toConsumableArray(ancestors.map(function (ancestor) {
         return setStyles(ancestor, ancestorStyle);
       }))));
       console.log('--preprint--', undos.size);
@@ -302,10 +328,10 @@ function setPrintCSS(doc, css) {
 }
 
 function setStyles(element, styles) {
-  var prevStyles = Object.entries(styles).reduce(function (prev, _ref9) {
-    var _ref10 = _slicedToArray(_ref9, 2),
-        key = _ref10[0],
-        next = _ref10[1];
+  var prevStyles = Object.entries(styles).reduce(function (prev, _ref8) {
+    var _ref9 = _slicedToArray(_ref8, 2),
+        key = _ref9[0],
+        next = _ref9[1];
 
     var prop = { value: element.style.getPropertyValue(key), priority: element.style.getPropertyPriority(key) };
     console.info('SET STYLES', key, next, prop);
