@@ -1,8 +1,13 @@
 lerna(info)    Lerna v2.0.0-beta.30
-lerna(debug)   Attempting running ExecCommand.initialize
-lerna(info)    Ignoring packages that match *-app
-lerna(debug)   Successfully ran ExecCommand.initialize
-lerna(debug)   Attempting running ExecCommand.execute
-lerna(error)   Errored while running command 'npm' with arguments 'start' in 'react-focus'
-lerna(error)   Errored while running ExecCommand.execute
-    Command failed: npm start
+lerna(error)   Errored while collecting packages and package graph
+    SyntaxError: C:\Users\cchamberlain\noderaider\print\packages\react-focus\package.json: Unexpected token / in JSON at position 77
+        at JSON.parse (<anonymous>)
+        at Object.Module._extensions..json (module.js:590:27)
+        at Module.load (module.js:490:32)
+        at tryModuleLoad (module.js:449:12)
+        at Function.Module._load (module.js:441:3)
+        at Module.require (module.js:500:17)
+        at require (internal/module.js:20:19)
+        at C:\Users\cchamberlain\local\npm\node_modules\lerna\lib\PackageUtilities.js:83:27
+        at Array.forEach (native)
+        at Function.getPackages (C:\Users\cchamberlain\local\npm\node_modules\lerna\lib\PackageUtilities.js:71:63)

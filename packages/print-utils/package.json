@@ -3,18 +3,16 @@
   "description": "Print utilities for client web applications.",
   "version": "0.2.3",
   "main": "lib/index.js",
-  "browser": "dist/bundle.js",
   "files": [
     "lib",
     "dist"
   ],
   "scripts": {
-    "start": "run-p \"build:* --silent -- --watch\"",
-    "build": "run-p build:* --silent",
+    "start": "npm run build -- --watch",
     "prebuild": "rimraf lib dist",
     "build:dist": "rollup -c --sourcemap inline --environment NODE_ENV:production",
-    "build:lib": "babel src -d lib --ignore __tests__,__mocks__",
-    "preversion": "npm run build",
+    "build": "babel src -d lib --ignore __tests__,__mocks__",
+    "preversion": "npm run build && npm run build:dist",
     "test": "jest"
   },
   "devDependencies": {
@@ -24,8 +22,8 @@
     "babel-plugin-transform-runtime": "latest",
     "babel-polyfill": "latest",
     "babel-preset-es2015": "latest",
-    "babel-preset-es2015-native-modules": "^6.9.4",
     "babel-preset-react": "latest",
+    "babel-preset-latest": "latest",
     "babel-preset-stage-0": "latest",
     "babelrc-rollup": "^3.0.0",
     "bin-utils": "latest",

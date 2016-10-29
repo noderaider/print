@@ -23,7 +23,7 @@ export default function usePrintFrame( frame
       , height: 'unset !important'
       */
       , width: `${scaleToWidth}px !important`
-      , height: '4000px !important'// `${descaleHeight(heightElement.offsetHeight, getScale(widthElement.offsetWidth))}px !important`
+      , height: `${descaleHeight(heightElement.offsetHeight, getScale(widthElement.offsetWidth))}px !important`
       //, height: '100% !important' //`${heightElement.offsetHeight}px !important`
       /*
       , zoom: `${getScale(widthElement.offsetWidth)} !important`
@@ -167,8 +167,10 @@ body * {
     { preprint() {
 
         const { container, doc, ancestors } = selectNodes(frame)
+        /*
         frame.setAttribute('width', '0')
         frame.setAttribute('height', '0')
+        */
         frame.contentWindow.focus()
 
         const i = doc.createElement('input')

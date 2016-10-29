@@ -4,9 +4,33 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+var _defineProperty = require('babel-runtime/core-js/object/define-property');
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+var _slicedToArray2 = require('babel-runtime/helpers/slicedToArray');
+
+var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
+
+var _entries = require('babel-runtime/core-js/object/entries');
+
+var _entries2 = _interopRequireDefault(_entries);
+
+var _getIterator2 = require('babel-runtime/core-js/get-iterator');
+
+var _getIterator3 = _interopRequireDefault(_getIterator2);
+
+var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _set = require('babel-runtime/core-js/set');
+
+var _set2 = _interopRequireDefault(_set);
+
+var _typeof2 = require('babel-runtime/helpers/typeof');
+
+var _typeof3 = _interopRequireDefault(_typeof2);
 
 exports.default = usePrintFrame;
 
@@ -23,8 +47,6 @@ var _serializeCSSProperty = require('./utils/serializeCSSProperty');
 var _serializeCSSProperty2 = _interopRequireDefault(_serializeCSSProperty);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function round(num) {
   return Math.floor(num * 100) / 100;
@@ -60,7 +82,7 @@ function usePrintFrame(frame) {
       , height: 'unset !important'
       */
       , width: scaleToWidth + 'px !important',
-      height: '4000px !important' // `${descaleHeight(heightElement.offsetHeight, getScale(widthElement.offsetWidth))}px !important`
+      height: descaleHeight(heightElement.offsetHeight, getScale(widthElement.offsetWidth)) + 'px !important'
       //, height: '100% !important' //`${heightElement.offsetHeight}px !important`
       /*
       , zoom: `${getScale(widthElement.offsetWidth)} !important`
@@ -204,7 +226,7 @@ function usePrintFrame(frame) {
       _ref$framePrintCSS = _ref.framePrintCSS,
       framePrintCSS = _ref$framePrintCSS === undefined ? '' : _ref$framePrintCSS;
 
-  if ((typeof window === 'undefined' ? 'undefined' : _typeof(window)) !== 'object') return;
+  if ((typeof window === 'undefined' ? 'undefined' : (0, _typeof3.default)(window)) !== 'object') return;
   if (!frame) throw new Error('usePrintFrame must be provided the frame element.');
 
   var undoTopCSS = topPrintCSS ? setPrintCSS(document, topPrintCSS) : function () {};
@@ -214,16 +236,19 @@ function usePrintFrame(frame) {
 
   //const undoPrelimFrameStyle = setStyles(frame, { 'will-change': 'position display width height min-width min-height max-width max-height !important' })
 
-  var undos = new Set();
+  var undos = new _set2.default();
   var disposePrint = (0, _onPrint2.default)({
     preprint: function preprint() {
       var _selectNodes = selectNodes(frame),
           container = _selectNodes.container,
           doc = _selectNodes.doc,
           ancestors = _selectNodes.ancestors;
+      /*
+      frame.setAttribute('width', '0')
+      frame.setAttribute('height', '0')
+      */
 
-      frame.setAttribute('width', '0');
-      frame.setAttribute('height', '0');
+
       frame.contentWindow.focus();
 
       var i = doc.createElement('input');
@@ -246,7 +271,7 @@ function usePrintFrame(frame) {
       var widthElementStyle = selectWidthElementStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
       var ancestorStyle = selectAncestorStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
 
-      undos = new Set([setStyles(container, containerStyle), setStyles(frame, frameStyle), setStyles(heightElement, heightElementStyle), setStyles(widthElement, widthElementStyle), setStyles(doc.body, frameBodyStyle)].concat(_toConsumableArray(ancestors.map(function (ancestor) {
+      undos = new _set2.default([setStyles(container, containerStyle), setStyles(frame, frameStyle), setStyles(heightElement, heightElementStyle), setStyles(widthElement, widthElementStyle), setStyles(doc.body, frameBodyStyle)].concat((0, _toConsumableArray3.default)(ancestors.map(function (ancestor) {
         return setStyles(ancestor, ancestorStyle);
       }))));
       console.log('--preprint--', undos.size);
@@ -258,7 +283,7 @@ function usePrintFrame(frame) {
       var _iteratorError = undefined;
 
       try {
-        for (var _iterator = undos[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        for (var _iterator = (0, _getIterator3.default)(undos), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var undo = _step.value;
 
           undo();
@@ -328,15 +353,15 @@ function setPrintCSS(doc, css) {
 }
 
 function setStyles(element, styles) {
-  var prevStyles = Object.entries(styles).reduce(function (prev, _ref8) {
-    var _ref9 = _slicedToArray(_ref8, 2),
+  var prevStyles = (0, _entries2.default)(styles).reduce(function (prev, _ref8) {
+    var _ref9 = (0, _slicedToArray3.default)(_ref8, 2),
         key = _ref9[0],
         next = _ref9[1];
 
     var prop = { value: element.style.getPropertyValue(key), priority: element.style.getPropertyPriority(key) };
     console.info('SET STYLES', key, next, prop);
     var serialized = prop.value ? (0, _serializeCSSProperty2.default)(prop) : null;
-    Object.defineProperty(prev, key, { value: serialized, enumerable: true });
+    (0, _defineProperty2.default)(prev, key, { value: serialized, enumerable: true });
     if (next) {
       var _parseCSSProperty = (0, _parseCSSProperty3.default)(next),
           value = _parseCSSProperty.value,
