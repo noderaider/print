@@ -47,10 +47,12 @@ var browser = (typeof window === 'undefined' ? 'undefined' : (0, _typeof3.defaul
 console.info('BROWSER DETECTED\n', (0, _stringify2.default)(browser, null, 2));
 
 var defaultStrategy = 'containerStrategy';
-if (browser.name === 'chrome') {} else if (browser.name === 'firefox') {
+if (browser.name === 'chrome') {
   defaultStrategy = 'frameStrategy';
+} else if (browser.name === 'firefox') {
+  //defaultStrategy = 'frameStrategy'
 } else if (browser.name === 'safari') {} else if (browser.name === 'ie') {
-  defaultStrategy = 'frameStrategy';
+  //defaultStrategy = 'frameStrategy'
 }
 
 function usePrintFrame(frame) {
@@ -74,22 +76,3 @@ function usePrintFrame(frame) {
   (0, _onPrint2.default)({ preprint: preprint, postprint: postprint });
   return dispose;
 }
-/*
-* {
-overflow: visible !important;
-margin: 0 !important;
-margin-top: 0 !important;
-margin-bottom: 0 !important;
-margin-left: 0 !important;
-margin-right: 0 !important;
-padding: 0 !important;
-padding-top: 0 !important;
-padding-bottom: 0 !important;
-padding-left: 0 !important;
-padding-right: 0 !important;
-}
-body {
-width: 700px !important;
-border-color: 1px solid yellow;
-}
-*/

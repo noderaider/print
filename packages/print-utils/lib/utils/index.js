@@ -31,12 +31,12 @@ Object.defineProperty(exports, 'setStyles', {
   }
 });
 
-var _setPrintCSS = require('./setPrintCSS');
+var _setCSS = require('./setCSS');
 
-Object.defineProperty(exports, 'setPrintCSS', {
+Object.defineProperty(exports, 'setCSS', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_setPrintCSS).default;
+    return _interopRequireDefault(_setCSS).default;
   }
 });
 

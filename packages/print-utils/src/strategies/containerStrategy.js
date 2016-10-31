@@ -1,4 +1,4 @@
-import { setPrintCSS, resolveDocument } from '../utils'
+import { setCSS, resolveDocument } from '../utils'
 
 export default function containerStrategy (frame, opts = {}) {
   const topPrintCSS = `
@@ -14,21 +14,19 @@ export default function containerStrategy (frame, opts = {}) {
   padding-bottom: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
+  float: none !important;
 }
 body, html {
-  height: 100vh;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 body > *:not(#print-content),
 body > *:not(#print-content) * {
   display: none !important;
   position: unset !important;
 }
-body > #print-content,
-body > #print-content * {
-  display: inline-block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  max-width: 750px !important;
+body > #print-content {
+  display: inline !important;
 }
 `
   const framePrintCSS = `
@@ -38,21 +36,28 @@ body > #print-content * {
   printElement.setAttribute('style', 'display: none')
   document.body.insertBefore(printElement, document.body.firstChild)
 
-  const undoTopCSS = topPrintCSS ? setPrintCSS(document, topPrintCSS) : () => {}
-  let undoFrameCSS = framePrintCSS ? setPrintCSS(resolveDocument(frame), framePrintCSS) : () => {}
+  let undoTopPrintCSS
+  let undoFramePrintCSS
   frame.addEventListener('load', () => {
     const frameDocument = resolveDocument(frame)
-    undoFrameCSS = framePrintCSS ? setPrintCSS(frameDocument, framePrintCSS) : () => {}
-    printElement.innerHTML = frameDocument.body.innerHTML
+    undoTopPrintCSS = topPrintCSS ? setCSS(document, topPrintCSS, 'print') : () => {}
+    undoFramePrintCSS = framePrintCSS ? setCSS(frameDocument, framePrintCSS, 'print') : () => {}
   })
 
   function preprint () {
+    const frameDocument = resolveDocument(frame)
+    printElement.innerHTML = frameDocument.body.innerHTML
+    // TRY SPINNING IN CHROME TO DELAY IT
   }
 
   function postprint() {
   }
 
   function dispose() {
+    if(undoTopPrintCSS)
+      undoTopPrintCSS()
+    if(undoFramePrintCSS)
+      undoFramePrintCSS()
   }
 
   return { preprint, postprint, dispose }

@@ -1,0 +1,29 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>MDN (IE) Example</title>
+<script type="text/javascript">
+
+function before() {
+  console.info('BEFORE')
+  var frame = document.querySelector('iframe')
+  var printContent = document.getElementById('print-content')
+  printContent.innerHTML = frame.contentWindow.document.body.innerHTML
+}
+function after() {
+}
+
+function setPrint () {
+  window.onbeforeprint = before
+  window.onafterprint = after
+}
+
+</script>
+</head>
+
+<body>
+  <div id="print-content" style="display:inline;"></div>
+  <iframe src="/lorem-ipsum.html"  style="visibility:hidden;" frameborder="0" onload="setPrint()" ></iframe>
+</body>
+
+</html>
