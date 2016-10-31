@@ -57,33 +57,38 @@ function reactFocus(React) {
         var _this2 = this;
 
         var _props = this.props,
+            src = _props.src,
+            frameRef = _props.frameRef,
+            frameClassName = _props.frameClassName,
+            onFrameLoad = _props.onFrameLoad,
             className = _props.className,
-            style = _props.style,
-            url = _props.url,
-            props = _objectWithoutProperties(_props, ['className', 'style', 'url']);
+            _props$style = _props.style,
+            style = _props$style === undefined ? {} : _props$style,
+            props = _objectWithoutProperties(_props, ['src', 'frameRef', 'frameClassName', 'onFrameLoad', 'className', 'style']);
 
-        return React.createElement(
-          'div',
-          { className: (0, _classnames2.default)('react-focus', className), style: style },
-          React.createElement('iframe', _extends({}, props, {
-            ref: function ref(x) {
-              return _this2.frame = x;
-            },
-            onLoad: function onLoad() {
-              return _this2.handleLoad.apply(_this2, arguments);
-            },
-            src: url,
-            scrolling: 'no',
-            width: '100%',
-            height: '100%',
-            frameBorder: '0',
-            marginWidth: '0',
-            marginHeight: '0',
-            allowFullScreen: true,
-            allowTransparency: true,
-            seamless: true
-          }))
-        );
+        return React.createElement('iframe', _extends({}, props, {
+          ref: function ref(x) {
+            _this2.frame = x;
+            if (frameRef) frameRef(x);
+          },
+          onLoad: function onLoad() {
+            _this2.handleLoad.apply(_this2, arguments);
+            if (onFrameLoad) onFrameLoad.apply(undefined, arguments);
+          },
+          className: (0, _classnames2.default)(frameClassName),
+          src: src,
+          scrolling: 'no',
+          width: '100%',
+          height: '100%',
+          frameBorder: '0',
+          marginWidth: '0',
+          marginHeight: '0',
+          allowFullScreen: true,
+          allowTransparency: true,
+          seamless: true
+        }))
+        //</div>
+        ;
       }
     }]);
 

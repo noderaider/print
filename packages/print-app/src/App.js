@@ -20,7 +20,7 @@ class App extends Component {
           <h2>Welcome to react-focus</h2>
         </div>
         <div>
-          <Focus url={`?d=${Date.now()}`} />
+          <Focus src={`?d=${Date.now()}`} />
         </div>
       </div>
     );

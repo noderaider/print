@@ -16,14 +16,23 @@ export default function reactFocus (React) {
       this.disposePrintFrame()
     }
     render() {
-      const { className, style, url, ...props } = this.props
+      const { src, frameRef, frameClassName, onFrameLoad, className, style = {}, ...props } = this.props
       return (
-        <div className={cn('react-focus', className)} style={style}>
+        //<div className={cn('react-focus', className)} style={{ display: 'inline', ...style }}>
           <iframe
             {...props}
-            ref={(x: any): any => this.frame=x}
-            onLoad={(...args: any): any => this.handleLoad(...args)}
-            src={url}
+            ref={(x: any): any => {
+              this.frame=x
+              if(frameRef)
+                frameRef(x)
+            }}
+            onLoad={(...args: any): any => {
+              this.handleLoad(...args)
+              if(onFrameLoad)
+                onFrameLoad(...args)
+            }}
+            className={cn(frameClassName)}
+            src={src}
             scrolling="no"
             width="100%"
             height="100%"
@@ -34,7 +43,7 @@ export default function reactFocus (React) {
             allowTransparency
             seamless
           />
-        </div>
+        //</div>
       )
     }
   }

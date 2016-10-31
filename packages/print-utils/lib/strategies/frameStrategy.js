@@ -111,9 +111,9 @@ function frameStrategy(frame) {
         widthElement = _ref6.widthElement;
 
 
-    var undoWidthStyle = (0, _utils.setStyles)(heightElement, { width: '700px !important' });
-    var topPrintCSS = '\n* {\n  margin: 0 !important;\n  margin-top: 0 !important;\n  margin-bottom: 0 !important;\n  margin-left: 0 !important;\n  margin-right: 0 !important;\n  padding: 0 !important;\n  padding-top: 0 !important;\n  padding-bottom: 0 !important;\n  padding-left: 0 !important;\n  padding-right: 0 !important;\n  min-height: 0 !important;\n  min-width: 0 !important;\n  display: none !important;\n  float: none !important;\n}\nbody, html {\n  margin: 0 !important;\n  padding: 0 !important;\n  display: inline-block !important;\n}\nbody {\n  height: ' + heightElement.offsetHeight + 'px !important;\n}\n.react-focus {\n  display: inline !important;\n  position: absolute !important;\n  width: 700px !important;\n  border: 0 !important;\n  overflow: visible !important;\n}\niframe {\n  \'height\': ' + heightElement.offsetHeight + 'px !important;\n  position: relative !important;\n  display: inline-block !important;\n  border: 0 !important;\n  top: 0 !important;\n  left: 0 !important;\n  right: 0 !important;\n  margin: 0 !important;\n  padding: 0 !important;\n  overflow: visible !important;\n  will-change: height;\n}\n';
-    undoWidthStyle();
+    //const undoWidthStyle = setStyles(heightElement, { width: '100vw !important' })
+    var topPrintCSS = '\n* {\n  margin: 0 !important;\n  margin-top: 0 !important;\n  margin-bottom: 0 !important;\n  margin-left: 0 !important;\n  margin-right: 0 !important;\n  padding: 0 !important;\n  padding-top: 0 !important;\n  padding-bottom: 0 !important;\n  padding-left: 0 !important;\n  padding-right: 0 !important;\n  min-height: 0 !important;\n  min-width: 0 !important;\n  display: none !important;\n  float: none !important;\n}\nbody, html {\n  margin: 0 !important;\n  padding: 0 !important;\n  display: inline-block !important;\n}\nbody {\n  height: ' + heightElement.offsetHeight + 'px !important;\n}\n.react-focus {\n  display: inline !important;\n  position: absolute !important;\n  width: 100vw !important;\n  border: 0 !important;\n  overflow: visible !important;\n}\niframe {\n  /*\n\n   height: ' + heightElement.offsetHeight + 'px !important;\n  */\n  position: relative !important;\n  display: inline-block !important;\n  border: 0 !important;\n  top: 0 !important;\n  left: 0 !important;\n  /*\n  right: 0 !important;\n  */\n  margin: 0 !important;\n  padding: 0 !important;\n  overflow: visible !important;\n  will-change: height;\n}\n';
+    //undoWidthStyle()
     return topPrintCSS;
   } : _ref$selectTopPrintCS,
       _ref$selectFramePrint = _ref.selectFramePrintCSS,
@@ -202,9 +202,9 @@ function frameStrategy(frame) {
   }
 
   function dispose() {
-    undoTopPrintCSS();
-    undoFramePrintCSS();
-    undoStyles();
+    if (undoTopPrintCSS) undoTopPrintCSS();
+    if (undoFramePrintCSS) undoFramePrintCSS();
+    if (undoStyles) undoStyles();
   }
 
   return { preprint: preprint, postprint: postprint, dispose: dispose };

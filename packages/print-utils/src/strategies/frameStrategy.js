@@ -48,7 +48,7 @@ export default function frameStrategy (frame
     )
   , selectTopPrintCSS = ({ frameDocument, heightElement, widthElement }) => {
 
-      const undoWidthStyle = setStyles(heightElement, { width: '700px !important' })
+      //const undoWidthStyle = setStyles(heightElement, { width: '100vw !important' })
       const topPrintCSS = `
 * {
   margin: 0 !important;
@@ -77,25 +77,30 @@ body {
 .react-focus {
   display: inline !important;
   position: absolute !important;
-  width: 700px !important;
+  width: 100vw !important;
   border: 0 !important;
   overflow: visible !important;
 }
 iframe {
-  'height': ${heightElement.offsetHeight}px !important;
+  /*
+
+   height: ${heightElement.offsetHeight}px !important;
+  */
   position: relative !important;
   display: inline-block !important;
   border: 0 !important;
   top: 0 !important;
   left: 0 !important;
+  /*
   right: 0 !important;
+  */
   margin: 0 !important;
   padding: 0 !important;
   overflow: visible !important;
   will-change: height;
 }
 `
-      undoWidthStyle()
+      //undoWidthStyle()
       return topPrintCSS
     }
   , selectFramePrintCSS = ({ frameDocument, heightElement, widthElement }) => {
@@ -165,9 +170,12 @@ body {
   }
 
   function dispose () {
-    undoTopPrintCSS()
-    undoFramePrintCSS()
-    undoStyles()
+    if(undoTopPrintCSS)
+      undoTopPrintCSS()
+    if(undoFramePrintCSS)
+      undoFramePrintCSS()
+    if(undoStyles)
+      undoStyles()
   }
 
   return { preprint, postprint, dispose }
