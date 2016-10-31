@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import React, { Component } from 'react'
 import LoremIpsum from './LoremIpsum'
 import reactFocus from 'react-focus'
@@ -5,7 +6,6 @@ import { isFrame } from 'print-utils'
 import logo from './logo.svg'
 import './App.css'
 
-console.dir(reactFocus)
 const Focus = reactFocus(React)
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
           <h2>Welcome to react-focus</h2>
         </div>
         <div>
-          <Focus url="/" />
+          <Focus url={`?d=${Date.now()}`} />
         </div>
       </div>
     );

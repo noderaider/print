@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.isFrame = exports.usePrintFrame = exports.onPrint = undefined;
 
 var _onPrint = require('./onPrint');
 
@@ -30,5 +31,7 @@ Object.defineProperty(exports, 'isFrame', {
     return _interopRequireDefault(_isFrame).default;
   }
 });
+
+require('babel-register');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

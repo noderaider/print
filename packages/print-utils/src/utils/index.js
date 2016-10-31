@@ -1,2 +1,6 @@
 export { default as parseCSSProperty } from './parseCSSProperty'
 export { default as serializeCSSProperty } from './serializeCSSProperty'
+export { default as setStyles } from './setStyles'
+export { default as setPrintCSS } from './setPrintCSS'
+export { default as isFrame } from './isFrame'
+export { default as resolveDocument } from './resolveDocument'

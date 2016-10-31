@@ -2,7 +2,8 @@
   "name": "print-app",
   "version": "0.2.3",
   "devDependencies": {
-    "react-scripts": "0.7.0"
+    "react-scripts": "0.7.0",
+    "babel-polyfill": "latest"
   },
   "dependencies": {
     "react": "^15.3.2",

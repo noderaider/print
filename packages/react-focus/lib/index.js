@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -10,7 +10,13 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 exports.default = reactFocus;
 
-var _printUtils = require("print-utils");
+var _printUtils = require('print-utils');
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
@@ -36,38 +42,48 @@ function reactFocus(React) {
     }
 
     _createClass(Focus, [{
-      key: "componentDidMount",
+      key: 'componentDidMount',
       value: function componentDidMount() {
         this.disposePrintFrame = (0, _printUtils.usePrintFrame)(this.frame);
       }
     }, {
-      key: "componentWillUnmount",
+      key: 'componentWillUnmount',
       value: function componentWillUnmount() {
         this.disposePrintFrame();
       }
     }, {
-      key: "render",
+      key: 'render',
       value: function render() {
         var _this2 = this;
 
         var _props = this.props,
+            className = _props.className,
+            style = _props.style,
             url = _props.url,
-            props = _objectWithoutProperties(_props, ["url"]);
+            props = _objectWithoutProperties(_props, ['className', 'style', 'url']);
 
-        return React.createElement("iframe", _extends({}, props, {
-          ref: function ref(x) {
-            return _this2.frame = x;
-          },
-          onLoad: function onLoad() {
-            return _this2.handleLoad.apply(_this2, arguments);
-          },
-          src: url,
-          width: "100%",
-          frameBorder: "0",
-          allowFullScreen: true,
-          allowTransparency: true,
-          seamless: true
-        }));
+        return React.createElement(
+          'div',
+          { className: (0, _classnames2.default)('react-focus', className), style: style },
+          React.createElement('iframe', _extends({}, props, {
+            ref: function ref(x) {
+              return _this2.frame = x;
+            },
+            onLoad: function onLoad() {
+              return _this2.handleLoad.apply(_this2, arguments);
+            },
+            src: url,
+            scrolling: 'no',
+            width: '100%',
+            height: '100%',
+            frameBorder: '0',
+            marginWidth: '0',
+            marginHeight: '0',
+            allowFullScreen: true,
+            allowTransparency: true,
+            seamless: true
+          }))
+        );
       }
     }]);
 

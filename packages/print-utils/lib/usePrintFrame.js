@@ -4,29 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _defineProperty = require('babel-runtime/core-js/object/define-property');
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
 
-var _defineProperty2 = _interopRequireDefault(_defineProperty);
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-var _slicedToArray2 = require('babel-runtime/helpers/slicedToArray');
+var _stringify = require('babel-runtime/core-js/json/stringify');
 
-var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
-
-var _entries = require('babel-runtime/core-js/object/entries');
-
-var _entries2 = _interopRequireDefault(_entries);
-
-var _getIterator2 = require('babel-runtime/core-js/get-iterator');
-
-var _getIterator3 = _interopRequireDefault(_getIterator2);
-
-var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
-var _set = require('babel-runtime/core-js/set');
-
-var _set2 = _interopRequireDefault(_set);
+var _stringify2 = _interopRequireDefault(_stringify);
 
 var _typeof2 = require('babel-runtime/helpers/typeof');
 
@@ -38,13 +22,13 @@ var _onPrint = require('./onPrint');
 
 var _onPrint2 = _interopRequireDefault(_onPrint);
 
-var _parseCSSProperty2 = require('./utils/parseCSSProperty');
+var _strategies = require('./strategies');
 
-var _parseCSSProperty3 = _interopRequireDefault(_parseCSSProperty2);
+var strategies = _interopRequireWildcard(_strategies);
 
-var _serializeCSSProperty = require('./utils/serializeCSSProperty');
+var _browserDetective = require('browser-detective');
 
-var _serializeCSSProperty2 = _interopRequireDefault(_serializeCSSProperty);
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -58,322 +42,54 @@ function getScale(width) {
 function descaleHeight(height, scaleFactor) {
   return height * scaleFactor;
 }
+
+var browser = (typeof window === 'undefined' ? 'undefined' : (0, _typeof3.default)(window)) === 'object' ? (0, _browserDetective.detectBrowser)() : {};
+console.info('BROWSER DETECTED\n', (0, _stringify2.default)(browser, null, 2));
+
+var defaultStrategy = 'containerStrategy';
+if (browser.name === 'chrome') {} else if (browser.name === 'firefox') {
+  defaultStrategy = 'frameStrategy';
+} else if (browser.name === 'safari') {} else if (browser.name === 'ie') {
+  defaultStrategy = 'frameStrategy';
+}
+
 function usePrintFrame(frame) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-      _ref$selectHeightElem = _ref.selectHeightElement,
-      selectHeightElement = _ref$selectHeightElem === undefined ? function (doc) {
-    return doc.querySelector('[data-iframe-height]') || doc.body;
-  } : _ref$selectHeightElem,
-      _ref$selectWidthEleme = _ref.selectWidthElement,
-      selectWidthElement = _ref$selectWidthEleme === undefined ? function (doc) {
-    return doc.querySelector('[data-iframe-width]') || doc.body;
-  } : _ref$selectWidthEleme,
-      _ref$selectContainerS = _ref.selectContainerStyle,
-      selectContainerStyle = _ref$selectContainerS === undefined ? function () {
-    var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        doc = _ref2.doc,
-        heightElement = _ref2.heightElement,
-        widthElement = _ref2.widthElement;
-
-    return { position: 'absolute !important',
-      display: 'inline !important'
-      /*
-      , width: 'unset !important'
-      , height: 'unset !important'
-      */
-      , width: scaleToWidth + 'px !important',
-      height: descaleHeight(heightElement.offsetHeight, getScale(widthElement.offsetWidth)) + 'px !important'
-      //, height: '100% !important' //`${heightElement.offsetHeight}px !important`
-      /*
-      , zoom: `${getScale(widthElement.offsetWidth)} !important`
-      */
-
-      /*
-      , 'min-width': 'unset !important'
-      , 'min-height': 'unset !important'
-      , 'max-width': 'unset !important'
-      */
-      //, 'max-height': '100vh !important'
-      , top: '0px !important',
-      left: '0px !important',
-      right: '0px !important',
-      margin: '0px 0px 0px 0px !important'
-      //, bottom: '0px !important'
-      , border: '0 !important'
-      //, border: '0px !important'
-      , overflow: 'visible !important'
-    }
-    /*
-      , display: 'inline-block'
-      , height: '100%'
-      , width: '100%'
-      */
-    ;
-  } : _ref$selectContainerS,
-      _ref$selectFrameStyle = _ref.selectFrameStyle,
-      selectFrameStyle = _ref$selectFrameStyle === undefined ? function () {
-    var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        doc = _ref3.doc,
-        heightElement = _ref3.heightElement,
-        widthElement = _ref3.widthElement;
-
-    return { position: 'absolute !important',
-      display: 'inline-block !important'
-      /*
-      , transform: `scale(${getScale(widthElement.offsetWidth)}) !important`
-      , 'transform-origin': 'left top !important'
-      */
-      , visibility: 'visible !important',
-      width: widthElement.offsetWidth + 'px !important',
-      height: heightElement.offsetHeight + 'px !important',
-      'min-height': '100% !important',
-      transform: 'scale(' + getScale(widthElement.offsetWidth) + ') !important',
-      'transform-origin': 'left top !important'
-      /*
-      , 'min-width': 'unset !important'
-      , 'min-height': 'unset !important'
-      , 'max-width': 'unset !important'
-      , 'max-height': 'unset !important'
-      */
-      , top: '0px !important',
-      bottom: '0px !important',
-      left: '0px !important',
-      right: '0px !important',
-      border: '0 !important'
-      //, border: '0px !important'
-      , margin: '0px !important',
-      padding: '0px !important',
-      'padding-top': '0px !important',
-      'padding-bottom': '0px !important',
-      overflow: 'auto !important',
-      'box-shadow': 'none !important',
-      'background-color': 'transparent !important',
-      'border-radius': '0 !important'
-    };
-    /*
-    , 'min-height': `${heightElement.offsetHeight}px !important`
-    , 'min-width': `${widthElement.offsetWidth}px !important`
-    */
-    /*
-    .print-target {
-    display: inline-block;
-    /* position: fixed !important;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    overflow: visible;
-    height: 100% !important;
-    width: 1500px;
-    border:none;position:absolute;width:0px;height:0px;bottom:0px;left:0px;
-    */
-  } : _ref$selectFrameStyle,
-      _ref$selectHeightElem2 = _ref.selectHeightElementStyle,
-      selectHeightElementStyle = _ref$selectHeightElem2 === undefined ? function () {
-    var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        doc = _ref4.doc,
-        heightElement = _ref4.heightElement,
-        widthElement = _ref4.widthElement;
-
-    return {};
-  } : _ref$selectHeightElem2,
-      _ref$selectWidthEleme2 = _ref.selectWidthElementStyle,
-      selectWidthElementStyle = _ref$selectWidthEleme2 === undefined ? function () {
-    var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        doc = _ref5.doc,
-        heightElement = _ref5.heightElement,
-        widthElement = _ref5.widthElement;
-
-    return {};
-  } : _ref$selectWidthEleme2,
-      _ref$selectFrameBodyS = _ref.selectFrameBodyStyle,
-      selectFrameBodyStyle = _ref$selectFrameBodyS === undefined ? function () {
-    var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        doc = _ref6.doc,
-        heightElement = _ref6.heightElement,
-        widthElement = _ref6.widthElement;
-
-    return { margin: '0px !important'
-      //, 'margin-right': '40px !important'
-      , padding: '0px !important'
-      //, 'padding-right': '30px !important'
-      , 'padding-top': '0px !important',
-      'padding-bottom': '0px !important',
-      'position': 'fixed !important',
-      top: '0px !important',
-      bottom: '0px !important',
-      left: '0px !important',
-      right: '0px !important',
-      overflow: 'visible !important'
-    };
-  } : _ref$selectFrameBodyS,
-      _ref$selectAncestorSt = _ref.selectAncestorStyle,
-      selectAncestorStyle = _ref$selectAncestorSt === undefined ? function () {
-    var _ref7 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        doc = _ref7.doc,
-        heightElement = _ref7.heightElement,
-        widthElement = _ref7.widthElement;
-
-    return { display: 'inline-block !important',
-      position: 'static !important',
-      overflow: 'visible !important'
-    };
-  } : _ref$selectAncestorSt,
-      _ref$topPrintCSS = _ref.topPrintCSS,
-      topPrintCSS = _ref$topPrintCSS === undefined ? '\n* {\n  overflow: visible !important;\n}\nbody * {\n  display: none !important;\n  position: unset !important;\n  margin: 0 !important;\n  padding: 0 !important;\n  width: 0 !important;\n}\n' : _ref$topPrintCSS,
-      _ref$framePrintCSS = _ref.framePrintCSS,
-      framePrintCSS = _ref$framePrintCSS === undefined ? '' : _ref$framePrintCSS;
+      _ref$strategy = _ref.strategy,
+      strategy = _ref$strategy === undefined ? defaultStrategy : _ref$strategy,
+      opts = (0, _objectWithoutProperties3.default)(_ref, ['strategy']);
 
   if ((typeof window === 'undefined' ? 'undefined' : (0, _typeof3.default)(window)) !== 'object') return;
   if (!frame) throw new Error('usePrintFrame must be provided the frame element.');
 
-  var undoTopCSS = topPrintCSS ? setPrintCSS(document, topPrintCSS) : function () {};
-  var undoFrameCSS = framePrintCSS ? setPrintCSS(resolveDocument(frame), framePrintCSS) : function () {};
+  console.info('USING STRATEGY', strategy);
+  var useStrategy = strategies[strategy];
+  if (!useStrategy) throw new Error('Unknown strategy \'' + strategy + '\'!');
 
-  //setStyles(document.body, { border: '1px dashed red !important' })
+  var _useStrategy = useStrategy(frame, opts),
+      preprint = _useStrategy.preprint,
+      postprint = _useStrategy.postprint,
+      dispose = _useStrategy.dispose;
 
-  //const undoPrelimFrameStyle = setStyles(frame, { 'will-change': 'position display width height min-width min-height max-width max-height !important' })
-
-  var undos = new _set2.default();
-  var disposePrint = (0, _onPrint2.default)({
-    preprint: function preprint() {
-      var _selectNodes = selectNodes(frame),
-          container = _selectNodes.container,
-          doc = _selectNodes.doc,
-          ancestors = _selectNodes.ancestors;
-      /*
-      frame.setAttribute('width', '0')
-      frame.setAttribute('height', '0')
-      */
-
-
-      frame.contentWindow.focus();
-
-      var i = doc.createElement('input');
-      i.style.display = 'none';
-      doc.body.appendChild(i);
-      i.focus();
-      doc.body.removeChild(i);
-
-      if (!doc) throw new Error('Could not find doc in frame.');
-
-      var heightElement = selectHeightElement(doc);
-      var widthElement = selectWidthElement(doc);
-      if (!heightElement) throw new Error('Could not find height element in frame.');
-      if (!widthElement) throw new Error('Could not find width element in frame.');
-
-      var containerStyle = selectContainerStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
-      var frameStyle = selectFrameStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
-      var frameBodyStyle = selectFrameBodyStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
-      var heightElementStyle = selectHeightElementStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
-      var widthElementStyle = selectWidthElementStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
-      var ancestorStyle = selectAncestorStyle({ doc: doc, heightElement: heightElement, widthElement: widthElement });
-
-      undos = new _set2.default([setStyles(container, containerStyle), setStyles(frame, frameStyle), setStyles(heightElement, heightElementStyle), setStyles(widthElement, widthElementStyle), setStyles(doc.body, frameBodyStyle)].concat((0, _toConsumableArray3.default)(ancestors.map(function (ancestor) {
-        return setStyles(ancestor, ancestorStyle);
-      }))));
-      console.log('--preprint--', undos.size);
-    },
-    postprint: function postprint() {
-      console.log('--postprint--', undos.size);
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = (0, _getIterator3.default)(undos), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var undo = _step.value;
-
-          undo();
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      undos.clear();
-    }
-  });
-
-  return function dispose() {
-    undoTopCSS();
-    undoFrameCSS();
-    undoStyles();
-  };
+  (0, _onPrint2.default)({ preprint: preprint, postprint: postprint });
+  return dispose;
 }
-
-function selectNodes(frame) {
-  var container = frame.parentNode;
-  var doc = resolveDocument(frame);
-
-  var ancestors = [];
-  var current = container;
-  while (current.parentNode) {
-    current = current.parentNode;
-    if (current.style) ancestors.push(current);
-  }
-  return { container: container, doc: doc, ancestors: ancestors };
-}
-
 /*
-overflow: hidden; min-width: 990px; height: 385px; width: 990px;
-overflow: hidden; min-width: 377px !important; height: 385px; width: 990px; position: fixed !important; display: inline-block !important; min-height: 286px !important;
-overflow: hidden; min-width: 990px !important; height: 385px; width: 990px;
+* {
+overflow: visible !important;
+margin: 0 !important;
+margin-top: 0 !important;
+margin-bottom: 0 !important;
+margin-left: 0 !important;
+margin-right: 0 !important;
+padding: 0 !important;
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+padding-left: 0 !important;
+padding-right: 0 !important;
+}
+body {
+width: 700px !important;
+border-color: 1px solid yellow;
+}
 */
-
-function resolveDocument(obj) {
-  if (obj.contentDocument) return obj.contentDocument;else if (obj.contentWindow) return obj.contentWindow.contentDocument;else if (obj.document) return obj.document;
-  throw new Error('resolveDocument found no document object');
-}
-
-var stylesID = 'use-print-frame-styles';
-function setPrintCSS(doc, css) {
-  if (doc.getElementById(stylesID)) throw new Error('setPrintCSS should not be registered twice on the same document - call undoPrintCSS first.');
-  var styleElement = doc.createElement('style');
-  styleElement.setAttribute('id', stylesID);
-  styleElement.setAttribute('type', 'text/css');
-  styleElement.setAttribute('media', 'print');
-  styleElement.innerHTML = css;
-  doc.head.appendChild(styleElement);
-  return function undoPrintCSS() {
-    doc.head.removeChild(styleElement);
-  };
-}
-
-function setStyles(element, styles) {
-  var prevStyles = (0, _entries2.default)(styles).reduce(function (prev, _ref8) {
-    var _ref9 = (0, _slicedToArray3.default)(_ref8, 2),
-        key = _ref9[0],
-        next = _ref9[1];
-
-    var prop = { value: element.style.getPropertyValue(key), priority: element.style.getPropertyPriority(key) };
-    console.info('SET STYLES', key, next, prop);
-    var serialized = prop.value ? (0, _serializeCSSProperty2.default)(prop) : null;
-    (0, _defineProperty2.default)(prev, key, { value: serialized, enumerable: true });
-    if (next) {
-      var _parseCSSProperty = (0, _parseCSSProperty3.default)(next),
-          value = _parseCSSProperty.value,
-          priority = _parseCSSProperty.priority;
-
-      element.style.setProperty(key, value, priority);
-    } else {
-      element.style.removeProperty(key);
-    }
-    return prev;
-  }, {});
-  return function undoStyles() {
-    setStyles(element, prevStyles);
-  };
-}

@@ -1,6 +1,6 @@
 import onPrint from './onPrint'
-import parseCSSProperty from './utils/parseCSSProperty'
-import serializeCSSProperty from './utils/serializeCSSProperty'
+import * as strategies from './strategies'
+import { detectBrowser } from 'browser-detective'
 
 function round(num) {
   return Math.floor(num * 100) / 100
@@ -12,141 +12,25 @@ function getScale (width) {
 function descaleHeight (height, scaleFactor) {
   return height * scaleFactor
 }
+
+const browser = typeof window === 'object' ? detectBrowser() : {}
+console.info('BROWSER DETECTED\n', JSON.stringify(browser, null, 2))
+
+let defaultStrategy = 'containerStrategy'
+if(browser.name === 'chrome') {
+} else if (browser.name === 'firefox') {
+  defaultStrategy = 'frameStrategy'
+} else if (browser.name === 'safari') {
+
+} else if (browser.name === 'ie') {
+  defaultStrategy = 'frameStrategy'
+}
+
+
+
 export default function usePrintFrame( frame
-, { selectHeightElement = (doc) => doc.querySelector('[data-iframe-height]') || doc.body
-  , selectWidthElement = (doc) => doc.querySelector('[data-iframe-width]') || doc.body
-  , selectContainerStyle = ({ doc, heightElement, widthElement } = {}) => (
-      { position: 'absolute !important'
-      , display: 'inline !important'
-      /*
-      , width: 'unset !important'
-      , height: 'unset !important'
-      */
-      , width: `${scaleToWidth}px !important`
-      , height: `${descaleHeight(heightElement.offsetHeight, getScale(widthElement.offsetWidth))}px !important`
-      //, height: '100% !important' //`${heightElement.offsetHeight}px !important`
-      /*
-      , zoom: `${getScale(widthElement.offsetWidth)} !important`
-      */
-
-      /*
-      , 'min-width': 'unset !important'
-      , 'min-height': 'unset !important'
-      , 'max-width': 'unset !important'
-      */
-      //, 'max-height': '100vh !important'
-      , top: '0px !important'
-      , left: '0px !important'
-      , right: '0px !important'
-      , margin: '0px 0px 0px 0px !important'
-      //, bottom: '0px !important'
-      , border: '0 !important'
-      //, border: '0px !important'
-      , overflow: 'visible !important'
-      }
-    /*
-      , display: 'inline-block'
-      , height: '100%'
-      , width: '100%'
-      */
-    )
-
-  , selectFrameStyle = ({ doc, heightElement, widthElement } = {}) => {
-      return (
-        { position: 'absolute !important'
-        , display: 'inline-block !important'
-        /*
-        , transform: `scale(${getScale(widthElement.offsetWidth)}) !important`
-        , 'transform-origin': 'left top !important'
-        */
-        , visibility: 'visible !important'
-        , width: `${widthElement.offsetWidth}px !important`
-        , height: `${heightElement.offsetHeight}px !important`
-        , 'min-height': '100% !important'
-        , transform: `scale(${getScale(widthElement.offsetWidth)}) !important`
-        , 'transform-origin': 'left top !important'
-        /*
-        , 'min-width': 'unset !important'
-        , 'min-height': 'unset !important'
-        , 'max-width': 'unset !important'
-        , 'max-height': 'unset !important'
-        */
-        , top: '0px !important'
-        , bottom: '0px !important'
-        , left: '0px !important'
-        , right: '0px !important'
-        , border: '0 !important'
-        //, border: '0px !important'
-        , margin: '0px !important'
-        , padding: '0px !important'
-        , 'padding-top': '0px !important'
-        , 'padding-bottom': '0px !important'
-        , overflow: 'auto !important'
-        , 'box-shadow': 'none !important'
-        , 'background-color': 'transparent !important'
-        , 'border-radius': '0 !important'
-        }
-      )
-      /*
-      , 'min-height': `${heightElement.offsetHeight}px !important`
-      , 'min-width': `${widthElement.offsetWidth}px !important`
-      */
-      /*
-      .print-target {
-  display: inline-block;
-  /* position: fixed !important;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  overflow: visible;
-  height: 100% !important;
-  width: 1500px;
-      border:none;position:absolute;width:0px;height:0px;bottom:0px;left:0px;
-      */
-    }
-    , selectHeightElementStyle = ({ doc, heightElement, widthElement } = {}) => (
-      {}
-    )
-  , selectWidthElementStyle = ({ doc, heightElement, widthElement } = {}) => (
-      {}
-    )
-  , selectFrameBodyStyle = ({ doc, heightElement, widthElement } = {}) => (
-      { margin: '0px !important'
-      //, 'margin-right': '40px !important'
-      , padding: '0px !important'
-      //, 'padding-right': '30px !important'
-      , 'padding-top': '0px !important'
-      , 'padding-bottom': '0px !important'
-      , 'position': 'fixed !important'
-      , top: '0px !important'
-      , bottom: '0px !important'
-      , left: '0px !important'
-      , right: '0px !important'
-      , overflow: 'visible !important'
-      }
-    )
-  , selectAncestorStyle = ({ doc, heightElement, widthElement } = {}) => (
-      { display: 'inline-block !important'
-      , position: 'static !important'
-      , overflow: 'visible !important'
-      }
-    )
-  , topPrintCSS = `
-* {
-  overflow: visible !important;
-}
-body * {
-  display: none !important;
-  position: unset !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 0 !important;
-}
-`
-  , framePrintCSS = ''
+, { strategy = defaultStrategy
+  , ...opts
   } = {}
 ) {
   if(typeof window !== 'object')
@@ -154,138 +38,31 @@ body * {
   if(!frame)
     throw new Error('usePrintFrame must be provided the frame element.')
 
-  const undoTopCSS = topPrintCSS ? setPrintCSS(document, topPrintCSS) : () => {}
-  const undoFrameCSS = framePrintCSS ? setPrintCSS(resolveDocument(frame), framePrintCSS) : () => {}
+  console.info('USING STRATEGY', strategy)
+  const useStrategy = strategies[strategy]
+  if(!useStrategy)
+    throw new Error(`Unknown strategy '${strategy}'!`)
 
-
-  //setStyles(document.body, { border: '1px dashed red !important' })
-
-  //const undoPrelimFrameStyle = setStyles(frame, { 'will-change': 'position display width height min-width min-height max-width max-height !important' })
-
-  let undos = new Set()
-  const disposePrint = onPrint(
-    { preprint() {
-
-        const { container, doc, ancestors } = selectNodes(frame)
-        /*
-        frame.setAttribute('width', '0')
-        frame.setAttribute('height', '0')
-        */
-        frame.contentWindow.focus()
-
-        const i = doc.createElement('input')
-        i.style.display = 'none'
-        doc.body.appendChild(i)
-        i.focus()
-        doc.body.removeChild(i)
-
-        if(!doc)
-          throw new Error('Could not find doc in frame.')
-
-        const heightElement = selectHeightElement(doc)
-        const widthElement = selectWidthElement(doc)
-        if(!heightElement)
-          throw new Error('Could not find height element in frame.')
-        if(!widthElement)
-          throw new Error('Could not find width element in frame.')
-
-        const containerStyle = selectContainerStyle({ doc, heightElement, widthElement })
-        const frameStyle = selectFrameStyle({ doc, heightElement, widthElement })
-        const frameBodyStyle = selectFrameBodyStyle({ doc, heightElement, widthElement })
-        const heightElementStyle = selectHeightElementStyle({ doc, heightElement, widthElement })
-        const widthElementStyle = selectWidthElementStyle({ doc, heightElement, widthElement })
-        const ancestorStyle = selectAncestorStyle({ doc, heightElement, widthElement })
-
-
-        undos = new Set(
-          [ setStyles(container, containerStyle)
-          , setStyles(frame, frameStyle)
-          , setStyles(heightElement, heightElementStyle)
-          , setStyles(widthElement, widthElementStyle)
-          , setStyles(doc.body, frameBodyStyle)
-          , ...ancestors.map((ancestor) => setStyles(ancestor, ancestorStyle))
-          ]
-        )
-        console.log('--preprint--', undos.size)
-      }
-    , postprint() {
-        console.log('--postprint--', undos.size)
-        for(let undo of undos) {
-          undo()
-        }
-        undos.clear()
-      }
-    }
-  )
-
-  return function dispose () {
-    undoTopCSS()
-    undoFrameCSS()
-    undoStyles()
-  }
+  const { preprint, postprint, dispose } = useStrategy(frame, opts)
+  onPrint({ preprint, postprint })
+  return dispose
 }
-
-function selectNodes (frame) {
-  const container = frame.parentNode
-  const doc = resolveDocument(frame)
-
-  const ancestors = []
-  let current = container
-  while(current.parentNode) {
-    current = current.parentNode
-    if(current.style)
-      ancestors.push(current)
-  }
-  return { container, doc, ancestors }
+  /*
+* {
+  overflow: visible !important;
+  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
-
-/*
-overflow: hidden; min-width: 990px; height: 385px; width: 990px;
-overflow: hidden; min-width: 377px !important; height: 385px; width: 990px; position: fixed !important; display: inline-block !important; min-height: 286px !important;
-overflow: hidden; min-width: 990px !important; height: 385px; width: 990px;
+body {
+  width: 700px !important;
+  border-color: 1px solid yellow;
+}
 */
-
-function resolveDocument(obj) {
-  if(obj.contentDocument)
-    return obj.contentDocument
-  else if(obj.contentWindow)
-    return obj.contentWindow.contentDocument
-  else if(obj.document)
-    return obj.document
-  throw new Error('resolveDocument found no document object')
-}
-
-const stylesID = 'use-print-frame-styles'
-function setPrintCSS(doc, css) {
-  if(doc.getElementById(stylesID))
-    throw new Error('setPrintCSS should not be registered twice on the same document - call undoPrintCSS first.')
-  const styleElement = doc.createElement('style')
-  styleElement.setAttribute('id', stylesID)
-  styleElement.setAttribute('type', 'text/css')
-  styleElement.setAttribute('media', 'print')
-  styleElement.innerHTML = css
-  doc.head.appendChild(styleElement)
-  return function undoPrintCSS () {
-    doc.head.removeChild(styleElement)
-  }
-}
-
-
-function setStyles (element, styles) {
-  const prevStyles = Object.entries(styles).reduce((prev, [ key, next ]) => {
-    const prop = { value: element.style.getPropertyValue(key), priority: element.style.getPropertyPriority(key) }
-    console.info('SET STYLES', key, next, prop)
-    const serialized = prop.value ? serializeCSSProperty(prop) : null
-    Object.defineProperty(prev, key, { value: serialized, enumerable: true })
-    if(next) {
-      const { value, priority } = parseCSSProperty(next)
-      element.style.setProperty(key, value, priority)
-    } else {
-      element.style.removeProperty(key)
-    }
-    return prev
-  }, {})
-  return function undoStyles () {
-    setStyles (element, prevStyles)
-  }
-}

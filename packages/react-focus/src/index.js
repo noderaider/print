@@ -1,4 +1,5 @@
 import { usePrintFrame } from 'print-utils'
+import cn from 'classnames'
 
 export default function reactFocus (React) {
   const { Component } = React
@@ -15,19 +16,25 @@ export default function reactFocus (React) {
       this.disposePrintFrame()
     }
     render() {
-      const { url, ...props } = this.props
+      const { className, style, url, ...props } = this.props
       return (
-        <iframe
-          {...props}
-          ref={(x: any): any => this.frame=x}
-          onLoad={(...args: any): any => this.handleLoad(...args)}
-          src={url}
-          width="100%"
-          frameBorder="0"
-          allowFullScreen
-          allowTransparency
-          seamless
-        />
+        <div className={cn('react-focus', className)} style={style}>
+          <iframe
+            {...props}
+            ref={(x: any): any => this.frame=x}
+            onLoad={(...args: any): any => this.handleLoad(...args)}
+            src={url}
+            scrolling="no"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            marginWidth="0"
+            marginHeight="0"
+            allowFullScreen
+            allowTransparency
+            seamless
+          />
+        </div>
       )
     }
   }

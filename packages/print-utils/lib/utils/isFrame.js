@@ -16,7 +16,7 @@ function isFrame() {
   try {
     return (typeof window === 'undefined' ? 'undefined' : (0, _typeof3.default)(window)) === 'object' && window.frameElement !== null;
   } catch (err) {
-    log.error(err, 'error detecting if in iframe, blocking...');
+    console.error(err, 'error detecting if in iframe, blocking...');
     return false;
   }
 }

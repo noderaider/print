@@ -14,6 +14,7 @@
     "preversion": "npm run build && npm run build:dist"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "print-utils": "^0.2.3"
   },
   "devDependencies": {

@@ -19,11 +19,12 @@ function onPrint() {
 
   if ((typeof window === 'undefined' ? 'undefined' : (0, _typeof3.default)(window)) !== 'object') return;
   if (window.onbeforeprint !== undefined && window.onafterprint !== undefined) {
-    if (preprint) window.onbeforeprint = preprint;
-    if (postprint) window.onafterprint = postprint;
+    if (preprint) window.addEventListener('beforeprint', preprint);
+    if (postprint) window.addEventListener('afterprint', postprint);
+
     return function dispose() {
-      if (preprint) window.onbeforeprint = null;
-      if (postprint) window.onafterprint = null;
+      if (preprint) window.removeEventListener('beforeprint', preprint);
+      if (postprint) window.removeEventListener('afterprint', postprint);
     };
   } else if (preprint || postprint) {
     var _ret = function () {

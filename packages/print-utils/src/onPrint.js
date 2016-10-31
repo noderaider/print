@@ -3,14 +3,15 @@ export default function onPrint({ preprint, postprint } = {}) {
     return
   if(window.onbeforeprint !== undefined && window.onafterprint !== undefined) {
     if(preprint)
-      window.onbeforeprint = preprint
+      window.addEventListener('beforeprint', preprint)
     if(postprint)
-      window.onafterprint = postprint
+      window.addEventListener('afterprint', postprint)
+
     return function dispose () {
       if(preprint)
-        window.onbeforeprint = null
+        window.removeEventListener('beforeprint', preprint)
       if(postprint)
-        window.onafterprint = null
+        window.removeEventListener('afterprint', postprint)
     }
   } else if(preprint || postprint) {
     function mqlListener (mql) {

@@ -1,13 +1,14 @@
 lerna(info)    Lerna v2.0.0-beta.30
-lerna(error)   Errored while collecting packages and package graph
-    SyntaxError: C:\Users\cchamberlain\noderaider\print\packages\react-focus\package.json: Unexpected token / in JSON at position 77
-        at JSON.parse (<anonymous>)
-        at Object.Module._extensions..json (module.js:590:27)
+lerna(debug)   Attempting running RunCommand.initialize
+lerna(error)   Errored while running RunCommand.initialize
+    Error: No packages found with the npm script 'start-dev'
+        at RunCommand.initialize (C:\Users\cchamberlain\local\npm\node_modules\lerna\lib\commands\RunCommand.js:61:18)
+        at RunCommand._attempt (C:\Users\cchamberlain\local\npm\node_modules\lerna\lib\Command.js:161:21)
+        at RunCommand.runCommand (C:\Users\cchamberlain\local\npm\node_modules\lerna\lib\Command.js:145:12)
+        at RunCommand.run (C:\Users\cchamberlain\local\npm\node_modules\lerna\lib\Command.js:69:12)
+        at Object.<anonymous> (C:\Users\cchamberlain\local\npm\node_modules\lerna\bin\lerna.js:58:11)
+        at Module._compile (module.js:573:32)
+        at Object.Module._extensions..js (module.js:582:10)
         at Module.load (module.js:490:32)
         at tryModuleLoad (module.js:449:12)
         at Function.Module._load (module.js:441:3)
-        at Module.require (module.js:500:17)
-        at require (internal/module.js:20:19)
-        at C:\Users\cchamberlain\local\npm\node_modules\lerna\lib\PackageUtilities.js:83:27
-        at Array.forEach (native)
-        at Function.getPackages (C:\Users\cchamberlain\local\npm\node_modules\lerna\lib\PackageUtilities.js:71:63)
