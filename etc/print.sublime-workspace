@@ -32,13 +32,57 @@
 	"buffers":
 	[
 		{
-			"contents": "\n /$$$$$$$$        /$$                 /$$$$$$$$             /$$\n|__  $$__/       | $$                | $$_____/            | $$\n   | $$  /$$$$$$ | $$$$$$$   /$$$$$$$| $$       /$$   /$$ /$$$$$$    /$$$$$$  /$$$$$$\n   | $$ |____  $$| $$__  $$ /$$_____/| $$$$$   |  $$ /$$/|_  $$_/   /$$__  $$|____  $$\n   | $$  /$$$$$$$| $$  \\ $$|  $$$$$$ | $$__/    \\  $$$$/   | $$    | $$  \\__/ /$$$$$$$\n   | $$ /$$__  $$| $$  | $$ \\____  $$| $$        >$$  $$   | $$ /$$| $$      /$$__  $$\n   | $$|  $$$$$$$| $$$$$$$/ /$$$$$$$/| $$$$$$$$ /$$/\\  $$  |  $$$$/| $$     |  $$$$$$$\n   |__/ \\_______/|_______/ |_______/ |________/|__/  \\__/   \\___/  |__/      \\_______/\n\n\n======================================================================================\n\nMenu format upgraded to version (1.6.0). To pick up these changes, do one of the\nfollowing:\n\n1. If using the override menu, select \"Preferences->Package Settings->TabsExtra->Install/Upgrade Default Override Menu\"\n   from Sublime's menu.\n\n2. If using the default menu, select \"Preferences->Package Settings->TabsExtra->Install/Upgrade TabsExtra Menu\"\n   from the menu\" from Sublime's menu.\n\n======================================================================================\n\nChanges:\n- Add 'Move' command\n",
+			"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/webkit.js",
 			"settings":
 			{
-				"buffer_size": 1248,
-				"line_ending": "Windows",
-				"name": "TabsExtra Message",
-				"scratch": true
+				"buffer_size": 8724,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/getScale.js",
+			"settings":
+			{
+				"buffer_size": 340,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/gecko.js",
+			"settings":
+			{
+				"buffer_size": 1689,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/trident.js",
+			"settings":
+			{
+				"buffer_size": 1691,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/index.js",
+			"settings":
+			{
+				"buffer_size": 135,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/usePrintFrame.js",
+			"settings":
+			{
+				"buffer_size": 1253,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -275,10 +319,31 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/cchamberlain/noderaider/print"
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/public",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/public-example",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/src",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/__tests__",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/react-focus",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/react-focus/src"
 	],
 	"file_history":
 	[
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/getScale.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/getScale.test.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/react-focus/src/index.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/src/App.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/setCSS.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/index.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/containerStrategy.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/usePrintFrame.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/public-example/lorem-ipsum.html",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/public-example/mdn-chrome-ff.html",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/setScreenCSS.js",
 		"/C/Users/cchamberlain/noderaider/print-utils/src/index.js",
 		"/C/Users/cchamberlain/noderaider/print-utils/src/utils/parseCSSProperty.js",
 		"/C/Users/cchamberlain/noderaider/print-utils/src/onPrint.js",
@@ -395,18 +460,7 @@
 		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/index.js",
 		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/adapters/wsp.js",
 		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/adapters/localStorage.js",
-		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/adapters/index.js",
-		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/State.js",
-		"/C/Users/cchamberlain/noderaider/design/packages/api/.babelrc",
-		"/C/Users/cchamberlain/noderaider/gun/lib/gun/Type.js",
-		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/Type.js",
-		"/C/Users/cchamberlain/noderaider/gun/lib/gun/index.js",
-		"/C/Users/cchamberlain/noderaider/gun/lib/gun/api.js",
-		"/C/Users/cchamberlain/noderaider/gun/lib/gun/Gun.js",
-		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/Val.js",
-		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/Node.js",
-		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/Graph.js",
-		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/HAM.js"
+		"/C/Users/cchamberlain/noderaider/gun/src/lib/gun/adapters/index.js"
 	],
 	"find":
 	{
@@ -720,32 +774,270 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/webkit.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1248,
+						"buffer_size": 8724,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1248,
-								1248
+								1191,
+								1191
 							]
 						],
 						"settings":
 						{
-							"default_dir": "C:\\Users\\cchamberlain\\noderaider\\print",
-							"font_face": "Courier New",
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tabs_extra_last_activated": 1477761544.79,
+							"highlight_line": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"tabs_extra_last_activated": 1478035652.89,
 							"tabs_extra_last_activated_sheet_index": 0,
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 31
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/getScale.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 340,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								225,
+								225
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tabs_extra_last_activated": 1478034438.39,
+							"tabs_extra_last_activated_sheet_index": 1,
+							"tabs_extra_spawned": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 16
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/gecko.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1689,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								125,
+								125
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"tabs_extra_last_activated": 1478035649.67,
+							"tabs_extra_last_activated_sheet_index": 2,
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 29
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/trident.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1691,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								127,
+								127
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"tabs_extra_last_activated": 1478035651.23,
+							"tabs_extra_last_activated_sheet_index": 3,
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 22
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 135,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								135,
+								135
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tabs_extra_last_activated": 1478035730.85,
+							"tabs_extra_last_activated_sheet_index": 4,
+							"tabs_extra_spawned": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/usePrintFrame.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1253,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								351,
+								351
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true,
 							"vintage":
 							{
 								"action": null,
@@ -757,15 +1049,14 @@
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 0
-							},
-							"word_wrap": true
+								"xpos": 37
+							}
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -1359,6 +1650,8 @@
 	"selected_group": 0,
 	"settings":
 	{
+		"_vintageous_last_buffer_search": "debugger",
+		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
@@ -1369,7 +1662,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 478.0,
+	"side_bar_width": 171.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

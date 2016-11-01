@@ -58,4 +58,13 @@ Object.defineProperty(exports, 'resolveDocument', {
   }
 });
 
+var _getScale = require('./getScale');
+
+Object.defineProperty(exports, 'getScale', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_getScale).default;
+  }
+});
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

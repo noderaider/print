@@ -1,34 +1,23 @@
 import onPrint from './onPrint'
-import * as strategies from './strategies'
+import * as engines from './engines'
 import { detectBrowser } from 'browser-detective'
 
-function round(num) {
-  return Math.floor(num * 100) / 100
-}
-const scaleToWidth = 700
-function getScale (width) {
-  return round(scaleToWidth / width)
-}
-function descaleHeight (height, scaleFactor) {
-  return height * scaleFactor
-}
+
 
 const browser = typeof window === 'object' ? detectBrowser() : {}
 console.info('BROWSER DETECTED\n', JSON.stringify(browser, null, 2))
 
-let defaultStrategy = 'containerStrategy'
+let defaultEngine = 'gecko'
 if(browser.name === 'chrome') {
-  defaultStrategy = 'frameStrategy'
-} else if (browser.name === 'firefox') {
-  //defaultStrategy = 'frameStrategy'
+  defaultEngine = 'webkit'
 } else if (browser.name === 'safari') {
-
+  defaultEngine = 'webkit'
 } else if (browser.name === 'ie') {
-  //defaultStrategy = 'frameStrategy'
+  defaultEngine = 'trident'
 }
 
 export default function usePrintFrame( frame
-, { strategy = defaultStrategy
+, { engine = defaultEngine
   , ...opts
   } = {}
 ) {
@@ -36,13 +25,19 @@ export default function usePrintFrame( frame
     return
   if(!frame)
     throw new Error('usePrintFrame must be provided the frame element.')
+  let frameID = frame.getAttribute('id')
+  if(!frameID) {
+    frameID = 'content-frame'
+    frame.setAttribute('id', frameID)
+  }
 
-  console.info('USING STRATEGY', strategy)
-  const useStrategy = strategies[strategy]
-  if(!useStrategy)
-    throw new Error(`Unknown strategy '${strategy}'!`)
 
-  const { preprint, postprint, dispose } = useStrategy(frame, opts)
+  console.info('--engine--', engine)
+  const useEngine = engines[engine]
+  if(!useEngine)
+    throw new Error(`Unknown engine '${engine}'!`)
+
+  const { preprint, postprint, dispose } = useEngine(frame, opts)
   onPrint({ preprint, postprint })
   return dispose
 }

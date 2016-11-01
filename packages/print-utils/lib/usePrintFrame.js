@@ -32,17 +32,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function round(num) {
-  return Math.floor(num * 100) / 100;
-}
-var scaleToWidth = 700;
-function getScale(width) {
-  return round(scaleToWidth / width);
-}
-function descaleHeight(height, scaleFactor) {
-  return height * scaleFactor;
-}
-
 var browser = (typeof window === 'undefined' ? 'undefined' : (0, _typeof3.default)(window)) === 'object' ? (0, _browserDetective.detectBrowser)() : {};
 console.info('BROWSER DETECTED\n', (0, _stringify2.default)(browser, null, 2));
 
@@ -51,7 +40,9 @@ if (browser.name === 'chrome') {
   defaultStrategy = 'frameStrategy';
 } else if (browser.name === 'firefox') {
   //defaultStrategy = 'frameStrategy'
-} else if (browser.name === 'safari') {} else if (browser.name === 'ie') {
+} else if (browser.name === 'safari') {
+  defaultStrategy = 'frameStrategy';
+} else if (browser.name === 'ie') {
   //defaultStrategy = 'frameStrategy'
 }
 
@@ -63,6 +54,11 @@ function usePrintFrame(frame) {
 
   if ((typeof window === 'undefined' ? 'undefined' : (0, _typeof3.default)(window)) !== 'object') return;
   if (!frame) throw new Error('usePrintFrame must be provided the frame element.');
+  var frameID = frame.getAttribute('id');
+  if (!frameID) {
+    frameID = 'content-frame';
+    frame.setAttribute('id', frameID);
+  }
 
   console.info('USING STRATEGY', strategy);
   var useStrategy = strategies[strategy];

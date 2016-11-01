@@ -1,6 +1,6 @@
 import { setCSS, resolveDocument } from '../utils'
 
-export default function containerStrategy (frame, opts = {}) {
+export default function trident (frame, opts = {}) {
   const topPrintCSS = `
 * {
   overflow: visible !important;

@@ -4,21 +4,30 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _containerStrategy = require('./containerStrategy');
+var _webkit = require('./webkit');
 
-Object.defineProperty(exports, 'containerStrategy', {
+Object.defineProperty(exports, 'webkit', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_containerStrategy).default;
+    return _interopRequireDefault(_webkit).default;
   }
 });
 
-var _frameStrategy = require('./frameStrategy');
+var _gecko = require('./gecko');
 
-Object.defineProperty(exports, 'frameStrategy', {
+Object.defineProperty(exports, 'gecko', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_frameStrategy).default;
+    return _interopRequireDefault(_gecko).default;
+  }
+});
+
+var _trident = require('./trident');
+
+Object.defineProperty(exports, 'trident', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_trident).default;
   }
 });
 

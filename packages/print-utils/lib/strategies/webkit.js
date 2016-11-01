@@ -20,7 +20,7 @@ var _objectDestructuringEmpty2 = require('babel-runtime/helpers/objectDestructur
 
 var _objectDestructuringEmpty3 = _interopRequireDefault(_objectDestructuringEmpty2);
 
-exports.default = frameStrategy;
+exports.default = webkit;
 
 var _utils = require('../utils');
 
@@ -38,7 +38,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function frameStrategy(frame
+function webkit(frame
 //TODO TEST WITHOUT data-iframe-height and data-iframe-width
 ) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},

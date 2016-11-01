@@ -41,6 +41,8 @@
   },
   "dependencies": {
     "browser-detective": "^0.1.7",
+    "classnames": "^2.2.5",
+    "invariant": "^2.2.1",
     "raf": "^3.3.0"
   }
 }
