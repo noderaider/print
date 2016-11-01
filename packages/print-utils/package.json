@@ -29,6 +29,7 @@
     "bin-utils": "latest",
     "eslint": "latest",
     "eslint-plugin-babel": "latest",
+    "jest": "latest",
     "ncp": "latest",
     "npm-run-all": "latest",
     "rimraf": "latest",

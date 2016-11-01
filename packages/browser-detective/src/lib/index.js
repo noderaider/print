@@ -58,12 +58,14 @@ export const detectBrowser = (userAgent = IS_BROWSER ? detectUserAgent() : noop(
   let name = null
   let title = null
   let version = null
+  let engine = null
   let emulatedVersion = null
   let platform = null
   let platformVersion = null
 
   if(trident || msie) {
     name = 'ie'
+    engine = 'trident'
     title = 'Internet Explorer'
     version = trident ? tridentMap.get(trident) : msie
     emulatedVersion = msie || version
@@ -75,19 +77,22 @@ export const detectBrowser = (userAgent = IS_BROWSER ? detectUserAgent() : noop(
     }
   } else if(chrome) {
     name = 'chrome'
+    engine = 'webkit'
     title = 'Chrome'
     version = chrome
     emulatedVersion = chrome
   } else if(firefox) {
     name = 'firefox'
+    engine = 'gecko'
     title = 'Firefox'
     version = firefox
     emulatedVersion = firefox
   } else if(safari) {
     name = 'safari'
+    engine = 'webkit'
     title = 'Safari'
     version = safari
     emulatedVersion = safari
   }
-  return { name, title, version, emulatedVersion, platform, platformVersion }
+  return { name, engine, title, version, emulatedVersion, platform, platformVersion }
 }

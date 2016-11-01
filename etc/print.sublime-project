@@ -13,6 +13,11 @@
     },
     {
       "folder_exclude_patterns": [ "node_modules" ],
+      "name": "browser-detective",
+      "path": "../packages/browser-detective"
+    },
+    {
+      "folder_exclude_patterns": [ "node_modules" ],
       "name": "react-focus",
       "path": "../packages/react-focus"
     },

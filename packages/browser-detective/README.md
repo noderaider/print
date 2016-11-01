@@ -9,4 +9,3 @@ Universal browser detection via user agent parsing. Built to run well in client 
 `npm i -S browser-detective`
 
 
-**This project is working but its interface may change rapidly prior to version 1.0.  Documentation coming soon.**

@@ -22,9 +22,9 @@ var _onPrint = require('./onPrint');
 
 var _onPrint2 = _interopRequireDefault(_onPrint);
 
-var _strategies = require('./strategies');
+var _engines = require('./engines');
 
-var strategies = _interopRequireWildcard(_strategies);
+var engines = _interopRequireWildcard(_engines);
 
 var _browserDetective = require('browser-detective');
 
@@ -35,22 +35,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var browser = (typeof window === 'undefined' ? 'undefined' : (0, _typeof3.default)(window)) === 'object' ? (0, _browserDetective.detectBrowser)() : {};
 console.info('BROWSER DETECTED\n', (0, _stringify2.default)(browser, null, 2));
 
-var defaultStrategy = 'containerStrategy';
-if (browser.name === 'chrome') {
-  defaultStrategy = 'frameStrategy';
-} else if (browser.name === 'firefox') {
-  //defaultStrategy = 'frameStrategy'
-} else if (browser.name === 'safari') {
-  defaultStrategy = 'frameStrategy';
-} else if (browser.name === 'ie') {
-  //defaultStrategy = 'frameStrategy'
-}
-
 function usePrintFrame(frame) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-      _ref$strategy = _ref.strategy,
-      strategy = _ref$strategy === undefined ? defaultStrategy : _ref$strategy,
-      opts = (0, _objectWithoutProperties3.default)(_ref, ['strategy']);
+      _ref$engine = _ref.engine,
+      engine = _ref$engine === undefined ? browser.engine || 'webkit' : _ref$engine,
+      opts = (0, _objectWithoutProperties3.default)(_ref, ['engine']);
 
   if ((typeof window === 'undefined' ? 'undefined' : (0, _typeof3.default)(window)) !== 'object') return;
   if (!frame) throw new Error('usePrintFrame must be provided the frame element.');
@@ -60,14 +49,14 @@ function usePrintFrame(frame) {
     frame.setAttribute('id', frameID);
   }
 
-  console.info('USING STRATEGY', strategy);
-  var useStrategy = strategies[strategy];
-  if (!useStrategy) throw new Error('Unknown strategy \'' + strategy + '\'!');
+  console.info('--engine--', engine);
+  var useEngine = engines[engine];
+  if (!useEngine) throw new Error('Unknown engine \'' + engine + '\'!');
 
-  var _useStrategy = useStrategy(frame, opts),
-      preprint = _useStrategy.preprint,
-      postprint = _useStrategy.postprint,
-      dispose = _useStrategy.dispose;
+  var _useEngine = useEngine(frame, opts),
+      preprint = _useEngine.preprint,
+      postprint = _useEngine.postprint,
+      dispose = _useEngine.dispose;
 
   (0, _onPrint2.default)({ preprint: preprint, postprint: postprint });
   return dispose;

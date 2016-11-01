@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.detectBrowser = exports.detectUserAgent = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _chai = require('chai');
 
@@ -38,7 +38,7 @@ var detectUserAgent = exports.detectUserAgent = function detectUserAgent() {
 };
 
 var detectBrowser = exports.detectBrowser = function detectBrowser() {
-  var userAgent = arguments.length <= 0 || arguments[0] === undefined ? IS_BROWSER ? detectUserAgent() : noop() : arguments[0];
+  var userAgent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : IS_BROWSER ? detectUserAgent() : noop();
 
   if (!userAgent) return { error: true, name: 'unknown', message: 'user agent could not be detected and was not provided.' };
   var trident = findMatch(tridentRegex, userAgent);
@@ -50,12 +50,14 @@ var detectBrowser = exports.detectBrowser = function detectBrowser() {
   var name = null;
   var title = null;
   var version = null;
+  var engine = null;
   var emulatedVersion = null;
   var platform = null;
   var platformVersion = null;
 
   if (trident || msie) {
     name = 'ie';
+    engine = 'trident';
     title = 'Internet Explorer';
     version = trident ? tridentMap.get(trident) : msie;
     emulatedVersion = msie || version;
@@ -67,19 +69,22 @@ var detectBrowser = exports.detectBrowser = function detectBrowser() {
     }
   } else if (chrome) {
     name = 'chrome';
+    engine = 'webkit';
     title = 'Chrome';
     version = chrome;
     emulatedVersion = chrome;
   } else if (firefox) {
     name = 'firefox';
+    engine = 'gecko';
     title = 'Firefox';
     version = firefox;
     emulatedVersion = firefox;
   } else if (safari) {
     name = 'safari';
+    engine = 'webkit';
     title = 'Safari';
     version = safari;
     emulatedVersion = safari;
   }
-  return { name: name, title: title, version: version, emulatedVersion: emulatedVersion, platform: platform, platformVersion: platformVersion };
+  return { name: name, engine: engine, title: title, version: version, emulatedVersion: emulatedVersion, platform: platform, platformVersion: platformVersion };
 };

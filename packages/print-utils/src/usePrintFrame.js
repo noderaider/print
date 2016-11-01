@@ -7,17 +7,8 @@ import { detectBrowser } from 'browser-detective'
 const browser = typeof window === 'object' ? detectBrowser() : {}
 console.info('BROWSER DETECTED\n', JSON.stringify(browser, null, 2))
 
-let defaultEngine = 'gecko'
-if(browser.name === 'chrome') {
-  defaultEngine = 'webkit'
-} else if (browser.name === 'safari') {
-  defaultEngine = 'webkit'
-} else if (browser.name === 'ie') {
-  defaultEngine = 'trident'
-}
-
 export default function usePrintFrame( frame
-, { engine = defaultEngine
+, { engine = browser.engine || 'webkit'
   , ...opts
   } = {}
 ) {
