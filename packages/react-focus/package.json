@@ -1,6 +1,6 @@
 {
   "name": "react-focus",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "print-utils": "^0.3.1"
+    "print-utils": "^0.4.0"
   },
   "devDependencies": {
     "babel-cli": "latest",
