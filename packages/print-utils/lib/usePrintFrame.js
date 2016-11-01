@@ -35,10 +35,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var browser = (typeof window === 'undefined' ? 'undefined' : (0, _typeof3.default)(window)) === 'object' ? (0, _browserDetective.detectBrowser)() : {};
 console.info('BROWSER DETECTED\n', (0, _stringify2.default)(browser, null, 2));
 
+var defaultEngine = browser.engine || 'webkit';
+
 function usePrintFrame(frame) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
       _ref$engine = _ref.engine,
-      engine = _ref$engine === undefined ? browser.engine || 'webkit' : _ref$engine,
+      engine = _ref$engine === undefined ? defaultEngine : _ref$engine,
       opts = (0, _objectWithoutProperties3.default)(_ref, ['engine']);
 
   if ((typeof window === 'undefined' ? 'undefined' : (0, _typeof3.default)(window)) !== 'object') return;

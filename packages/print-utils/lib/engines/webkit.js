@@ -176,22 +176,16 @@ function webkit(frame
     (0, _invariant2.default)(frameWidth, 'frameWidth must be a number greater than 0');
     (0, _invariant2.default)(containerWidth, 'containerWidth must be a number greater than 0');
     // the target page size relative to the top frame
-    var pageScale = roundDown((0, _utils.getScale)(printWidth, topWidth));
-    var containerScale = roundDown((0, _utils.getScale)(printWidth, containerWidth));
+    var pageScale = (0, _utils.round)((0, _utils.getScale)(printWidth, topWidth), { down: true });
+    var containerScale = (0, _utils.round)((0, _utils.getScale)(printWidth, containerWidth), { down: true });
     // the top frame size relative to the iframe
-    var frameScale = roundDown((0, _utils.getScale)(printWidth, frameWidth));
-    var scale = roundDown(pageScale * frameScale);
+    var frameScale = (0, _utils.round)((0, _utils.getScale)(printWidth, frameWidth), { down: true });
+    var scale = (0, _utils.round)(pageScale * frameScale, { down: true });
     //const width = frame.contentWindow.innerWidth
     //const width = widthElement.offsetWidth
     var scaledWidth = printWidth; //roundDown(topWidth * pageScale, 1)
     console.info('--calculateScale--\nprintWidth: ' + printWidth + '\ntopWidth: ' + topWidth + '\nframeWidth: ' + frameWidth + '\nwidthElement: ' + widthElement.offsetWidth + '\npageScale: ' + pageScale + '\nframeScale: ' + frameScale + '\ncontainerScale: ' + containerScale + '\nscale: ' + scale + '\nscaledWidth: ' + scaledWidth);
     return { scale: scale, scaledWidth: scaledWidth, pageScale: pageScale, frameScale: frameScale, containerScale: containerScale };
-  }
-
-  function roundDown(num) {
-    var place = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
-
-    return Math.floor(num * place) / place;
   }
 
   function setPrintStyles() {

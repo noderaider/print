@@ -2,13 +2,13 @@ import onPrint from './onPrint'
 import * as engines from './engines'
 import { detectBrowser } from 'browser-detective'
 
-
-
 const browser = typeof window === 'object' ? detectBrowser() : {}
 console.info('BROWSER DETECTED\n', JSON.stringify(browser, null, 2))
 
+const defaultEngine = browser.engine || 'webkit'
+
 export default function usePrintFrame( frame
-, { engine = browser.engine || 'webkit'
+, { engine = defaultEngine
   , ...opts
   } = {}
 ) {

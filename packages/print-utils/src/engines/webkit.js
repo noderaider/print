@@ -1,4 +1,4 @@
-import { setStyles, setCSS, resolveDocument, getScale } from '../utils'
+import { setStyles, setCSS, resolveDocument, getScale, round } from '../utils'
 import raf from 'raf'
 import cn from 'classnames'
 import invariant from 'invariant'
@@ -151,20 +151,16 @@ body {
     invariant(frameWidth, 'frameWidth must be a number greater than 0')
     invariant(containerWidth, 'containerWidth must be a number greater than 0')
     // the target page size relative to the top frame
-    const pageScale = roundDown(getScale(printWidth, topWidth))
-    const containerScale = roundDown(getScale(printWidth, containerWidth))
+    const pageScale = round(getScale(printWidth, topWidth), { down: true })
+    const containerScale = round(getScale(printWidth, containerWidth), { down: true })
     // the top frame size relative to the iframe
-    const frameScale = roundDown(getScale(printWidth, frameWidth))
-    const scale = roundDown(pageScale * frameScale)
+    const frameScale = round(getScale(printWidth, frameWidth), { down: true })
+    const scale = round(pageScale * frameScale, { down: true })
     //const width = frame.contentWindow.innerWidth
     //const width = widthElement.offsetWidth
     const scaledWidth = printWidth //roundDown(topWidth * pageScale, 1)
     console.info(`--calculateScale--\nprintWidth: ${printWidth}\ntopWidth: ${topWidth}\nframeWidth: ${frameWidth}\nwidthElement: ${widthElement.offsetWidth}\npageScale: ${pageScale}\nframeScale: ${frameScale}\ncontainerScale: ${containerScale}\nscale: ${scale}\nscaledWidth: ${scaledWidth}`)
     return { scale, scaledWidth, pageScale, frameScale, containerScale }
-  }
-
-  function roundDown(num, place = 100) {
-    return Math.floor(num * place) / place
   }
 
   function setPrintStyles() {
