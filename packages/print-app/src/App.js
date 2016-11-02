@@ -1,6 +1,7 @@
 import 'babel-polyfill'
 import React, { Component } from 'react'
 import LoremIpsum from './LoremIpsum'
+import Event from './Event'
 import reactFocus from 'react-focus'
 import { isFrame } from 'print-utils'
 import logo from './logo.svg'
@@ -10,8 +11,15 @@ const Focus = reactFocus(React)
 
 class App extends Component {
   render() {
-    if(isFrame()) {
+    if(typeof window !== 'object')
+      return null
+    if(isFrame())
       return <LoremIpsum sections={10} />
+
+    const { pathname, search } = window.location
+
+    if(/event/.test(pathname)) {
+      return <Event />
     }
     return (
       <div className="App">
