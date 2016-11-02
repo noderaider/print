@@ -1,6 +1,8 @@
 import React from 'react'
-import LoremIpsum from './LoremIpsum'
 import { onPrint } from 'print-utils'
+import LoremIpsum from './LoremIpsum'
+import reactRuler from 'react-ruler'
+const Ruler = reactRuler(React)
 const { Component } = React
 
 function parseQuery(key, transform, defaultValue) {
@@ -15,35 +17,6 @@ function parseQuery(key, transform, defaultValue) {
 }
 
 const now = Date.now()
-
-class Ruler extends Component {
-  render() {
-    const { orientation, segments, segmentLength, hide } = this.props
-    const ruler = new Array(segments + 1).fill(0)
-    return (
-      <div>
-        {ruler.map((x, i) => {
-          const total = segmentLength * i
-          return (
-            <div
-              key={i}
-              style={
-                { position: 'absolute'
-                , display: 'inline'
-                , [orientation === 'horizontal' ? 'left' : 'top']: total
-                , [orientation === 'horizontal' ? 'top' : 'left']: 0
-                , [orientation === 'horizontal' ? 'height' : 'width']: total % 100 === 0 ? 25 : i % 2 === 0 ? 10 : 5
-                , [orientation === 'horizontal' ? 'width' : 'height']: 1
-                , [orientation === 'horizontal' ? 'borderLeft' : 'borderTop']: `1px solid ${hide ? 'transparent' : total % 100 === 0 ? 'red' : 'blue'}`
-                }
-              }
-            />
-          )
-        })}
-      </div>
-    )
-  }
-}
 
 class Rulers extends Component {
   render() {
@@ -71,8 +44,9 @@ export default class Print extends Component {
         oldValue = this.frame.style.getPropertyValue(key)
         this.frame.style.setProperty(key, value)
       } else {
-        oldValue = this.frame[prop][key]
-        this.frame[prop][key] = value
+        console.info('SETTING PROP', prop, key)
+        oldValue = this.frame.getAttribute(prop)
+        this.frame.setAttribute(prop, key)
       }
       return oldValue
     }
@@ -82,7 +56,12 @@ export default class Print extends Component {
       const defs = str.split('/')
       console.info('PARSEPROPS', str, '\n', defs)
       return defs.map((def) => {
-        const [ prop, key, init, pre, post ] = def.split(':')
+        let [ prop, key, init, pre, post ] = def.split(':')
+        if(props !== 'style') {
+          post = pre
+          pre = init
+          init = key
+        }
         return { prop, key, init, pre, post }
       })
     }
@@ -101,7 +80,7 @@ export default class Print extends Component {
   componentDidMount() {
     const { props } = this.state
 
-    props.filter((x) => x.init).forEach(({ prop, key, init, pre, post }) => {
+    props.filter((x) => (x.init)).forEach(({ prop, key, init, pre, post }) => {
       this.setValue(prop, key, init)
     })
 
@@ -110,6 +89,9 @@ export default class Print extends Component {
           props.filter((x) => x.pre).forEach(({ prop, key, init, pre, post }) => {
             this.setValue(prop, key, pre)
           })
+          document.body.style.width = `${this.frame.offsetWidth}px`
+          document.body.style.height = `${this.frame.offsetHeight}px`
+          this.frame.contentWindow.focus()
         }
       , postprint: () => {
           props.filter((x) => x.post).forEach(({ prop, key, init, pre, post }) => {
@@ -127,9 +109,9 @@ export default class Print extends Component {
 
 
     return (
-      <div>
+      <div style={{ position: 'relative' }}>
         <Rulers {...rulerProps} hide={hide && !showRulers} />
-        <div style={hide ? null : { paddingTop: 20, paddingLeft: 20 }}>
+        <div style={hide ? null : { paddingTop: 20, paddingLeft: 20, position: 'relative' }}>
 
           <div id="legend" style={{display: hide ? 'none' : 'block'}}>
             <h1>Print</h1>

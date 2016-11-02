@@ -23,6 +23,11 @@
     },
     {
       "folder_exclude_patterns": [ "node_modules" ],
+      "name": "react-ruler",
+      "path": "../packages/react-ruler"
+    },
+    {
+      "folder_exclude_patterns": [ "node_modules" ],
       "name": "@raider/print",
       "path": "../"
     }
