@@ -1,7 +1,7 @@
 import 'babel-polyfill'
 import React, { Component } from 'react'
 import LoremIpsum from './LoremIpsum'
-import Event from './Event'
+import Print from './Print'
 import reactFocus from 'react-focus'
 import { isFrame } from 'print-utils'
 import logo from './logo.svg'
@@ -18,8 +18,8 @@ class App extends Component {
 
     const { pathname, search } = window.location
 
-    if(/event/.test(pathname)) {
-      return <Event />
+    if(/^\/print/.test(pathname)) {
+      return <Print />
     }
     return (
       <div className="App">

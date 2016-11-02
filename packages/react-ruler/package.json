@@ -1,5 +1,5 @@
 {
-  "name": "react-focus",
+  "name": "react-ruler",
   "version": "0.4.0",
   "main": "lib/index.js",
   "files": [
@@ -14,8 +14,6 @@
     "preversion": "npm run build && npm run build:dist"
   },
   "dependencies": {
-    "react-ruler": "^0.4.0",
-    "print-utils": "^0.4.0",
     "classnames": "^2.2.5"
   },
   "devDependencies": {
@@ -33,10 +31,8 @@
     "eslint-plugin-babel": "latest",
     "eslint-plugin-react": "latest",
     "ncp": "latest",
-    "node-sass": "latest",
     "npm-run-all": "latest",
     "rimraf": "latest",
-    "sass-loader": "latest",
     "webpack": "^2.1.0-beta.25"
   }
 }

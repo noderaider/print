@@ -9,7 +9,8 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "print-utils": "^0.4.0",
-    "react-focus": "^0.4.0"
+    "react-focus": "^0.4.0",
+    "react-ruler": "^0.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
