@@ -1,3 +1,4 @@
 node_modules/
+staging/
 *.log
 *.log.*
