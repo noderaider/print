@@ -25,6 +25,14 @@ body > *:not(#print-content) * {
   display: none !important;
   position: unset !important;
 }
+iframe {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
 body > #print-content {
   display: inline !important;
 }
@@ -36,16 +44,38 @@ body > #print-content {
   printElement.setAttribute('style', 'display: none')
   document.body.insertBefore(printElement, document.body.firstChild)
 
+  let undos = new Set()
+  function undoAll() {
+    if(undos.size > 0) {
+      for(let undo of undos) {
+        undo()
+      }
+      undos.clear()
+    }
+  }
   let undoTopPrintCSS
   let undoFramePrintCSS
+  let undoHeadStyles
   frame.addEventListener('load', () => {
     const frameDocument = resolveDocument(frame)
-    undoTopPrintCSS = topPrintCSS ? setCSS(document, topPrintCSS, 'print') : () => {}
-    undoFramePrintCSS = framePrintCSS ? setCSS(frameDocument, framePrintCSS, 'print') : () => {}
+    undoAll()
+    if(undoTopPrintCSS)
+      undoTopPrintCSS()
+    undoTopPrintCSS = topPrintCSS ? setCSS(document, topPrintCSS, 'print', { id: 'top-css' }) : () => {}
+    undoHeadStyles = copyHeadStyles(frameDocument, document)
+    /*
+    setTimeout(() => {
+      let frameHeight = frameDocument.body.offsetHeight
+      if(frameHeight === 0)
+        throw new Error('frameHeight still 0')
+      frame.style.setProperty('height', `${frameHeight}px`)
+      frame.parentNode.style.setProperty('height', `${frameHeight}px`)
+    }, 500)
+    */
   })
 
-  function copyStyles (source, target) {
-    const styles = window.getComputedStyle(source)
+  function copyStyles (sourceElement, targetElement) {
+    const styles = window.getComputedStyle(sourceElement)
     const oldStyles = new Map()
     const styleMap = Array.from(styles)
       .filter((x) => {
@@ -57,18 +87,47 @@ body > #print-content {
         oldStyles.set(name, style.getPropertyValue(name))
         style.setProperty(name, value)
         return style
-      }, target.style)
+      }, targetElement.style)
     return () => oldStyles.forEach(([ name, value ]) => {
-      target.style.setProperty(name, value)
+      targetElement.style.setProperty(name, value)
     })
   }
 
-  let undos = new Set()
+  const startsWithPrint = /^\s*@media print/
+
+  function copyHeadStyles (sourceDocument, targetDocument) {
+    const sourceLinks = sourceDocument.querySelectorAll('head > link')
+    const sourceStyles = sourceDocument.querySelectorAll('head > style')
+    const _undos = new Set()
+    Array.from(sourceLinks).forEach((link) => {
+      const _link = document.createElement('link')
+      _link.setAttribute('href', link.getAttribute('href'))
+      _link.setAttribute('type', 'text/css')
+      _link.setAttribute('media', 'print')
+      _link.setAttribute('rel', 'stylesheet')
+      targetDocument.head.appendChild(_link)
+      _undos.add(() => targetDocument.head.removeChild(_link))
+    })
+    Array.from(sourceStyles).forEach((style) => {
+      console.info('COPYING STYLE ELEMENT', style)
+      const _style = document.createElement('style')
+      const isPrint = startsWithPrint.test(style.innerHTML)
+      _style.innerHTML = isPrint ? style.innerHTML : `
+@media print {
+  ${style.innerHTML}
+}`
+      targetDocument.head.appendChild(_style)
+      _undos.add(() => targetDocument.head.removeChild(_style))
+    })
+    return () => _undos.forEach((fn) => fn())
+  }
+
 
   function preprint () {
     const frameDocument = resolveDocument(frame)
     printElement.innerHTML = frameDocument.body.innerHTML
     undos.add(copyStyles(frameDocument.body, printElement))
+    //undos.add(copyHeadStyles(frameDocument, document))
     /* COPY CHILD NODES STYLES (UNNECESSARY?)
     Array.from(frameDocument.body.childNodes).forEach((node, i) => {
       undos.add(copyStyles(node, printElement.childNodes[i]))
@@ -77,10 +136,7 @@ body > #print-content {
   }
 
   function postprint() {
-    for(let undo of undos) {
-      undo()
-    }
-    undos.clear()
+    undoAll()
     printElement.setAttribute('style', 'display: none')
   }
 
@@ -89,6 +145,8 @@ body > #print-content {
       undoTopPrintCSS()
     if(undoFramePrintCSS)
       undoFramePrintCSS()
+    if(undoHeadStyles)
+      undoHeadStyles()
   }
 
   return { preprint, postprint, dispose }

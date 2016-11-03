@@ -198,8 +198,10 @@ function webkit(frame
     //frame.setAttribute('width', pageWidth)
     //setStyles(frame, { 'max-width': `${printWidth}px !important` })
 
-    undoTopPrintCSS = topPrintCSS ? (0, _utils.setCSS)(document, topPrintCSS, 'print') : function () {};
-    undoFramePrintCSS = framePrintCSS ? (0, _utils.setCSS)(frameDocument, framePrintCSS, 'print') : function () {};
+    if (undoTopPrintCSS) undoTopPrintCSS();
+    if (undoFramePrintCSS) undoFramePrintCSS();
+    undoTopPrintCSS = topPrintCSS ? (0, _utils.setCSS)(document, topPrintCSS, 'print', { id: 'top-css' }) : function () {};
+    undoFramePrintCSS = framePrintCSS ? (0, _utils.setCSS)(frameDocument, framePrintCSS, 'print', { id: 'frame-css' }) : function () {};
   }
 
   frame.addEventListener('load', function () {

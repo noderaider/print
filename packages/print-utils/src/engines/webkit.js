@@ -173,8 +173,12 @@ body {
     //frame.setAttribute('width', pageWidth)
     //setStyles(frame, { 'max-width': `${printWidth}px !important` })
 
-    undoTopPrintCSS = topPrintCSS ? setCSS(document, topPrintCSS, 'print') : () => {}
-    undoFramePrintCSS = framePrintCSS ? setCSS(frameDocument, framePrintCSS, 'print') : () => {}
+    if(undoTopPrintCSS)
+      undoTopPrintCSS()
+    if(undoFramePrintCSS)
+      undoFramePrintCSS()
+    undoTopPrintCSS = topPrintCSS ? setCSS(document, topPrintCSS, 'print', { id: 'top-css' }) : () => {}
+    undoFramePrintCSS = framePrintCSS ? setCSS(frameDocument, framePrintCSS, 'print', { id: 'frame-css' }) : () => {}
   }
 
 
