@@ -44,13 +44,44 @@ body > #print-content {
     undoFramePrintCSS = framePrintCSS ? setCSS(frameDocument, framePrintCSS, 'print') : () => {}
   })
 
+  function copyStyles (source, target) {
+    const styles = window.getComputedStyle(source)
+    const oldStyles = new Map()
+    const styleMap = Array.from(styles)
+      .filter((x) => {
+        const value = styles[x]
+        return typeof value === 'string' && value.length > 0 && value !== 'normal'
+      })
+      .map((x) => [ x, styles[x] ])
+      .reduce((style, [ name, value ]) => {
+        oldStyles.set(name, style.getPropertyValue(name))
+        style.setProperty(name, value)
+        return style
+      }, target.style)
+    return () => oldStyles.forEach(([ name, value ]) => {
+      target.style.setProperty(name, value)
+    })
+  }
+
+  let undos = new Set()
+
   function preprint () {
     const frameDocument = resolveDocument(frame)
     printElement.innerHTML = frameDocument.body.innerHTML
-    // TRY SPINNING IN CHROME TO DELAY IT
+    undos.add(copyStyles(frameDocument.body, printElement))
+    /* COPY CHILD NODES STYLES (UNNECESSARY?)
+    Array.from(frameDocument.body.childNodes).forEach((node, i) => {
+      undos.add(copyStyles(node, printElement.childNodes[i]))
+    })
+    */
   }
 
   function postprint() {
+    for(let undo of undos) {
+      undo()
+    }
+    undos.clear()
+    printElement.setAttribute('style', 'display: none')
   }
 
   function dispose() {
