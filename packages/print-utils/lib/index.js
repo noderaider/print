@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isFrame = exports.usePrintFrame = exports.onPrint = undefined;
+exports.setStyles = exports.setCSS = exports.isFrame = exports.usePrintFrame = exports.onPrint = undefined;
 
 var _onPrint = require('./onPrint');
 
@@ -29,6 +29,24 @@ Object.defineProperty(exports, 'isFrame', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_isFrame).default;
+  }
+});
+
+var _setCSS = require('./utils/setCSS');
+
+Object.defineProperty(exports, 'setCSS', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_setCSS).default;
+  }
+});
+
+var _setStyles = require('./utils/setStyles');
+
+Object.defineProperty(exports, 'setStyles', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_setStyles).default;
   }
 });
 

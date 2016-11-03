@@ -12,8 +12,11 @@ exports.default = setCSS;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var stylesID = 'use-print-frame-styles';
 function setCSS(doc, css, media) {
+  var _ref = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {},
+      _ref$id = _ref.id,
+      id = _ref$id === undefined ? 'use-print-frame-styles' : _ref$id;
+
   if ((typeof window === 'undefined' ? 'undefined' : (0, _typeof3.default)(window)) !== 'object') return;
   if (doc.getElementById(stylesID)) throw new Error('setPrintCSS should not be registered twice on the same document - call undoPrintCSS first.');
   var styleElement = doc.createElement('style');

@@ -34,7 +34,6 @@
     "valid-typeof": 2,
     "no-template-curly-in-string": "error",
     "symbol-description": "error",
-    "class-methods-use-this": "error",
     "prefer-arrow-callback": ["error", {"allowNamedFunctions": true}],
 
     "babel/generator-star-spacing": 1,

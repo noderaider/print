@@ -1,5 +1,4 @@
-const stylesID = 'use-print-frame-styles'
-export default function setCSS(doc, css, media) {
+export default function setCSS(doc, css, media, { id = 'use-print-frame-styles' } = {}) {
   if(typeof window !== 'object')
     return
   if(doc.getElementById(stylesID))

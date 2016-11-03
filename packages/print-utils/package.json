@@ -3,6 +3,7 @@
   "description": "Print utilities for client web applications.",
   "version": "0.4.0",
   "main": "lib/index.js",
+  "jsnext:main": "dist/bundle.es.js",
   "files": [
     "lib",
     "dist"
@@ -12,8 +13,9 @@
     "prebuild": "rimraf lib dist",
     "build:dist": "rollup -c --sourcemap inline --environment NODE_ENV:production",
     "build": "babel src -d lib --ignore __tests__,__mocks__",
-    "preversion": "npm run build && npm run build:dist",
-    "test": "jest"
+    "preversion": "npm test && npm run build && npm run build:dist",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "devDependencies": {
     "babel-cli": "latest",
@@ -23,7 +25,7 @@
     "babel-preset-es2015": "latest",
     "babel-preset-latest": "latest",
     "babel-preset-react": "latest",
-    "babel-preset-stage-0": "latest",
+    "babel-preset-stage-2": "latest",
     "babel-register": "latest",
     "babelrc-rollup": "^3.0.0",
     "bin-utils": "latest",
@@ -37,8 +39,7 @@
     "rollup-plugin-babel": "latest",
     "rollup-plugin-commonjs": "latest",
     "rollup-plugin-node-resolve": "latest",
-    "rollup-watch": "latest",
-    "webpack": "^2.1.0-beta.25"
+    "rollup-watch": "latest"
   },
   "dependencies": {
     "browser-detective": "^0.4.0",
