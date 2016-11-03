@@ -42,8 +42,7 @@ function gecko(frame) {
 
   var undos = new _set2.default();
   var undoTopPrintCSS = void 0;
-  var undoFramePrintCSS = void 0;
-  var undoHeadStyles = void 0;
+  var undoHeadLinks = void 0;
   frame.addEventListener('load', function () {
     var frameDocument = (0, _utils.resolveDocument)(frame);
     if (undos.size > 0) {
@@ -76,8 +75,7 @@ function gecko(frame) {
     }
     if (undoTopPrintCSS) undoTopPrintCSS();
     undoTopPrintCSS = topPrintCSS ? (0, _utils.setCSS)(document, topPrintCSS, 'print', { id: 'top-css' }) : function () {};
-    //undoFramePrintCSS = framePrintCSS ? setCSS(frameDocument, framePrintCSS, 'print') : () => {}
-    undoHeadStyles = copyHeadStyles(frameDocument, document);
+    undoHeadLinks = copyHeadLinks(frameDocument, document);
   });
 
   function copyStyles(sourceElement, targetElement) {
@@ -110,9 +108,8 @@ function gecko(frame) {
 
   var startsWithPrint = /^\s*@media print/;
 
-  function copyHeadStyles(sourceDocument, targetDocument) {
+  function copyHeadLinks(sourceDocument, targetDocument) {
     var sourceLinks = sourceDocument.querySelectorAll('head > link');
-    var sourceStyles = sourceDocument.querySelectorAll('head > style');
     var _undos = new _set2.default();
     (0, _from2.default)(sourceLinks).forEach(function (link) {
       console.info('COPYING LINK ELEMENT', link);
@@ -126,6 +123,16 @@ function gecko(frame) {
         return targetDocument.head.removeChild(_link);
       });
     });
+    return function () {
+      return _undos.forEach(function (undo) {
+        return undo();
+      });
+    };
+  }
+
+  function copyHeadStyles(sourceDocument, targetDocument) {
+    var sourceStyles = sourceDocument.querySelectorAll('head > style');
+    var _undos = new _set2.default();
     (0, _from2.default)(sourceStyles).forEach(function (style) {
       console.info('COPYING STYLE ELEMENT', style);
       var _style = document.createElement('style');
@@ -137,8 +144,8 @@ function gecko(frame) {
       });
     });
     return function () {
-      return _undos.forEach(function (fn) {
-        return fn();
+      return _undos.forEach(function (undo) {
+        return undo();
       });
     };
   }
@@ -147,12 +154,7 @@ function gecko(frame) {
     var frameDocument = (0, _utils.resolveDocument)(frame);
     printElement.innerHTML = frameDocument.body.innerHTML;
     undos.add(copyStyles(frameDocument.body, printElement));
-    //undos.add(copyHeadStyles(frameDocument, document))
-    /* COPY CHILD NODES STYLES (UNNECESSARY?)
-    Array.from(frameDocument.body.childNodes).forEach((node, i) => {
-      undos.add(copyStyles(node, printElement.childNodes[i]))
-    })
-    */
+    undos.add(copyHeadStyles());
   }
 
   function postprint() {
@@ -187,8 +189,7 @@ function gecko(frame) {
 
   function dispose() {
     if (undoTopPrintCSS) undoTopPrintCSS();
-    if (undoFramePrintCSS) undoFramePrintCSS();
-    if (undoHeadStyles) undoHeadStyles();
+    if (undoHeadLinks) undoHeadLinks();
   }
 
   return { preprint: preprint, postprint: postprint, dispose: dispose };

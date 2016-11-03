@@ -41,7 +41,10 @@ function gecko(frame) {
   document.body.insertBefore(printElement, document.body.firstChild);
 
   var undos = new _set2.default();
-  function undoAll() {
+  var undoTopPrintCSS = void 0;
+  var undoHeadLinks = void 0;
+  frame.addEventListener('load', function () {
+    var frameDocument = (0, _utils.resolveDocument)(frame);
     if (undos.size > 0) {
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
@@ -70,25 +73,9 @@ function gecko(frame) {
 
       undos.clear();
     }
-  }
-  var undoTopPrintCSS = void 0;
-  var undoFramePrintCSS = void 0;
-  var undoHeadStyles = void 0;
-  frame.addEventListener('load', function () {
-    var frameDocument = (0, _utils.resolveDocument)(frame);
-    undoAll();
     if (undoTopPrintCSS) undoTopPrintCSS();
     undoTopPrintCSS = topPrintCSS ? (0, _utils.setCSS)(document, topPrintCSS, 'print', { id: 'top-css' }) : function () {};
-    undoHeadStyles = copyHeadStyles(frameDocument, document);
-    /*
-    setTimeout(() => {
-      let frameHeight = frameDocument.body.offsetHeight
-      if(frameHeight === 0)
-        throw new Error('frameHeight still 0')
-      frame.style.setProperty('height', `${frameHeight}px`)
-      frame.parentNode.style.setProperty('height', `${frameHeight}px`)
-    }, 500)
-    */
+    undoHeadLinks = copyHeadLinks(frameDocument, document);
   });
 
   function copyStyles(sourceElement, targetElement) {
@@ -121,11 +108,11 @@ function gecko(frame) {
 
   var startsWithPrint = /^\s*@media print/;
 
-  function copyHeadStyles(sourceDocument, targetDocument) {
+  function copyHeadLinks(sourceDocument, targetDocument) {
     var sourceLinks = sourceDocument.querySelectorAll('head > link');
-    var sourceStyles = sourceDocument.querySelectorAll('head > style');
     var _undos = new _set2.default();
     (0, _from2.default)(sourceLinks).forEach(function (link) {
+      console.info('COPYING LINK ELEMENT', link);
       var _link = document.createElement('link');
       _link.setAttribute('href', link.getAttribute('href'));
       _link.setAttribute('type', 'text/css');
@@ -136,6 +123,16 @@ function gecko(frame) {
         return targetDocument.head.removeChild(_link);
       });
     });
+    return function () {
+      return _undos.forEach(function (undo) {
+        return undo();
+      });
+    };
+  }
+
+  function copyHeadStyles(sourceDocument, targetDocument) {
+    var sourceStyles = sourceDocument.querySelectorAll('head > style');
+    var _undos = new _set2.default();
     (0, _from2.default)(sourceStyles).forEach(function (style) {
       console.info('COPYING STYLE ELEMENT', style);
       var _style = document.createElement('style');
@@ -147,8 +144,8 @@ function gecko(frame) {
       });
     });
     return function () {
-      return _undos.forEach(function (fn) {
-        return fn();
+      return _undos.forEach(function (undo) {
+        return undo();
       });
     };
   }
@@ -157,23 +154,42 @@ function gecko(frame) {
     var frameDocument = (0, _utils.resolveDocument)(frame);
     printElement.innerHTML = frameDocument.body.innerHTML;
     undos.add(copyStyles(frameDocument.body, printElement));
-    //undos.add(copyHeadStyles(frameDocument, document))
-    /* COPY CHILD NODES STYLES (UNNECESSARY?)
-    Array.from(frameDocument.body.childNodes).forEach((node, i) => {
-      undos.add(copyStyles(node, printElement.childNodes[i]))
-    })
-    */
+    undos.add(copyHeadStyles());
   }
 
   function postprint() {
-    undoAll();
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+      for (var _iterator2 = (0, _getIterator3.default)(undos), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var undo = _step2.value;
+
+        undo();
+      }
+    } catch (err) {
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+          _iterator2.return();
+        }
+      } finally {
+        if (_didIteratorError2) {
+          throw _iteratorError2;
+        }
+      }
+    }
+
+    undos.clear();
     printElement.setAttribute('style', 'display: none');
   }
 
   function dispose() {
     if (undoTopPrintCSS) undoTopPrintCSS();
-    if (undoFramePrintCSS) undoFramePrintCSS();
-    if (undoHeadStyles) undoHeadStyles();
+    if (undoHeadLinks) undoHeadLinks();
   }
 
   return { preprint: preprint, postprint: postprint, dispose: dispose };

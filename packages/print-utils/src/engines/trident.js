@@ -45,33 +45,20 @@ body > #print-content {
   document.body.insertBefore(printElement, document.body.firstChild)
 
   let undos = new Set()
-  function undoAll() {
+  let undoTopPrintCSS
+  let undoHeadLinks
+  frame.addEventListener('load', () => {
+    const frameDocument = resolveDocument(frame)
     if(undos.size > 0) {
       for(let undo of undos) {
         undo()
       }
       undos.clear()
     }
-  }
-  let undoTopPrintCSS
-  let undoFramePrintCSS
-  let undoHeadStyles
-  frame.addEventListener('load', () => {
-    const frameDocument = resolveDocument(frame)
-    undoAll()
     if(undoTopPrintCSS)
       undoTopPrintCSS()
     undoTopPrintCSS = topPrintCSS ? setCSS(document, topPrintCSS, 'print', { id: 'top-css' }) : () => {}
-    undoHeadStyles = copyHeadStyles(frameDocument, document)
-    /*
-    setTimeout(() => {
-      let frameHeight = frameDocument.body.offsetHeight
-      if(frameHeight === 0)
-        throw new Error('frameHeight still 0')
-      frame.style.setProperty('height', `${frameHeight}px`)
-      frame.parentNode.style.setProperty('height', `${frameHeight}px`)
-    }, 500)
-    */
+    undoHeadLinks = copyHeadLinks(frameDocument, document)
   })
 
   function copyStyles (sourceElement, targetElement) {
@@ -95,11 +82,11 @@ body > #print-content {
 
   const startsWithPrint = /^\s*@media print/
 
-  function copyHeadStyles (sourceDocument, targetDocument) {
+  function copyHeadLinks (sourceDocument, targetDocument) {
     const sourceLinks = sourceDocument.querySelectorAll('head > link')
-    const sourceStyles = sourceDocument.querySelectorAll('head > style')
     const _undos = new Set()
     Array.from(sourceLinks).forEach((link) => {
+      console.info('COPYING LINK ELEMENT', link)
       const _link = document.createElement('link')
       _link.setAttribute('href', link.getAttribute('href'))
       _link.setAttribute('type', 'text/css')
@@ -108,6 +95,12 @@ body > #print-content {
       targetDocument.head.appendChild(_link)
       _undos.add(() => targetDocument.head.removeChild(_link))
     })
+    return () => _undos.forEach((undo) => undo())
+  }
+
+  function copyHeadStyles (sourceDocument, targetDocument) {
+    const sourceStyles = sourceDocument.querySelectorAll('head > style')
+    const _undos = new Set()
     Array.from(sourceStyles).forEach((style) => {
       console.info('COPYING STYLE ELEMENT', style)
       const _style = document.createElement('style')
@@ -119,7 +112,7 @@ body > #print-content {
       targetDocument.head.appendChild(_style)
       _undos.add(() => targetDocument.head.removeChild(_style))
     })
-    return () => _undos.forEach((fn) => fn())
+    return () => _undos.forEach((undo) => undo())
   }
 
 
@@ -127,26 +120,22 @@ body > #print-content {
     const frameDocument = resolveDocument(frame)
     printElement.innerHTML = frameDocument.body.innerHTML
     undos.add(copyStyles(frameDocument.body, printElement))
-    //undos.add(copyHeadStyles(frameDocument, document))
-    /* COPY CHILD NODES STYLES (UNNECESSARY?)
-    Array.from(frameDocument.body.childNodes).forEach((node, i) => {
-      undos.add(copyStyles(node, printElement.childNodes[i]))
-    })
-    */
+    undos.add(copyHeadStyles())
   }
 
   function postprint() {
-    undoAll()
+    for(let undo of undos) {
+      undo()
+    }
+    undos.clear()
     printElement.setAttribute('style', 'display: none')
   }
 
   function dispose() {
     if(undoTopPrintCSS)
       undoTopPrintCSS()
-    if(undoFramePrintCSS)
-      undoFramePrintCSS()
-    if(undoHeadStyles)
-      undoHeadStyles()
+    if(undoHeadLinks)
+      undoHeadLinks()
   }
 
   return { preprint, postprint, dispose }
