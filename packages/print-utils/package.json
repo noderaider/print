@@ -1,7 +1,7 @@
 {
   "name": "print-utils",
   "description": "Print utilities for client web applications.",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "main": "lib/index.js",
   "jsnext:main": "dist/bundle.es.js",
   "files": [
@@ -42,7 +42,7 @@
     "rollup-watch": "latest"
   },
   "dependencies": {
-    "browser-detective": "^0.6.0",
+    "browser-detective": "^0.7.0",
     "classnames": "^2.2.5",
     "invariant": "^2.2.1",
     "raf": "^3.3.0"
