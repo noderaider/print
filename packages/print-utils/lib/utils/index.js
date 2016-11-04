@@ -40,6 +40,33 @@ Object.defineProperty(exports, 'setCSS', {
   }
 });
 
+var _copyStyles = require('./copyStyles');
+
+Object.defineProperty(exports, 'copyStyles', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_copyStyles).default;
+  }
+});
+
+var _copyHeadLinks = require('./copyHeadLinks');
+
+Object.defineProperty(exports, 'copyHeadLinks', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_copyHeadLinks).default;
+  }
+});
+
+var _copyHeadStyles = require('./copyHeadStyles');
+
+Object.defineProperty(exports, 'copyHeadStyles', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_copyHeadStyles).default;
+  }
+});
+
 var _isFrame = require('./isFrame');
 
 Object.defineProperty(exports, 'isFrame', {

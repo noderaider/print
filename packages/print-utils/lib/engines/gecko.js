@@ -4,18 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _slicedToArray2 = require('babel-runtime/helpers/slicedToArray');
-
-var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
-
-var _from = require('babel-runtime/core-js/array/from');
-
-var _from2 = _interopRequireDefault(_from);
-
-var _map = require('babel-runtime/core-js/map');
-
-var _map2 = _interopRequireDefault(_map);
-
 var _getIterator2 = require('babel-runtime/core-js/get-iterator');
 
 var _getIterator3 = _interopRequireDefault(_getIterator2);
@@ -75,86 +63,14 @@ function gecko(frame) {
     }
     if (undoTopPrintCSS) undoTopPrintCSS();
     undoTopPrintCSS = topPrintCSS ? (0, _utils.setCSS)(document, topPrintCSS, 'print', { id: 'top-css' }) : function () {};
-    undoHeadLinks = copyHeadLinks(frameDocument, document);
+    undoHeadLinks = (0, _utils.copyHeadLinks)(frameDocument, document);
   });
-
-  function copyStyles(sourceElement, targetElement) {
-    var styles = window.getComputedStyle(sourceElement);
-    var oldStyles = new _map2.default();
-    var styleMap = (0, _from2.default)(styles).filter(function (x) {
-      var value = styles[x];
-      return typeof value === 'string' && value.length > 0 && value !== 'normal';
-    }).map(function (x) {
-      return [x, styles[x]];
-    }).reduce(function (style, _ref) {
-      var _ref2 = (0, _slicedToArray3.default)(_ref, 2),
-          name = _ref2[0],
-          value = _ref2[1];
-
-      oldStyles.set(name, style.getPropertyValue(name));
-      style.setProperty(name, value);
-      return style;
-    }, targetElement.style);
-    return function () {
-      return oldStyles.forEach(function (_ref3) {
-        var _ref4 = (0, _slicedToArray3.default)(_ref3, 2),
-            name = _ref4[0],
-            value = _ref4[1];
-
-        targetElement.style.setProperty(name, value);
-      });
-    };
-  }
-
-  var startsWithPrint = /^\s*@media print/;
-
-  function copyHeadLinks(sourceDocument, targetDocument) {
-    var sourceLinks = sourceDocument.querySelectorAll('head > link');
-    var _undos = new _set2.default();
-    (0, _from2.default)(sourceLinks).forEach(function (link) {
-      console.info('COPYING LINK ELEMENT', link);
-      var _link = document.createElement('link');
-      _link.setAttribute('href', link.getAttribute('href'));
-      _link.setAttribute('type', 'text/css');
-      _link.setAttribute('media', 'print');
-      _link.setAttribute('rel', 'stylesheet');
-      targetDocument.head.appendChild(_link);
-      _undos.add(function () {
-        return targetDocument.head.removeChild(_link);
-      });
-    });
-    return function () {
-      return _undos.forEach(function (undo) {
-        return undo();
-      });
-    };
-  }
-
-  function copyHeadStyles(sourceDocument, targetDocument) {
-    var sourceStyles = sourceDocument.querySelectorAll('head > style');
-    var _undos = new _set2.default();
-    (0, _from2.default)(sourceStyles).forEach(function (style) {
-      console.info('COPYING STYLE ELEMENT', style);
-      var _style = document.createElement('style');
-      var isPrint = startsWithPrint.test(style.innerHTML);
-      _style.innerHTML = isPrint ? style.innerHTML : '\n@media print {\n  ' + style.innerHTML + '\n}';
-      targetDocument.head.appendChild(_style);
-      _undos.add(function () {
-        return targetDocument.head.removeChild(_style);
-      });
-    });
-    return function () {
-      return _undos.forEach(function (undo) {
-        return undo();
-      });
-    };
-  }
 
   function preprint() {
     var frameDocument = (0, _utils.resolveDocument)(frame);
     printElement.innerHTML = frameDocument.body.innerHTML;
-    undos.add(copyStyles(frameDocument.body, printElement));
-    undos.add(copyHeadStyles());
+    undos.add((0, _utils.copyStyles)(frameDocument.body, printElement));
+    undos.add((0, _utils.copyHeadStyles)(frameDocument, document));
   }
 
   function postprint() {
