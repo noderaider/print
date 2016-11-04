@@ -1,7 +1,7 @@
 {
   "name": "print-utils",
   "description": "Print utilities for client web applications.",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "main": "lib/index.js",
   "jsnext:main": "dist/bundle.es.js",
   "files": [
@@ -9,7 +9,9 @@
     "dist"
   ],
   "jest": {
-    "testPathIgnorePatterns": [ "/__fixtures__/" ]
+    "testPathIgnorePatterns": [
+      "/__fixtures__/"
+    ]
   },
   "scripts": {
     "start": "npm run build -- --watch",
@@ -46,7 +48,7 @@
     "sinon": "^1.17.6"
   },
   "dependencies": {
-    "browser-detective": "^0.7.0",
+    "browser-detective": "^0.8.0",
     "classnames": "^2.2.5",
     "invariant": "^2.2.1",
     "raf": "^3.3.0"
