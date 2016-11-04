@@ -1,4 +1,4 @@
-import { setCSS, resolveDocument } from '../utils'
+import { setCSS, resolveDocument, copyHeadLinks, copyHeadStyles, copyStyles } from '../utils'
 
 export default function gecko (frame, opts = {}) {
   const topPrintCSS = `
@@ -61,66 +61,11 @@ body > #print-content {
     undoHeadLinks = copyHeadLinks(frameDocument, document)
   })
 
-  function copyStyles (sourceElement, targetElement) {
-    const styles = window.getComputedStyle(sourceElement)
-    const oldStyles = new Map()
-    const styleMap = Array.from(styles)
-      .filter((x) => {
-        const value = styles[x]
-        return typeof value === 'string' && value.length > 0 && value !== 'normal'
-      })
-      .map((x) => [ x, styles[x] ])
-      .reduce((style, [ name, value ]) => {
-        oldStyles.set(name, style.getPropertyValue(name))
-        style.setProperty(name, value)
-        return style
-      }, targetElement.style)
-    return () => oldStyles.forEach(([ name, value ]) => {
-      targetElement.style.setProperty(name, value)
-    })
-  }
-
-  const startsWithPrint = /^\s*@media print/
-
-  function copyHeadLinks (sourceDocument, targetDocument) {
-    const sourceLinks = sourceDocument.querySelectorAll('head > link')
-    const _undos = new Set()
-    Array.from(sourceLinks).forEach((link) => {
-      console.info('COPYING LINK ELEMENT', link)
-      const _link = document.createElement('link')
-      _link.setAttribute('href', link.getAttribute('href'))
-      _link.setAttribute('type', 'text/css')
-      _link.setAttribute('media', 'print')
-      _link.setAttribute('rel', 'stylesheet')
-      targetDocument.head.appendChild(_link)
-      _undos.add(() => targetDocument.head.removeChild(_link))
-    })
-    return () => _undos.forEach((undo) => undo())
-  }
-
-  function copyHeadStyles (sourceDocument, targetDocument) {
-    const sourceStyles = sourceDocument.querySelectorAll('head > style')
-    const _undos = new Set()
-    Array.from(sourceStyles).forEach((style) => {
-      console.info('COPYING STYLE ELEMENT', style)
-      const _style = document.createElement('style')
-      const isPrint = startsWithPrint.test(style.innerHTML)
-      _style.innerHTML = isPrint ? style.innerHTML : `
-@media print {
-  ${style.innerHTML}
-}`
-      targetDocument.head.appendChild(_style)
-      _undos.add(() => targetDocument.head.removeChild(_style))
-    })
-    return () => _undos.forEach((undo) => undo())
-  }
-
-
   function preprint () {
     const frameDocument = resolveDocument(frame)
     printElement.innerHTML = frameDocument.body.innerHTML
     undos.add(copyStyles(frameDocument.body, printElement))
-    undos.add(copyHeadStyles())
+    undos.add(copyHeadStyles(frameDocument, document))
   }
 
   function postprint() {

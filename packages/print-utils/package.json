@@ -8,6 +8,9 @@
     "lib",
     "dist"
   ],
+  "jest": {
+    "testPathIgnorePatterns": [ "/__fixtures__/" ]
+  },
   "scripts": {
     "start": "npm run build -- --watch",
     "prebuild": "rimraf lib dist",
@@ -39,7 +42,8 @@
     "rollup-plugin-babel": "latest",
     "rollup-plugin-commonjs": "latest",
     "rollup-plugin-node-resolve": "latest",
-    "rollup-watch": "latest"
+    "rollup-watch": "latest",
+    "sinon": "^1.17.6"
   },
   "dependencies": {
     "browser-detective": "^0.7.0",
