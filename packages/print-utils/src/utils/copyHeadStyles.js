@@ -13,6 +13,10 @@ export default function copyHeadStyles (sourceDocument, targetDocument) {
     targetDocument.head.appendChild(_style)
     _undos.add(() => targetDocument.head.removeChild(_style))
   })
-  return () => _undos.forEach((undo) => undo())
+  return () => {
+    for(let undo of _undos) {
+      undo()
+    }
+  }
 }
 

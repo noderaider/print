@@ -67,6 +67,15 @@ Object.defineProperty(exports, 'copyHeadStyles', {
   }
 });
 
+var _replaceNode = require('./replaceNode');
+
+Object.defineProperty(exports, 'replaceNode', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_replaceNode).default;
+  }
+});
+
 var _isFrame = require('./isFrame');
 
 Object.defineProperty(exports, 'isFrame', {

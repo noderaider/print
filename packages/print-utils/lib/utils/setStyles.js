@@ -34,6 +34,11 @@ function setStyles(element, styles) {
         key = _ref2[0],
         next = _ref2[1];
 
+    if (!element.style) {
+      console.warn('element has no style', element);
+      return prev;
+    }
+
     var prop = { value: element.style.getPropertyValue(key), priority: element.style.getPropertyPriority(key) };
     console.info('SET STYLES', key, next, prop);
     var serialized = prop.value ? (0, _serializeCSSProperty2.default)(prop) : null;
