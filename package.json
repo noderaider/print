@@ -7,7 +7,7 @@
     "start-dev": "lerna exec --ignore *-app -- npm start",
     "test": "lerna run test",
     "coverage": "lerna run coverage",
-    "deploy": "git subtree split --prefix packages/print-app/build -b gh-pages && git push -f origin gh-pages:gh-pages && git branch -D gh-pages"
+    "deploy": "git subtree split --prefix packages/print-app/build -b gh-pages --ignore-joins && git push -f origin gh-pages:gh-pages && git branch -D gh-pages"
   },
   "devDependencies": {
     "babel-plugin-transform-runtime": "^6.15.0",
