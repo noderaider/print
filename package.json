@@ -7,6 +7,7 @@
     "start-dev": "lerna exec --ignore *-app -- npm start",
     "test": "lerna run test",
     "coverage": "lerna run coverage",
+    "setup": "git remote add deploy packages/print-app/build && git subtree add --prefix=packages/print-app/build deploy master",
     "deploy": "git subtree split --prefix packages/print-app/build -b gh-pages --ignore-joins && git push -f origin gh-pages:gh-pages && git branch -D gh-pages"
   },
   "devDependencies": {
