@@ -5,53 +5,42 @@ import invariant from 'invariant'
 
 export default function webkit (frame
   //TODO TEST WITHOUT data-iframe-height and data-iframe-width
-, { selectHeightElement = (frameDocument) => frameDocument.body /*frameDocument.querySelector('[data-iframe-height]') || frameDocument.body */
-  , selectWidthElement = (frameDocument) => frameDocument.body /*frameDocument.querySelector('[data-iframe-width]') || frameDocument.body*/
+, { selectHeightElement = (frameDocument) => frameDocument.querySelector('[data-iframe-height]') || frameDocument.body
+  , selectWidthElement = (frameDocument) => frameDocument.querySelector('[data-iframe-width]') || frameDocument.body
   , selectContainerStyle = ({ frameDocument, heightElement, widthElement } = {}) => (
       { position: 'absolute !important'
+      , 'z-index': '99999'
       }
-  /*
-      { height: `${heightElement.offsetHeight}px !important`
-      , width: '700px !important'
-      , display: 'inline-table !important'
-      , 'overflow': 'scroll !important'
-      , top: '0 !important'
-      , left: '0 !important'
-      }
-      */
     )
   , selectFrameStyle = ({ frameDocument, heightElement, widthElement } = {}) => {
       return (
-        /*
-        { visibility: 'visible !important'
-        , position: 'fixed !important'
-        , right: '0 !important'
-        , bottom: '0 !important'
-        }
-        */
         { 'height': `${heightElement.offsetHeight}px !important`
-        //, 'width': `${widthElement.offsetWidth}px !important`
-        //, width: '100% !important'
-        , display: 'inline-block !important'
+        , width: '1107px !important'
+        , position: 'absolute !important'
+        , 'z-index': '99999'
+        , display: 'block !important'
         , top: '0 !important'
         , left: '0 !important'
-        //, position: 'absolute !important'
-        //, 'font-size': '10px !important'
         }
       )
     }
   , selectBodyStyle = ({ frameDocument, heightElement, widthElement } = {}) => (
-      //{ height: `${1.5 * heightElement.offsetHeight}px !important`
-      {
+      { display: 'inline-block !important'
+      , width: '1107px !important'
+      , height: `${heightElement.offsetHeight}px !important`
+      , overflow: 'visible !important'
       }
     )
   , selectAncestorStyle = ({ frameDocument, heightElement, widthElement } = {}) => (
       { display: 'inline-block !important'
+      , width: '1107px !important'
+      , 'max-width': '1107px !important'
+      , height: `${heightElement.offsetHeight}px !important`
+      , overflow: 'visible !important'
       }
     )
   , selectTopPrintCSS = ({ frameDocument, heightElement, widthElement, frameID }) => {
 
-      //const undoWidthStyle = setStyles(heightElement, { width: '100vw !important' })
       const topPrintCSS = `
 * {
   margin: 0 !important;
@@ -64,34 +53,40 @@ export default function webkit (frame
   padding-bottom: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
-  /*
-  min-height: 0 !important;
-  min-width: 0 !important;
-  */
   display: none !important;
   float: none !important;
+  /*
   box-sizing: border-box;
+  min-height: 0;
+  min-width: 0;
+  width: 0;
+  height: 0;
+  */
 }
 body, html {
   margin: 0 !important;
   padding: 0 !important;
-  display: inline-block !important;
 }
 body {
   height: ${heightElement.offsetHeight}px !important;
 }
 .react-focus {
   display: inline-block !important;
-  transform-origin: top left !important;
+  /* transform-origin: top left !important; */
   /* position: relative !important; */
   top: 0 !important;
   left: 0 !important;
-  right: 0 !important;
+  /* right: 0 !important; */
   border: 0 !important;
   overflow: visible !important;
+  /*
+  height: ${heightElement.offsetHeight}px !important;
+  */
+  width: 1107px !important;
 }
 iframe#${frameID} {
   width: 100%;
+  max-width: 1107px !important;
   /*
 
    height: ${heightElement.offsetHeight}px !important;
@@ -117,18 +112,20 @@ iframe#${frameID} {
   , selectFramePrintCSS = ({ frameDocument, heightElement, widthElement }) => {
       return `
 * {
-  box-sizing: content-box;  /* border-box; */
+  float: none !important;
+
 }
 body {
   display: block !important;
+  max-width: 1107px !important;
 }
 `
     }
   , selectMaxWidth = ({} = {}) => {
-      return 990
+      return 1107
     }
   , selectPrintWidth = ({} = {}) => {
-      return 700
+      return 1107
     }
   } = {}) {
 
@@ -182,8 +179,12 @@ body {
   }
 
 
+  let containerClassName
   frame.addEventListener('load', () => {
     setPrintStyles()
+    const { container, ancestors } = selectAncestors (frame)
+    containerClassName = container.className
+    container.className = cn(container.className, 'react-focus')
   })
   let undos = new Set()
 
@@ -191,16 +192,15 @@ body {
   // DOES NOT UNDERSTAND WIDTH CHANGES INSIDE
   function preprint () {
     frameDocument = resolveDocument(frame)
+    const undoFrameBodyStyles = setStyles(frameDocument.body, { 'width': `${1100}px !important`, overflow: 'visible !important' })
     const printWidth = selectPrintWidth()
+
 
     const { container, ancestors } = selectAncestors (frame)
 
-    let containerClassName = container.className
-    container.className = cn(container.className, 'react-focus')
-    let undoContainerClass = () => {
-      container.className = containerClassName
-    }
 
+
+    //frame.setAttribute('width', 1107)
     frame.contentWindow.focus()
 
     invariant(frameDocument, 'Could not find document in frame')
@@ -217,15 +217,18 @@ body {
     const bodyStyle = selectBodyStyle(opts)
     const ancestorStyle = selectAncestorStyle(opts)
 
-    const { scale, scaledWidth, frameScale, pageScale, containerScale } = calculateScale ({ widthElement })
+    //const { scale, scaledWidth, frameScale, pageScale, containerScale } = calculateScale ({ widthElement })
+
 
     undos = new Set(
-      [ undoContainerClass
+      [ undoFrameBodyStyles
       , setStyles(document.body, bodyStyle)
-      , setStyles(container, containerStyle)
-      , setStyles(container, { transform: `scale(${containerScale}) !important` })
-      //, setStyles(container, { width: `${scaledWidth}px !important` })
+      //, setStyles(container, containerStyle)
+      //, setStyles(container, { transform: `scale(${containerScale}) !important` })
+      , setStyles(container, { width: `1107px !important`, height: `${heightElement.offsetHeight}px !important`, overflow: 'visible !important' })
       , setStyles(frame, frameStyle)
+      , setStyles(frame, { /* transform: `scale(${frameScale}) !important`, */ overflow: 'visible !important' })
+
 
       //, setStyles(frame, { transform: `scale(${frameScale}) !important` })
       , ...ancestors.map((ancestor) => setStyles(ancestor, ancestorStyle))
