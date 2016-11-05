@@ -31,59 +31,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/webkit-iife.js",
-			"settings":
-			{
-				"buffer_size": 3305,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/webkit.js",
-			"settings":
-			{
-				"buffer_size": 2414,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/trident.js",
-			"settings":
-			{
-				"buffer_size": 2238,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/webkit-custom.js",
-			"settings":
-			{
-				"buffer_size": 8830,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/replaceNode.js",
-			"settings":
-			{
-				"buffer_size": 3736,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/setStyles.js",
-			"settings":
-			{
-				"buffer_size": 939,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -318,15 +265,22 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/__tests__",
+		"/C/Users/cchamberlain/noderaider/print/packages/print-app",
+		"/C/Users/cchamberlain/noderaider/print/packages/browser-detective",
 		"/C/Users/cchamberlain/noderaider/print/packages/react-ruler",
 		"/C/Users/cchamberlain/noderaider/print"
 	],
 	"file_history":
 	[
+		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/setStyles.js",
+		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/replaceNode.js",
+		"/C/Users/cchamberlain/noderaider/print/package.json",
+		"/C/Users/cchamberlain/noderaider/print/CNAME",
+		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/webkit-iife.js",
+		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/webkit.js",
+		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/webkit-custom.js",
+		"/C/Users/cchamberlain/noderaider/print/packages/print-app/package.json",
+		"/C/Users/cchamberlain/noderaider/print/packages/print-app/CNAME",
 		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/index.js",
 		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/replaceNode.test.js",
 		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/copyHeadStyles.js",
@@ -334,12 +288,10 @@
 		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/replaceHTML.test.js",
 		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/setCSS.js",
 		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/gecko.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/webkit.js",
 		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/usePrintFrame.js",
 		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/trident.js",
 		"/C/Users/cchamberlain/noderaider/print/packages/print-app/src/index.css",
 		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/lib/engines/gecko.js",
-		"/C/Users/cchamberlain/noderaider/print/package.json",
 		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/package.json",
 		"/C/Users/cchamberlain/noderaider/print/README.md",
 		"/C/Users/cchamberlain/noderaider/print/packages/print-app/.eslintrc",
@@ -447,14 +399,7 @@
 		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-repo/src/lib/__tests__/index.test.js",
 		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/README.md",
 		"/C/Users/cchamberlain/noderaider/scaffold/lerna.json",
-		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-package/src/lib/index.js",
-		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-css-module/src/lib/index.js",
-		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-package/src/lib/__tests__/index.test.js",
-		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-css-module/src/lib/__tests__/index.test.js",
-		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-repo/README.md",
-		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-package/README.md",
-		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-package/src/bin/index.js",
-		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-css-module/src/bin/index.js"
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-package/src/lib/index.js"
 	],
 	"find":
 	{
@@ -768,289 +713,13 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/webkit-iife.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3305,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								833,
-								833
-							]
-						],
-						"settings":
-						{
-							"highlight_line": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tabs_extra_last_activated": 1478333639.51,
-							"tabs_extra_last_activated_sheet_index": 0,
-							"tabs_extra_spawned": true,
-							"vintage":
-							{
-								"_vintageous_glue_until_normal_mode": false,
-								"action": null,
-								"action_count": "",
-								"mode": "mode_normal",
-								"motion": null,
-								"motion_count": "",
-								"must_capture_register_name": false,
-								"normal_insert_count": "1",
-								"partial_sequence": "",
-								"register": "\"",
-								"sequence": "",
-								"xpos": 35
-							}
-						},
-						"translation.x": 0.0,
-						"translation.y": 40.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/webkit.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2414,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1934,
-								1934
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tabs_extra_last_activated": 1478333866.15,
-							"tabs_extra_last_activated_sheet_index": 1,
-							"tabs_extra_spawned": true,
-							"vintage":
-							{
-								"_vintageous_glue_until_normal_mode": false,
-								"action": null,
-								"action_count": "",
-								"mode": "mode_normal",
-								"motion": null,
-								"motion_count": "",
-								"must_capture_register_name": false,
-								"normal_insert_count": "1",
-								"partial_sequence": "",
-								"register": "\"",
-								"sequence": "",
-								"xpos": 2
-							}
-						},
-						"translation.x": 0.0,
-						"translation.y": 784.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/trident.js",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 2238,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								2238
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tabs_extra_spawned": true,
-							"vintage":
-							{
-								"action": null,
-								"action_count": "",
-								"mode": "mode_normal",
-								"motion": null,
-								"motion_count": "",
-								"must_capture_register_name": false,
-								"partial_sequence": "",
-								"register": "\"",
-								"sequence": "",
-								"xpos": 0
-							}
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/webkit-custom.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8830,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6072,
-								6072
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tabs_extra_last_activated": 1478333647.04,
-							"tabs_extra_last_activated_sheet_index": 3,
-							"tabs_extra_spawned": true,
-							"vintage":
-							{
-								"action": null,
-								"action_count": "",
-								"mode": "mode_normal",
-								"motion": null,
-								"motion_count": "",
-								"must_capture_register_name": false,
-								"partial_sequence": "",
-								"register": "\"",
-								"sequence": "",
-								"xpos": 0
-							}
-						},
-						"translation.x": 0.0,
-						"translation.y": 2703.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		},
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 4,
-					"file": "/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/replaceNode.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3736,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								907,
-								907
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tabs_extra_last_activated": 1478332269.21,
-							"tabs_extra_last_activated_sheet_index": 0,
-							"tabs_extra_spawned": true,
-							"vintage":
-							{
-								"_vintageous_glue_until_normal_mode": false,
-								"action": null,
-								"action_count": "",
-								"mode": "mode_normal",
-								"motion": null,
-								"motion_count": "",
-								"must_capture_register_name": false,
-								"normal_insert_count": "1",
-								"partial_sequence": "",
-								"register": "\"",
-								"sequence": "",
-								"xpos": 49
-							}
-						},
-						"translation.x": 5.0,
-						"translation.y": 116.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/setStyles.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 939,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								861,
-								861
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tabs_extra_last_activated": 1478326947.05,
-							"tabs_extra_last_activated_sheet_index": 1,
-							"tabs_extra_spawned": true,
-							"vintage":
-							{
-								"_vintageous_glue_until_normal_mode": false,
-								"action": null,
-								"action_count": "",
-								"mode": "mode_normal",
-								"motion": null,
-								"motion_count": "",
-								"must_capture_register_name": false,
-								"normal_insert_count": "1",
-								"partial_sequence": "",
-								"register": "\"",
-								"sequence": "",
-								"xpos": 16
-							}
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1082,7 +751,7 @@
 		"cols":
 		[
 			0.0,
-			0.524591365253,
+			0.584122714208,
 			1.0
 		],
 		"rows":
@@ -1646,7 +1315,7 @@
 		],
 		"width": 458.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 		"_vintageous_last_buffer_search": "framePrint",
