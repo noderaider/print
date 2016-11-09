@@ -1,6 +1,6 @@
 {
   "name": "print-app",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "devDependencies": {
     "react-scripts": "0.7.0",
     "babel-polyfill": "latest"
@@ -8,9 +8,9 @@
   "dependencies": {
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "print-utils": "^0.9.1",
-    "react-focus": "^0.9.1",
-    "react-ruler": "^0.9.1"
+    "print-utils": "^0.9.2",
+    "react-focus": "^0.9.2",
+    "react-ruler": "^0.9.2"
   },
   "scripts": {
     "start": "react-scripts start",

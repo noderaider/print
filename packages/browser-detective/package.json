@@ -1,6 +1,6 @@
 {
   "name": "browser-detective",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Universal browser detection via user agent parsing.",
   "main": "lib/index.js",
   "files": [
