@@ -67,8 +67,10 @@ body > #print-content {
     const startPreprint = performance.now()
     const frameDocument = resolveDocument(frame)
     printElement.innerHTML = frameDocument.body.innerHTML
+    Array.from(printElement.querySelectorAll('link')).forEach((link) => link.setAttribute('media', 'print'))
     undos.add(copyStyles(frameDocument.body, printElement))
     undos.add(copyHeadStyles(frameDocument, document))
+    //undos.add(() => { printElement.innerHTML = '' })
     const endPreprint = performance.now()
     console.info('PREPRINT', endPreprint - startPreprint)
   }

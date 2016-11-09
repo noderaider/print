@@ -8,7 +8,7 @@
     "src"
   ],
   "scripts": {
-    "start": "babel src/lib -d lib --watch",
+    "start": "babel src/lib -d lib --watch --ignore __tests__,__mocks__",
     "prebuild": "rimraf lib",
     "build": "babel src/lib -d lib --ignore __tests__,__mocks__",
     "preversion": "npm run test && npm run build"

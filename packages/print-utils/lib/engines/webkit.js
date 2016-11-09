@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _from = require('babel-runtime/core-js/array/from');
+
+var _from2 = _interopRequireDefault(_from);
+
 var _getIterator2 = require('babel-runtime/core-js/get-iterator');
 
 var _getIterator3 = _interopRequireDefault(_getIterator2);
@@ -72,8 +76,12 @@ function webkit(frame) {
     var startPreprint = performance.now();
     var frameDocument = (0, _utils.resolveDocument)(frame);
     printElement.innerHTML = frameDocument.body.innerHTML;
+    (0, _from2.default)(printElement.querySelectorAll('link')).forEach(function (link) {
+      return link.setAttribute('media', 'print');
+    });
     undos.add((0, _utils.copyStyles)(frameDocument.body, printElement));
     undos.add((0, _utils.copyHeadStyles)(frameDocument, document));
+    //undos.add(() => { printElement.innerHTML = '' })
     var endPreprint = performance.now();
     console.info('PREPRINT', endPreprint - startPreprint);
   }
