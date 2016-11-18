@@ -26,6 +26,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+function getDocument(frame) {
+  if (!frame) return null;
+  if (!frame.contentDocument && !frame.contentWindow) return false;
+  return frame.contentDocument || frame.contentWindow.document;
+}
+
 function reactFocus(React) {
   var Component = React.Component;
 
@@ -37,7 +43,14 @@ function reactFocus(React) {
 
       var _this = _possibleConstructorReturn(this, (Focus.__proto__ || Object.getPrototypeOf(Focus)).call(this, props));
 
-      _this.handleLoad = function () {};
+      _this.handleLoad = function () {
+        var frameBodyClassName = _this.props.frameBodyClassName;
+
+        var frameDocument = getDocument(_this.frame);
+        if (frameBodyClassName) {
+          frameDocument.body.className = (0, _classnames2.default)(frameDocument.body.className, frameBodyClassName);
+        }
+      };
       return _this;
     }
 

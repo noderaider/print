@@ -31,6 +31,33 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-app/src/Print.js",
+			"settings":
+			{
+				"buffer_size": 9053,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/engines/webkit.js",
+			"settings":
+			{
+				"buffer_size": 2578,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/copyStyles.js",
+			"settings":
+			{
+				"buffer_size": 1344,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -265,55 +292,49 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/cchamberlain/noderaider/print/packages/print-app",
-		"/C/Users/cchamberlain/noderaider/print/packages/browser-detective",
-		"/C/Users/cchamberlain/noderaider/print/packages/react-ruler",
-		"/C/Users/cchamberlain/noderaider/print"
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app"
 	],
 	"file_history":
 	[
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/setStyles.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/replaceNode.js",
-		"/C/Users/cchamberlain/noderaider/print/package.json",
-		"/C/Users/cchamberlain/noderaider/print/CNAME",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/webkit-iife.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/webkit.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/webkit-custom.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-app/package.json",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-app/CNAME",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/index.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/replaceNode.test.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/copyHeadStyles.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/copyStyles.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/replaceHTML.test.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/utils/setCSS.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/gecko.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/usePrintFrame.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/engines/trident.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-app/src/index.css",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/lib/engines/gecko.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/package.json",
-		"/C/Users/cchamberlain/noderaider/print/README.md",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-app/.eslintrc",
-		"/C/Users/cchamberlain/noderaider/print/packages/react-ruler/.eslintrc",
-		"/C/Users/cchamberlain/noderaider/print/packages/react-focus/.eslintrc",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-app/src/App.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-app/src/Print.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/src/index.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/.babelrc",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-utils/rollup.config.js",
-		"/C/Users/cchamberlain/noderaider/print/packages/print-app/src/Event.js",
-		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/usePrintFrame.js",
-		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/gecko.js",
-		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/trident.js",
-		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/getScale.js",
-		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/webkit.js",
-		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/index.js",
-		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/getScale.test.js",
-		"/C/Users/ColeChamberlain/noderaider/print/packages/react-focus/src/index.js",
-		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/src/App.js",
-		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/setCSS.js",
+		"/C/Users/ColeChamberlain/noderaider/print/README.md",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/index.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/copyStyles.test.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/copyStyles.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/__fixtures__/dom.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/engines/trident.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/react-ruler/src/index.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/engines/gecko.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/package.json",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/copyHeadLinks.test.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/copyHeadStyles.test.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/copyHeadStyles.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/terminal.glue",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/react-focus/README.md",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/react-ruler/README.md",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/react-ruler/.babelrc",
+		"/C/Users/ColeChamberlain/noderaider/print/etc/print.sublime-project",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/getScale.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/usePrintFrame.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/engines/webkit.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/src/App.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/src/Print.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/react-ruler/webpack.config.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/browser-detective/README.md",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/browser-detective/.babelrc",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/browser-detective/src/lib/__tests__/detectBrowser.test.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/browser-detective/src/lib/index.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/browser-detective/package.json",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/round.test.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/getScale.test.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/react-focus/package.json",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/react-ruler/package.json",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/round.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/trident.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/gecko.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/index.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/webkit.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/react-focus/src/index.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/setCSS.js",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/strategies/containerStrategy.js",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/public-example/lorem-ipsum.html",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/public-example/mdn-chrome-ff.html",
@@ -399,7 +420,10 @@
 		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-repo/src/lib/__tests__/index.test.js",
 		"/C/Users/cchamberlain/noderaider/scaffold/packages/bin-utils/README.md",
 		"/C/Users/cchamberlain/noderaider/scaffold/lerna.json",
-		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-package/src/lib/index.js"
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-package/src/lib/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-css-module/src/lib/index.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-react-package/src/lib/__tests__/index.test.js",
+		"/C/Users/cchamberlain/noderaider/scaffold/packages/create-css-module/src/lib/__tests__/index.test.js"
 	],
 	"find":
 	{
@@ -500,6 +524,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"changeFrame",
 			"block",
 			"create-react-repo",
 			"create-css-module",
@@ -626,8 +651,7 @@
 			"DEAUTHORIZE_REDIRECT",
 			"case 'trigger",
 			"fetchingProps",
-			"export function storeSelector",
-			"storeSelector"
+			"export function storeSelector"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -713,13 +737,153 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
-			]
-		},
-		{
-			"sheets":
-			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-app/src/Print.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9053,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1111,
+								1111
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"tabs_extra_last_activated": 1479147307.29,
+							"tabs_extra_last_activated_sheet_index": 0,
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 4
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 478.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/engines/webkit.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2578,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1297,
+								1297
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"tabs_extra_last_activated": 1478805170.27,
+							"tabs_extra_last_activated_sheet_index": 1,
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 39
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/copyStyles.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1344,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								513,
+								513
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"tabs_extra_last_activated": 1478719286.62,
+							"tabs_extra_last_activated_sheet_index": 2,
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -740,18 +904,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.584122714208,
 			1.0
 		],
 		"rows":
@@ -1315,10 +1472,10 @@
 		],
 		"width": 458.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
-		"_vintageous_last_buffer_search": "framePrint",
+		"_vintageous_last_buffer_search": "highlight",
 		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_reset_during_init": true,
 		"vintage":
@@ -1330,7 +1487,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 279.0,
+	"side_bar_width": 194.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

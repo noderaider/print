@@ -13,7 +13,6 @@ function parseQuery(key, transform, defaultValue) {
   } catch(err) {
     return defaultValue
   }
-
 }
 
 const now = Date.now()
@@ -37,7 +36,6 @@ class Rulers extends Component {
 export default class Print extends Component {
   constructor(props) {
     super(props)
-
     this.setValue = (element, prop, key, value) => {
       let oldValue
       if(prop === 'style') {
