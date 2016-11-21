@@ -73,11 +73,10 @@ function reactFocus(React) {
             src = _props.src,
             frameRef = _props.frameRef,
             frameClassName = _props.frameClassName,
+            frameBodyClassName = _props.frameBodyClassName,
             onFrameLoad = _props.onFrameLoad,
             className = _props.className,
-            _props$style = _props.style,
-            style = _props$style === undefined ? {} : _props$style,
-            props = _objectWithoutProperties(_props, ['src', 'frameRef', 'frameClassName', 'onFrameLoad', 'className', 'style']);
+            props = _objectWithoutProperties(_props, ['src', 'frameRef', 'frameClassName', 'frameBodyClassName', 'onFrameLoad', 'className']);
 
         return React.createElement('iframe', _extends({}, props, {
           ref: function ref(x) {
@@ -99,9 +98,7 @@ function reactFocus(React) {
           allowFullScreen: true,
           allowTransparency: true,
           seamless: true
-        }))
-        //</div>
-        ;
+        }));
       }
     }]);
 
