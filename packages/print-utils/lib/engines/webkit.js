@@ -35,6 +35,8 @@ function webkit(frame) {
   var undos = new _set2.default();
   var undoTopPrintCSS = void 0;
   var undoHeadLinks = void 0;
+  var timeoutID = void 0;
+  var intervalID = void 0;
   frame.addEventListener('load', function () {
     var frameDocument = (0, _utils.resolveDocument)(frame);
     if (undos.size > 0) {
@@ -68,20 +70,32 @@ function webkit(frame) {
     if (undoTopPrintCSS) undoTopPrintCSS();
     undoTopPrintCSS = topPrintCSS ? (0, _utils.setCSS)(document, topPrintCSS, 'print', { id: 'top-css' }) : function () {};
     undoHeadLinks = (0, _utils.copyHeadLinks)(frameDocument, document);
-    preprint();
-    postprint();
+    if (timeoutID) clearTimeout(timeoutID);
+    if (intervalID) clearInterval(intervalID);
+    timeoutID = setTimeout(function () {
+      preprint();
+      postprint();
+      intervalID = setInterval(function () {
+        preprint();
+        postprint();
+      }, 8000);
+    }, 5000);
   });
 
   function preprint() {
     var startPreprint = performance.now();
-    var frameDocument = (0, _utils.resolveDocument)(frame);
-    printElement.innerHTML = frameDocument.body.innerHTML;
-    (0, _from2.default)(printElement.querySelectorAll('link')).forEach(function (link) {
-      return link.setAttribute('media', 'print');
-    });
-    undos.add((0, _utils.copyStyles)(frameDocument.body, printElement));
-    undos.add((0, _utils.copyHeadStyles)(frameDocument, document));
-    //undos.add(() => { printElement.innerHTML = '' })
+    try {
+      var frameDocument = (0, _utils.resolveDocument)(frame);
+      printElement.innerHTML = frameDocument.body.innerHTML;
+      (0, _from2.default)(printElement.querySelectorAll('link')).forEach(function (link) {
+        return link.setAttribute('media', 'print');
+      });
+      undos.add((0, _utils.copyStyles)(frameDocument.body, printElement));
+      undos.add((0, _utils.copyHeadStyles)(frameDocument, document));
+      //undos.add(() => { printElement.innerHTML = '' })
+    } catch (ex) {
+      console.info('PREPRINT ERROR');
+    }
     var endPreprint = performance.now();
     console.info('PREPRINT', endPreprint - startPreprint);
   }

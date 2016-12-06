@@ -47,6 +47,8 @@ body > #print-content {
   let undos = new Set()
   let undoTopPrintCSS
   let undoHeadLinks
+  let timeoutID
+  let intervalID
   frame.addEventListener('load', () => {
     const frameDocument = resolveDocument(frame)
     if(undos.size > 0) {
@@ -59,18 +61,34 @@ body > #print-content {
       undoTopPrintCSS()
     undoTopPrintCSS = topPrintCSS ? setCSS(document, topPrintCSS, 'print', { id: 'top-css' }) : () => {}
     undoHeadLinks = copyHeadLinks(frameDocument, document)
-    preprint()
-    postprint()
+    if(timeoutID)
+      clearTimeout(timeoutID)
+    if(intervalID)
+      clearInterval(intervalID)
+    timeoutID = setTimeout(() => {
+      preprint()
+      postprint()
+      intervalID = setInterval(() => {
+        preprint()
+        postprint()
+      }, 8000)
+    }, 5000)
+
   })
 
   function preprint () {
     const startPreprint = performance.now()
-    const frameDocument = resolveDocument(frame)
-    printElement.innerHTML = frameDocument.body.innerHTML
-    Array.from(printElement.querySelectorAll('link')).forEach((link) => link.setAttribute('media', 'print'))
-    undos.add(copyStyles(frameDocument.body, printElement))
-    undos.add(copyHeadStyles(frameDocument, document))
-    //undos.add(() => { printElement.innerHTML = '' })
+    try {
+      const frameDocument = resolveDocument(frame)
+      printElement.innerHTML = frameDocument.body.innerHTML
+      Array.from(printElement.querySelectorAll('link')).forEach((link) => link.setAttribute('media', 'print'))
+      undos.add(copyStyles(frameDocument.body, printElement))
+      undos.add(copyHeadStyles(frameDocument, document))
+      //undos.add(() => { printElement.innerHTML = '' })
+    }
+    catch(ex) {
+      console.info('PREPRINT ERROR')
+    }
     const endPreprint = performance.now()
     console.info('PREPRINT', endPreprint - startPreprint)
   }

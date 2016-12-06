@@ -36,6 +36,11 @@ iframe {
 body > #print-content {
   display: inline !important;
 }
+/*
+#print-content table, #print-content tbody, #print-content tr, #print-content td, #print-content div, #print-content span {
+  display: inline-block;
+}
+*/
 `
   const framePrintCSS = `
   `
@@ -59,13 +64,25 @@ body > #print-content {
       undoTopPrintCSS()
     undoTopPrintCSS = topPrintCSS ? setCSS(document, topPrintCSS, 'print', { id: 'top-css' }) : () => {}
     undoHeadLinks = copyHeadLinks(frameDocument, document)
+    /*
+
+    setInterval(() => {
+      preprint()
+      postprint()
+    }, 4000)
+    */
   })
 
   function preprint () {
-    const frameDocument = resolveDocument(frame)
-    printElement.innerHTML = frameDocument.body.innerHTML
-    undos.add(copyStyles(frameDocument.body, printElement))
-    undos.add(copyHeadStyles(frameDocument, document))
+    try {
+      const frameDocument = resolveDocument(frame)
+      printElement.innerHTML = frameDocument.body.innerHTML
+      undos.add(copyStyles(frameDocument.body, printElement))
+      undos.add(copyHeadStyles(frameDocument, document))
+    }
+    catch(ex) {
+      console.info('PREPRINT ERROR')
+    }
   }
 
   function postprint() {

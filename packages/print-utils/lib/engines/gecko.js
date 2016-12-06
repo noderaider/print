@@ -21,7 +21,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function gecko(frame) {
   var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-  var topPrintCSS = '\n* {\n  overflow: visible !important;\n  margin: 0 !important;\n  margin-top: 0 !important;\n  margin-bottom: 0 !important;\n  margin-left: 0 !important;\n  margin-right: 0 !important;\n  padding: 0 !important;\n  padding-top: 0 !important;\n  padding-bottom: 0 !important;\n  padding-left: 0 !important;\n  padding-right: 0 !important;\n  float: none !important;\n}\nbody, html {\n  margin: 0 !important;\n  padding: 0 !important;\n}\nbody > *:not(#print-content),\nbody > *:not(#print-content) * {\n  display: none !important;\n  position: unset !important;\n}\niframe {\n  display: none !important;\n  width: 0 !important;\n  min-width: 0 !important;\n  max-width: 0 !important;\n  border: 0 !important;\n  padding: 0 !important;\n}\nbody > #print-content {\n  display: inline !important;\n}\n';
+  var topPrintCSS = '\n* {\n  overflow: visible !important;\n  margin: 0 !important;\n  margin-top: 0 !important;\n  margin-bottom: 0 !important;\n  margin-left: 0 !important;\n  margin-right: 0 !important;\n  padding: 0 !important;\n  padding-top: 0 !important;\n  padding-bottom: 0 !important;\n  padding-left: 0 !important;\n  padding-right: 0 !important;\n  float: none !important;\n}\nbody, html {\n  margin: 0 !important;\n  padding: 0 !important;\n}\nbody > *:not(#print-content),\nbody > *:not(#print-content) * {\n  display: none !important;\n  position: unset !important;\n}\niframe {\n  display: none !important;\n  width: 0 !important;\n  min-width: 0 !important;\n  max-width: 0 !important;\n  border: 0 !important;\n  padding: 0 !important;\n}\nbody > #print-content {\n  display: inline !important;\n}\n/*\n#print-content table, #print-content tbody, #print-content tr, #print-content td, #print-content div, #print-content span {\n  display: inline-block;\n}\n*/\n';
   var framePrintCSS = '\n  ';
   var printElement = document.createElement('div');
   printElement.setAttribute('id', 'print-content');
@@ -64,13 +64,23 @@ function gecko(frame) {
     if (undoTopPrintCSS) undoTopPrintCSS();
     undoTopPrintCSS = topPrintCSS ? (0, _utils.setCSS)(document, topPrintCSS, 'print', { id: 'top-css' }) : function () {};
     undoHeadLinks = (0, _utils.copyHeadLinks)(frameDocument, document);
+    /*
+      setInterval(() => {
+      preprint()
+      postprint()
+    }, 4000)
+    */
   });
 
   function preprint() {
-    var frameDocument = (0, _utils.resolveDocument)(frame);
-    printElement.innerHTML = frameDocument.body.innerHTML;
-    undos.add((0, _utils.copyStyles)(frameDocument.body, printElement));
-    undos.add((0, _utils.copyHeadStyles)(frameDocument, document));
+    try {
+      var frameDocument = (0, _utils.resolveDocument)(frame);
+      printElement.innerHTML = frameDocument.body.innerHTML;
+      undos.add((0, _utils.copyStyles)(frameDocument.body, printElement));
+      undos.add((0, _utils.copyHeadStyles)(frameDocument, document));
+    } catch (ex) {
+      console.info('PREPRINT ERROR');
+    }
   }
 
   function postprint() {

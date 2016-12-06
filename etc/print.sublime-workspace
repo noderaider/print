@@ -32,16 +32,16 @@
 	"buffers":
 	[
 		{
-			"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-app/src/Print.js",
+			"file": "/C/Users/garretlecompte/noderaider/print/packages/print-utils/src/utils/resolveDocument.js",
 			"settings":
 			{
-				"buffer_size": 9053,
+				"buffer_size": 290,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/engines/webkit.js",
+			"file": "/C/Users/garretlecompte/noderaider/print/packages/print-utils/src/engines/webkit.js",
 			"settings":
 			{
 				"buffer_size": 2578,
@@ -50,10 +50,10 @@
 			}
 		},
 		{
-			"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/copyStyles.js",
+			"file": "/C/Users/garretlecompte/noderaider/print/packages/react-focus/src/index.js",
 			"settings":
 			{
-				"buffer_size": 1344,
+				"buffer_size": 1655,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -292,14 +292,22 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app"
+		"/C/Users/garretlecompte/noderaider/print/packages/print-app/src",
+		"/C/Users/garretlecompte/noderaider/print/packages/print-utils",
+		"/C/Users/garretlecompte/noderaider/print/packages/print-utils/src",
+		"/C/Users/garretlecompte/noderaider/print/packages/print-utils/src/engines",
+		"/C/Users/garretlecompte/noderaider/print/packages/print-utils/src/utils",
+		"/C/Users/garretlecompte/noderaider/print/packages/react-focus",
+		"/C/Users/garretlecompte/noderaider/print/packages/react-focus/src"
 	],
 	"file_history":
 	[
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/engines/webkit.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/copyStyles.js",
+		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/src/Print.js",
 		"/C/Users/ColeChamberlain/noderaider/print/README.md",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/index.js",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/copyStyles.test.js",
-		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/copyStyles.js",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/__tests__/__fixtures__/dom.js",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/engines/trident.js",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/react-ruler/src/index.js",
@@ -315,9 +323,7 @@
 		"/C/Users/ColeChamberlain/noderaider/print/etc/print.sublime-project",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/getScale.js",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/usePrintFrame.js",
-		"/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/engines/webkit.js",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/src/App.js",
-		"/C/Users/ColeChamberlain/noderaider/print/packages/print-app/src/Print.js",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/react-ruler/webpack.config.js",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/browser-detective/README.md",
 		"/C/Users/ColeChamberlain/noderaider/print/packages/browser-detective/.babelrc",
@@ -728,7 +734,7 @@
 			"byIDSuffix",
 			"'ext"
 		],
-		"reverse": false,
+		"reverse": true,
 		"show_context": true,
 		"use_buffer2": true,
 		"whole_word": false,
@@ -737,34 +743,29 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-app/src/Print.js",
+					"file": "/C/Users/garretlecompte/noderaider/print/packages/print-utils/src/utils/resolveDocument.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9053,
+						"buffer_size": 290,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1111,
-								1111
+								290,
+								290
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 2,
-							"tabs_extra_last_activated": 1479147307.29,
-							"tabs_extra_last_activated_sheet_index": 0,
-							"tabs_extra_spawned": true,
-							"translate_tabs_to_spaces": true,
 							"vintage":
 							{
 								"_vintageous_glue_until_normal_mode": false,
@@ -778,55 +779,7 @@
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 4
-							}
-						},
-						"translation.x": 0.0,
-						"translation.y": 478.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/engines/webkit.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2578,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1297,
-								1297
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 2,
-							"tabs_extra_last_activated": 1478805170.27,
-							"tabs_extra_last_activated_sheet_index": 1,
-							"tabs_extra_spawned": true,
-							"translate_tabs_to_spaces": true,
-							"vintage":
-							{
-								"_vintageous_glue_until_normal_mode": false,
-								"action": null,
-								"action_count": "",
-								"mode": "mode_normal",
-								"motion": null,
-								"motion_count": "",
-								"must_capture_register_name": false,
-								"normal_insert_count": "1",
-								"partial_sequence": "",
-								"register": "\"",
-								"sequence": "",
-								"xpos": 39
+								"xpos": 22
 							}
 						},
 						"translation.x": 0.0,
@@ -837,29 +790,26 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/C/Users/ColeChamberlain/noderaider/print/packages/print-utils/src/utils/copyStyles.js",
+					"buffer": 1,
+					"file": "/C/Users/garretlecompte/noderaider/print/packages/print-utils/src/engines/webkit.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1344,
+						"buffer_size": 2578,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								513,
-								513
+								2411,
+								2411
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"tab_size": 2,
-							"tabs_extra_last_activated": 1478719286.62,
-							"tabs_extra_last_activated_sheet_index": 2,
-							"tabs_extra_spawned": true,
 							"translate_tabs_to_spaces": true,
 							"vintage":
 							{
@@ -874,7 +824,52 @@
 								"partial_sequence": "",
 								"register": "\"",
 								"sequence": "",
-								"xpos": 0
+								"xpos": 2
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 810.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/garretlecompte/noderaider/print/packages/react-focus/src/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1655,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								53,
+								53
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 10
 							}
 						},
 						"translation.x": 0.0,
@@ -889,7 +884,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 34.0
 	},
 	"input":
 	{
@@ -1475,7 +1470,7 @@
 	"selected_group": 0,
 	"settings":
 	{
-		"_vintageous_last_buffer_search": "highlight",
+		"_vintageous_last_buffer_search": "printElement",
 		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_reset_during_init": true,
 		"vintage":
@@ -1487,7 +1482,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 194.0,
+	"side_bar_width": 314.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
