@@ -40,9 +40,7 @@ body > #print-content {
 `
   const framePrintCSS = `
   `
-  const printElement = document.createElement('div')
-  printElement.setAttribute('id', 'print-content')
-  printElement.setAttribute('style', 'display: none')
+  let printElement = document.getElementById('print-content')
 
   let undos = new Set()
   let undoTopPrintCSS
@@ -50,7 +48,13 @@ body > #print-content {
   if(mode === POLLING) {
     let timeoutID
     let intervalID
-    document.body.insertBefore(printElement, document.body.firstChild)
+    if(!printElement) {
+      printElement = document.createElement('div')
+      printElement.setAttribute('id', 'print-content')
+      printElement.setAttribute('style', 'display: none')
+      document.body.insertBefore(printElement, document.body.firstChild)
+    }
+
     frame.addEventListener('load', () => {
       const frameDocument = resolveDocument(frame)
       if(undos.size > 0) {

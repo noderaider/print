@@ -40,10 +40,14 @@ body > #print-content {
 `
   const framePrintCSS = `
   `
-  const printElement = document.createElement('div')
-  printElement.setAttribute('id', 'print-content')
-  printElement.setAttribute('style', 'display: none')
-  document.body.insertBefore(printElement, document.body.firstChild)
+
+  let printElement = document.getElementById('print-content')
+  if(!printElement) {
+    printElement = document.createElement('div')
+    printElement.setAttribute('id', 'print-content')
+    printElement.setAttribute('style', 'display: none')
+    document.body.insertBefore(printElement, document.body.firstChild)
+  }
 
   let undos = new Set()
   let undoTopPrintCSS
