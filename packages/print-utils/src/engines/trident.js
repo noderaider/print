@@ -1,6 +1,7 @@
 import { setCSS, resolveDocument, copyHeadLinks, copyHeadStyles, copyStyles } from '../utils'
+import { POLLING, TRIGGERED } from '../modes'
 
-export default function gecko (frame, opts = {}) {
+export default function gecko (frame, { mode }) {
   const topPrintCSS = `
 * {
   overflow: visible !important;
@@ -47,7 +48,7 @@ body > #print-content {
   let undos = new Set()
   let undoTopPrintCSS
   let undoHeadLinks
-  frame.addEventListener('load', () => {
+  function init () {
     const frameDocument = resolveDocument(frame)
     if(undos.size > 0) {
       for(let undo of undos) {
@@ -59,6 +60,10 @@ body > #print-content {
       undoTopPrintCSS()
     undoTopPrintCSS = topPrintCSS ? setCSS(document, topPrintCSS, 'print', { id: 'top-css' }) : () => {}
     undoHeadLinks = copyHeadLinks(frameDocument, document)
+  }
+
+  frame.addEventListener('load', () => {
+    init()
   })
 
   function preprint () {
@@ -83,5 +88,15 @@ body > #print-content {
       undoHeadLinks()
   }
 
-  return { preprint, postprint, dispose }
+  function trigger() {
+    if(frame.contentWindow) {
+      init()
+    }
+    window.onbeforeprint = preprint
+    window.onafterprint = postprint
+    window.focus()
+    window.print()
+  }
+
+  return { preprint, postprint, dispose, trigger }
 }

@@ -69,7 +69,7 @@ var detectBrowser = exports.detectBrowser = function detectBrowser() {
     }
   } else if (chrome) {
     name = 'chrome';
-    engine = 'webkit';
+    engine = 'blink';
     title = 'Chrome';
     version = chrome;
     emulatedVersion = chrome;

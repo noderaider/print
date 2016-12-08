@@ -1,4 +1,6 @@
 import 'babel-register'
+import * as modes from './modes'
+export { modes }
 export { default as onPrint } from './onPrint'
 export { default as usePrintFrame } from './usePrintFrame'
 export { default as isFrame } from './utils/isFrame'

@@ -77,7 +77,7 @@ export const detectBrowser = (userAgent = IS_BROWSER ? detectUserAgent() : noop(
     }
   } else if(chrome) {
     name = 'chrome'
-    engine = 'webkit'
+    engine = 'blink'
     title = 'Chrome'
     version = chrome
     emulatedVersion = chrome

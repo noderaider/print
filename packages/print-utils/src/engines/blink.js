@@ -1,7 +1,7 @@
 import { setCSS, resolveDocument, copyHeadLinks, copyHeadStyles, copyStyles } from '../utils'
 import { POLLING, TRIGGERED } from '../modes'
 
-export default function gecko (frame, { mode }) {
+export default function blink (frame, { mode }) {
   const topPrintCSS = `
 * {
   overflow: visible !important;
@@ -37,11 +37,6 @@ iframe {
 body > #print-content {
   display: inline !important;
 }
-/*
-#print-content table, #print-content tbody, #print-content tr, #print-content td, #print-content div, #print-content span {
-  display: inline-block;
-}
-*/
 `
   const framePrintCSS = `
   `
@@ -53,6 +48,8 @@ body > #print-content {
   let undoTopPrintCSS
   let undoHeadLinks
   if(mode === POLLING) {
+    let timeoutID
+    let intervalID
     document.body.insertBefore(printElement, document.body.firstChild)
     frame.addEventListener('load', () => {
       const frameDocument = resolveDocument(frame)
@@ -66,20 +63,37 @@ body > #print-content {
         undoTopPrintCSS()
       undoTopPrintCSS = topPrintCSS ? setCSS(document, topPrintCSS, 'print', { id: 'top-css' }) : () => {}
       undoHeadLinks = copyHeadLinks(frameDocument, document)
+      if(timeoutID)
+        clearTimeout(timeoutID)
+      if(intervalID)
+        clearInterval(intervalID)
+      timeoutID = setTimeout(() => {
+        preprint()
+        postprint()
+        intervalID = setInterval(() => {
+          preprint()
+          postprint()
+        }, 8000)
+      }, 5000)
     })
   }
 
   function preprint () {
-    try {
-      if(mode === POLLING) {
+    if(mode === POLLING) {
+      const startPreprint = performance.now()
+      try {
         const frameDocument = resolveDocument(frame)
         printElement.innerHTML = frameDocument.body.innerHTML
+        Array.from(printElement.querySelectorAll('link')).forEach((link) => link.setAttribute('media', 'print'))
         undos.add(copyStyles(frameDocument.body, printElement))
         undos.add(copyHeadStyles(frameDocument, document))
+        //undos.add(() => { printElement.innerHTML = '' })
       }
-    }
-    catch(ex) {
-      console.info('PREPRINT ERROR')
+      catch(ex) {
+        console.info('PREPRINT ERROR')
+      }
+      const endPreprint = performance.now()
+      console.info('PREPRINT', endPreprint - startPreprint)
     }
   }
 

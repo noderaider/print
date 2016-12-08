@@ -16,10 +16,12 @@ exports.default = gecko;
 
 var _utils = require('../utils');
 
+var _modes = require('../modes');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function gecko(frame) {
-  var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+function gecko(frame, _ref) {
+  var mode = _ref.mode;
 
   var topPrintCSS = '\n* {\n  overflow: visible !important;\n  margin: 0 !important;\n  margin-top: 0 !important;\n  margin-bottom: 0 !important;\n  margin-left: 0 !important;\n  margin-right: 0 !important;\n  padding: 0 !important;\n  padding-top: 0 !important;\n  padding-bottom: 0 !important;\n  padding-left: 0 !important;\n  padding-right: 0 !important;\n  float: none !important;\n}\nbody, html {\n  margin: 0 !important;\n  padding: 0 !important;\n}\nbody > *:not(#print-content),\nbody > *:not(#print-content) * {\n  display: none !important;\n  position: unset !important;\n}\niframe {\n  display: none !important;\n  width: 0 !important;\n  min-width: 0 !important;\n  max-width: 0 !important;\n  border: 0 !important;\n  padding: 0 !important;\n}\nbody > #print-content {\n  display: inline !important;\n}\n';
   var framePrintCSS = '\n  ';
@@ -31,7 +33,7 @@ function gecko(frame) {
   var undos = new _set2.default();
   var undoTopPrintCSS = void 0;
   var undoHeadLinks = void 0;
-  frame.addEventListener('load', function () {
+  function init() {
     var frameDocument = (0, _utils.resolveDocument)(frame);
     if (undos.size > 0) {
       var _iteratorNormalCompletion = true;
@@ -64,6 +66,10 @@ function gecko(frame) {
     if (undoTopPrintCSS) undoTopPrintCSS();
     undoTopPrintCSS = topPrintCSS ? (0, _utils.setCSS)(document, topPrintCSS, 'print', { id: 'top-css' }) : function () {};
     undoHeadLinks = (0, _utils.copyHeadLinks)(frameDocument, document);
+  }
+
+  frame.addEventListener('load', function () {
+    init();
   });
 
   function preprint() {
@@ -108,5 +114,15 @@ function gecko(frame) {
     if (undoHeadLinks) undoHeadLinks();
   }
 
-  return { preprint: preprint, postprint: postprint, dispose: dispose };
+  function trigger() {
+    if (frame.contentWindow) {
+      init();
+    }
+    window.onbeforeprint = preprint;
+    window.onafterprint = postprint;
+    window.focus();
+    window.print();
+  }
+
+  return { preprint: preprint, postprint: postprint, dispose: dispose, trigger: trigger };
 }

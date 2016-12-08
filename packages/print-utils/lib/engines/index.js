@@ -4,6 +4,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _blink = require('./blink');
+
+Object.defineProperty(exports, 'blink', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_blink).default;
+  }
+});
+
 var _webkit = require('./webkit');
 
 Object.defineProperty(exports, 'webkit', {
