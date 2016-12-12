@@ -70,11 +70,14 @@ function trident(frame, _ref) {
     if (undoTopPrintCSS) undoTopPrintCSS();
     undoTopPrintCSS = topPrintCSS ? (0, _utils.setCSS)(document, topPrintCSS, 'print', { id: 'top-css' }) : function () {};
     undoHeadLinks = (0, _utils.copyHeadLinks)(frameDocument, document);
+
+    if (mode === _modes.TRIGGERED) {
+      window.onbeforeprint = preprint;
+      window.onafterprint = postprint;
+    }
   }
 
-  frame.addEventListener('load', function () {
-    init();
-  });
+  frame.addEventListener('load', init);
 
   function preprint() {
     var frameDocument = (0, _utils.resolveDocument)(frame);
@@ -122,8 +125,10 @@ function trident(frame, _ref) {
     if (frame.contentWindow) {
       init();
     }
-    window.onbeforeprint = preprint;
-    window.onafterprint = postprint;
+    /*
+    window.onbeforeprint = preprint
+      window.onafterprint = postprint
+    */
     window.focus();
     window.print();
   }

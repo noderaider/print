@@ -64,11 +64,14 @@ body > #print-content {
       undoTopPrintCSS()
     undoTopPrintCSS = topPrintCSS ? setCSS(document, topPrintCSS, 'print', { id: 'top-css' }) : () => {}
     undoHeadLinks = copyHeadLinks(frameDocument, document)
+
+    if(mode === TRIGGERED) {
+      window.onbeforeprint = preprint
+      window.onafterprint = postprint
+    }
   }
 
-  frame.addEventListener('load', () => {
-    init()
-  })
+  frame.addEventListener('load', init)
 
   function preprint () {
     const frameDocument = resolveDocument(frame)
@@ -92,12 +95,16 @@ body > #print-content {
       undoHeadLinks()
   }
 
+
   function trigger() {
     if(frame.contentWindow) {
       init()
     }
+    /*
     window.onbeforeprint = preprint
+
     window.onafterprint = postprint
+    */
     window.focus()
     window.print()
   }
