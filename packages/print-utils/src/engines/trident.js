@@ -1,7 +1,7 @@
 import { setCSS, resolveDocument, copyHeadLinks, copyHeadStyles, copyStyles } from '../utils'
 import { POLLING, TRIGGERED } from '../modes'
 
-export default function gecko (frame, { mode }) {
+export default function trident (frame, { mode }) {
   const topPrintCSS = `
 * {
   overflow: visible !important;
