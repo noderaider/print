@@ -31,7 +31,6 @@ const css = `
 `
 
 function printSizing () {
-  console.warn('PRINT SIZING EHREREWORFJIWEO:FIJWE:FOIWEJ:FOIJWEFUIOHWEFIUWHEF')
   const undoCSS = setCSS(document, css, null, { id: 'print-zoom' })
   let printDirectionsElement = document.getElementById('print-dirctions')
   if(!printDirectionsElement) {
