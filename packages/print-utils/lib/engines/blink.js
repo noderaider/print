@@ -16,7 +16,7 @@ var _set = require('babel-runtime/core-js/set');
 
 var _set2 = _interopRequireDefault(_set);
 
-exports.default = blink;
+exports.default = webkit;
 
 var _utils = require('../utils');
 
@@ -24,7 +24,25 @@ var _modes = require('../modes');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function blink(frame, _ref) {
+var css = '\n#print-directions {\n  display: none;\n  color: red;\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  border: 8px solid red;\n  align-items:center;\n  justify-content:center;\n  font-size:3rem;\n}\n\n@media print {\n  body *:not(#print-directions) {\n    display: none !important;\n  }\n  body #print-directions {\n    display: flex !important;\n  }\n}\n';
+
+function printSizing() {
+  console.warn('PRINT SIZING EHREREWORFJIWEO:FIJWE:FOIWEJ:FOIJWEFUIOHWEFIUWHEF');
+  var undoCSS = (0, _utils.setCSS)(document, css, null, { id: 'print-zoom' });
+  var printDirectionsElement = document.getElementById('print-dirctions');
+  if (!printDirectionsElement) {
+    printDirectionsElement = document.createElement('div');
+    printDirectionsElement.innerHTML = 'YOU\'RE DOING IT WRONG!!! =P';
+    printDirectionsElement.setAttribute('id', 'print-directions');
+    document.body.insertBefore(printDirectionsElement, document.body.children[0]);
+  }
+  return function () {
+    undoCSS();
+    document.body.removeChild(printDirectionsElement);
+  };
+}
+
+function webkit(frame, _ref) {
   var mode = _ref.mode;
 
   var topPrintCSS = '\n* {\n  overflow: visible !important;\n  margin: 0 !important;\n  margin-top: 0 !important;\n  margin-bottom: 0 !important;\n  margin-left: 0 !important;\n  margin-right: 0 !important;\n  padding: 0 !important;\n  padding-top: 0 !important;\n  padding-bottom: 0 !important;\n  padding-left: 0 !important;\n  padding-right: 0 !important;\n  float: none !important;\n}\nbody, html {\n  margin: 0 !important;\n  padding: 0 !important;\n}\nbody > *:not(#print-content),\nbody > *:not(#print-content) * {\n  display: none !important;\n  position: unset !important;\n}\niframe {\n  display: none !important;\n  width: 0 !important;\n  min-width: 0 !important;\n  max-width: 0 !important;\n  border: 0 !important;\n  padding: 0 !important;\n}\nbody > #print-content {\n  display: inline !important;\n}\n';
@@ -38,6 +56,7 @@ function blink(frame, _ref) {
     (function () {
       var timeoutID = void 0;
       var intervalID = void 0;
+
       if (!printElement) {
         printElement = document.createElement('div');
         printElement.setAttribute('id', 'print-content');
@@ -90,6 +109,8 @@ function blink(frame, _ref) {
         }, 5000);
       });
     })();
+  } else if (mode === _modes.TRIGGERED) {
+    frame.addEventListener('load', printSizing);
   }
 
   function preprint() {

@@ -1,7 +1,57 @@
 import { setCSS, resolveDocument, copyHeadLinks, copyHeadStyles, copyStyles } from '../utils'
 import { POLLING, TRIGGERED } from '../modes'
 
-export default function blink (frame, { mode }) {
+
+
+
+
+const css = `
+#print-directions {
+  display: none;
+  color: red;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 8px solid red;
+  align-items:center;
+  justify-content:center;
+  font-size:3rem;
+}
+
+@media print {
+  body *:not(#print-directions) {
+    display: none !important;
+  }
+  body #print-directions {
+    display: flex !important;
+  }
+}
+`
+
+function printSizing () {
+  console.warn('PRINT SIZING EHREREWORFJIWEO:FIJWE:FOIWEJ:FOIJWEFUIOHWEFIUWHEF')
+  const undoCSS = setCSS(document, css, null, { id: 'print-zoom' })
+  let printDirectionsElement = document.getElementById('print-dirctions')
+  if(!printDirectionsElement) {
+    printDirectionsElement = document.createElement('div')
+    printDirectionsElement.innerHTML = 'YOU\'RE DOING IT WRONG!!! =P'
+    printDirectionsElement.setAttribute('id', 'print-directions')
+    document.body.insertBefore(printDirectionsElement, document.body.children[0])
+  }
+  return () => {
+    undoCSS()
+    document.body.removeChild(printDirectionsElement)
+  }
+}
+
+
+
+
+
+
+export default function webkit (frame, { mode }) {
   const topPrintCSS = `
 * {
   overflow: visible !important;
@@ -48,6 +98,7 @@ body > #print-content {
   if(mode === POLLING) {
     let timeoutID
     let intervalID
+
     if(!printElement) {
       printElement = document.createElement('div')
       printElement.setAttribute('id', 'print-content')
@@ -80,6 +131,8 @@ body > #print-content {
         }, 8000)
       }, 5000)
     })
+  } else if (mode === TRIGGERED) {
+    frame.addEventListener('load', printSizing)
   }
 
   function preprint () {
@@ -98,6 +151,7 @@ body > #print-content {
       }
       const endPreprint = performance.now()
       console.info('PREPRINT', endPreprint - startPreprint)
+
     }
   }
 

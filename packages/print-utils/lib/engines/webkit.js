@@ -24,6 +24,24 @@ var _modes = require('../modes');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var css = '\n#print-directions {\n  display: none;\n  color: red;\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  border: 8px solid red;\n  align-items:center;\n  justify-content:center;\n  font-size:3rem;\n}\n\n@media print {\n  body *:not(#print-directions) {\n    display: none !important;\n  }\n  body #print-directions {\n    display: flex !important;\n  }\n}\n';
+
+function printSizing() {
+  console.warn('PRINT SIZING EHREREWORFJIWEO:FIJWE:FOIWEJ:FOIJWEFUIOHWEFIUWHEF');
+  var undoCSS = (0, _utils.setCSS)(document, css, null, { id: 'print-zoom' });
+  var printDirectionsElement = document.getElementById('print-dirctions');
+  if (!printDirectionsElement) {
+    printDirectionsElement = document.createElement('div');
+    printDirectionsElement.innerHTML = 'YOU\'RE DOING IT WRONG!!! =P';
+    printDirectionsElement.setAttribute('id', 'print-directions');
+    document.body.insertBefore(printDirectionsElement, document.body.children[0]);
+  }
+  return function () {
+    undoCSS();
+    document.body.removeChild(printDirectionsElement);
+  };
+}
+
 function webkit(frame, _ref) {
   var mode = _ref.mode;
 
@@ -35,62 +53,64 @@ function webkit(frame, _ref) {
   var undoTopPrintCSS = void 0;
   var undoHeadLinks = void 0;
   if (mode === _modes.POLLING) {
-    (function () {
-      var timeoutID = void 0;
-      var intervalID = void 0;
+    var timeoutID = void 0;
+    var intervalID = void 0;
 
-      if (!printElement) {
-        printElement = document.createElement('div');
-        printElement.setAttribute('id', 'print-content');
-        printElement.setAttribute('style', 'display: none');
-        document.body.insertBefore(printElement, document.body.firstChild);
-      }
+    if (!printElement) {
+      printElement = document.createElement('div');
+      printElement.setAttribute('id', 'print-content');
+      printElement.setAttribute('style', 'display: none');
+      document.body.insertBefore(printElement, document.body.firstChild);
+    }
 
-      frame.addEventListener('load', function () {
-        var frameDocument = (0, _utils.resolveDocument)(frame);
-        if (undos.size > 0) {
-          var _iteratorNormalCompletion = true;
-          var _didIteratorError = false;
-          var _iteratorError = undefined;
+    frame.addEventListener('load', function () {
+      var frameDocument = (0, _utils.resolveDocument)(frame);
+      if (undos.size > 0) {
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
 
+        try {
+          for (var _iterator = (0, _getIterator3.default)(undos), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var undo = _step.value;
+
+            undo();
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
           try {
-            for (var _iterator = (0, _getIterator3.default)(undos), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-              var undo = _step.value;
-
-              undo();
+            if (!_iteratorNormalCompletion && _iterator.return) {
+              _iterator.return();
             }
-          } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
           } finally {
-            try {
-              if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
-              }
-            } finally {
-              if (_didIteratorError) {
-                throw _iteratorError;
-              }
+            if (_didIteratorError) {
+              throw _iteratorError;
             }
           }
-
-          undos.clear();
         }
-        if (undoTopPrintCSS) undoTopPrintCSS();
-        undoTopPrintCSS = topPrintCSS ? (0, _utils.setCSS)(document, topPrintCSS, 'print', { id: 'top-css' }) : function () {};
-        undoHeadLinks = (0, _utils.copyHeadLinks)(frameDocument, document);
-        if (timeoutID) clearTimeout(timeoutID);
-        if (intervalID) clearInterval(intervalID);
-        timeoutID = setTimeout(function () {
-          preprint();
-          postprint();
-          intervalID = setInterval(function () {
-            preprint();
-            postprint();
-          }, 8000);
-        }, 5000);
-      });
-    })();
+
+        undos.clear();
+      }
+      if (undoTopPrintCSS) undoTopPrintCSS();
+      undoTopPrintCSS = topPrintCSS ? (0, _utils.setCSS)(document, topPrintCSS, 'print', { id: 'top-css' }) : function () {};
+      undoHeadLinks = (0, _utils.copyHeadLinks)(frameDocument, document);
+      // if(timeoutID)
+      //   clearTimeout(timeoutID)
+      // if(intervalID)
+      //   clearInterval(intervalID)
+      // timeoutID = setTimeout(() => {
+      //   preprint()
+      //   postprint()
+      //   intervalID = setInterval(() => {
+      //     preprint()
+      //     postprint()
+      //   }, 8000)
+      // }, 5000)
+    });
+  } else if (mode === _modes.TRIGGERED) {
+    frame.addEventListener('load', printSizing);
   }
 
   function preprint() {
