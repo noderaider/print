@@ -49,7 +49,9 @@ function usePrintFrame(frame) {
       engine = _ref$engine === undefined ? defaultEngine : _ref$engine,
       _ref$mode = _ref.mode,
       mode = _ref$mode === undefined ? _modes.POLLING : _ref$mode,
-      opts = (0, _objectWithoutProperties3.default)(_ref, ['engine', 'mode']);
+      _ref$directionsHTML = _ref.directionsHTML,
+      directionsHTML = _ref$directionsHTML === undefined ? 'Use the button to print!' : _ref$directionsHTML,
+      opts = (0, _objectWithoutProperties3.default)(_ref, ['engine', 'mode', 'directionsHTML']);
 
   if ((typeof window === 'undefined' ? 'undefined' : (0, _typeof3.default)(window)) !== 'object') return;
   if (!frame) throw new Error('usePrintFrame must be provided the frame element.');
@@ -63,7 +65,7 @@ function usePrintFrame(frame) {
   var useEngine = engines[engine];
   if (!useEngine) throw new Error('Unknown engine \'' + engine + '\'!');
 
-  var _useEngine = useEngine(frame, (0, _extends3.default)({ mode: mode }, opts)),
+  var _useEngine = useEngine(frame, (0, _extends3.default)({ mode: mode, directionsHTML: directionsHTML }, opts)),
       preprint = _useEngine.preprint,
       postprint = _useEngine.postprint,
       dispose = _useEngine.dispose,

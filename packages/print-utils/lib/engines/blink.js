@@ -26,12 +26,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var css = '\n#print-directions {\n  display: none;\n  color: black;\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  align-items:center;\n  justify-content:center;\n  font-size:1.2rem;\n}\n\n@media print {\n  body > *:not(#print-directions) {\n    display: none !important;\n  }\n  body #print-directions {\n    display: flex !important;\n    flex-direction: column;\n  }\n}\n';
 
-function printSizing() {
+function printSizing(directionsHTML) {
   var undoCSS = (0, _utils.setCSS)(document, css, null, { id: 'print-zoom' });
   var printDirectionsElement = document.getElementById('print-dirctions');
   if (!printDirectionsElement) {
     printDirectionsElement = document.createElement('div');
-    printDirectionsElement.innerHTML = 'To ensure optimal printing when using Tix on Chrome, please use the "Tix Print" button as indicated below: <br /><img src="/images/TixPrintInstructions.gif" />';
+    printDirectionsElement.innerHTML = directionsHTML;
     printDirectionsElement.setAttribute('id', 'print-directions');
     document.body.insertBefore(printDirectionsElement, document.body.children[0]);
   }
@@ -42,7 +42,8 @@ function printSizing() {
 }
 
 function webkit(frame, _ref) {
-  var mode = _ref.mode;
+  var mode = _ref.mode,
+      directionsHTML = _ref.directionsHTML;
 
   var topPrintCSS = '\n* {\n  overflow: visible !important;\n  margin: 0 !important;\n  margin-top: 0 !important;\n  margin-bottom: 0 !important;\n  margin-left: 0 !important;\n  margin-right: 0 !important;\n  padding: 0 !important;\n  padding-top: 0 !important;\n  padding-bottom: 0 !important;\n  padding-left: 0 !important;\n  padding-right: 0 !important;\n  float: none !important;\n}\nbody, html {\n  margin: 0 !important;\n  padding: 0 !important;\n}\nbody > *:not(#print-content),\nbody > *:not(#print-content) * {\n  display: none !important;\n  position: unset !important;\n}\niframe {\n  display: none !important;\n  width: 0 !important;\n  min-width: 0 !important;\n  max-width: 0 !important;\n  border: 0 !important;\n  padding: 0 !important;\n}\nbody > #print-content {\n  display: inline !important;\n}\n';
   var framePrintCSS = '\n  ';
@@ -109,7 +110,9 @@ function webkit(frame, _ref) {
       });
     })();
   } else if (mode === _modes.TRIGGERED) {
-    frame.addEventListener('load', printSizing);
+    frame.addEventListener('load', function () {
+      printSizing(directionsHTML);
+    });
   }
 
   function preprint() {

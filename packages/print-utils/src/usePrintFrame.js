@@ -11,6 +11,7 @@ const defaultEngine = browser.engine || 'webkit'
 export default function usePrintFrame( frame
 , { engine = defaultEngine
   , mode = POLLING
+  , directionsHTML = 'Use the button to print!'
   , ...opts
   } = {}
 ) {
@@ -30,7 +31,7 @@ export default function usePrintFrame( frame
   if(!useEngine)
     throw new Error(`Unknown engine '${engine}'!`)
 
-  const { preprint, postprint, dispose, trigger } = useEngine(frame, { mode, ...opts })
+  const { preprint, postprint, dispose, trigger } = useEngine(frame, { mode, directionsHTML, ...opts })
   switch(mode) {
     case POLLING:
       onPrint({ preprint, postprint })

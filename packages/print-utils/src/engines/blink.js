@@ -30,12 +30,12 @@ const css = `
 }
 `
 
-function printSizing () {
+function printSizing (directionsHTML) {
   const undoCSS = setCSS(document, css, null, { id: 'print-zoom' })
   let printDirectionsElement = document.getElementById('print-dirctions')
   if(!printDirectionsElement) {
     printDirectionsElement = document.createElement('div')
-    printDirectionsElement.innerHTML = 'To ensure optimal printing when using Tix on Chrome, please use the "Tix Print" button as indicated below: <br /><img src="/images/TixPrintInstructions.gif" />'
+    printDirectionsElement.innerHTML = directionsHTML
     printDirectionsElement.setAttribute('id', 'print-directions')
     document.body.insertBefore(printDirectionsElement, document.body.children[0])
   }
@@ -49,8 +49,7 @@ function printSizing () {
 
 
 
-
-export default function webkit (frame, { mode }) {
+export default function webkit (frame, { mode, directionsHTML }) {
   const topPrintCSS = `
 * {
   overflow: visible !important;
@@ -131,7 +130,7 @@ body > #print-content {
       }, 5000)
     })
   } else if (mode === TRIGGERED) {
-    frame.addEventListener('load', printSizing)
+    frame.addEventListener('load', () => { printSizing(directionsHTML) })
   }
 
   function preprint () {
