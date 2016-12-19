@@ -8,35 +8,34 @@ import { POLLING, TRIGGERED } from '../modes'
 const css = `
 #print-directions {
   display: none;
-  color: red;
+  color: black;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  border: 8px solid red;
   align-items:center;
   justify-content:center;
-  font-size:3rem;
+  font-size:1.2rem;
 }
 
 @media print {
-  body *:not(#print-directions) {
+  body > *:not(#print-directions) {
     display: none !important;
   }
   body #print-directions {
     display: flex !important;
+    flex-direction: column;
   }
 }
 `
 
 function printSizing () {
-  console.warn('PRINT SIZING EHREREWORFJIWEO:FIJWE:FOIWEJ:FOIJWEFUIOHWEFIUWHEF')
   const undoCSS = setCSS(document, css, null, { id: 'print-zoom' })
   let printDirectionsElement = document.getElementById('print-dirctions')
   if(!printDirectionsElement) {
     printDirectionsElement = document.createElement('div')
-    printDirectionsElement.innerHTML = 'YOU\'RE DOING IT WRONG!!! =P'
+    printDirectionsElement.innerHTML = 'To ensure optimal printing when using Tix on Chrome, please use the "Tix Print" button as indicated below: <br /><img src="/images/TixPrintInstructions.gif" />'
     printDirectionsElement.setAttribute('id', 'print-directions')
     document.body.insertBefore(printDirectionsElement, document.body.children[0])
   }

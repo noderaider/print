@@ -24,15 +24,14 @@ var _modes = require('../modes');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var css = '\n#print-directions {\n  display: none;\n  color: red;\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  border: 8px solid red;\n  align-items:center;\n  justify-content:center;\n  font-size:3rem;\n}\n\n@media print {\n  body *:not(#print-directions) {\n    display: none !important;\n  }\n  body #print-directions {\n    display: flex !important;\n  }\n}\n';
+var css = '\n#print-directions {\n  display: none;\n  color: black;\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  align-items:center;\n  justify-content:center;\n  font-size:1.2rem;\n}\n\n@media print {\n  body > *:not(#print-directions) {\n    display: none !important;\n  }\n  body #print-directions {\n    display: flex !important;\n    flex-direction: column;\n  }\n}\n';
 
 function printSizing() {
-  console.warn('PRINT SIZING EHREREWORFJIWEO:FIJWE:FOIWEJ:FOIJWEFUIOHWEFIUWHEF');
   var undoCSS = (0, _utils.setCSS)(document, css, null, { id: 'print-zoom' });
   var printDirectionsElement = document.getElementById('print-dirctions');
   if (!printDirectionsElement) {
     printDirectionsElement = document.createElement('div');
-    printDirectionsElement.innerHTML = 'YOU\'RE DOING IT WRONG!!! =P';
+    printDirectionsElement.innerHTML = 'To ensure optimal printing when using Tix on Chrome, please use the "Tix Print" button as indicated below: <br /><img src="/images/TixPrintInstructions.gif" />';
     printDirectionsElement.setAttribute('id', 'print-directions');
     document.body.insertBefore(printDirectionsElement, document.body.children[0]);
   }

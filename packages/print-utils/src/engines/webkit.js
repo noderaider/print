@@ -1,10 +1,6 @@
 import { setCSS, resolveDocument, copyHeadLinks, copyHeadStyles, copyStyles } from '../utils'
 import { POLLING, TRIGGERED } from '../modes'
 
-
-
-
-
 const css = `
 #print-directions {
   display: none;
