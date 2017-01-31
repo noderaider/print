@@ -15,7 +15,7 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.18.0",
-    "lerna": "2.0.0-beta.30",
+    "lerna": "2.0.0-beta.31",
     "sinon": "^1.17.6"
   },
   "repository": "noderaider/print",
