@@ -48,6 +48,7 @@
     "sinon": "^1.17.6"
   },
   "dependencies": {
+    "bluebird": "^3.4.6",
     "browser-detective": "^0.13.2",
     "classnames": "^2.2.5",
     "invariant": "^2.2.1",

@@ -13,7 +13,13 @@ export default function setCSS(doc, css, media, { id = 'use-print-frame-styles' 
   styleElement.innerHTML = css
   doc.getElementsByTagName('head')[0].appendChild(styleElement)
   return function undoPrintCSS () {
-    doc.getElementsByTagName('head')[0].removeChild(styleElement)
+    var head = doc.getElementsByTagName('head')
+    try {
+      head[0].removeChild(styleElement)
+    }
+    catch(err) {
+      
+    }
   }
 }
 
