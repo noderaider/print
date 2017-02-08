@@ -28,7 +28,7 @@ var css = '\n#print-directions {\n  display: none;\n  color: black;\n  position:
 
 function printSizing(directionsHTML) {
   var undoCSS = (0, _utils.setCSS)(document, css, null, { id: 'print-zoom' });
-  var printDirectionsElement = document.getElementById('print-dirctions');
+  var printDirectionsElement = document.getElementById('print-directions');
   if (!printDirectionsElement) {
     printDirectionsElement = document.createElement('div');
     printDirectionsElement.innerHTML = directionsHTML;

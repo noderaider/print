@@ -32,7 +32,7 @@ const css = `
 
 function printSizing (directionsHTML) {
   const undoCSS = setCSS(document, css, null, { id: 'print-zoom' })
-  let printDirectionsElement = document.getElementById('print-dirctions')
+  let printDirectionsElement = document.getElementById('print-directions')
   if(!printDirectionsElement) {
     printDirectionsElement = document.createElement('div')
     printDirectionsElement.innerHTML = directionsHTML
