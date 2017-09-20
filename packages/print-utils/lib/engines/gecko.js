@@ -68,7 +68,9 @@ function gecko(frame, _ref) {
       undos.clear();
     }
     if (undoTopPrintCSS) undoTopPrintCSS();
-    undoTopPrintCSS = topPrintCSS ? (0, _utils.setCSS)(document, topPrintCSS, 'print', { id: 'top-css' }) : function () {};
+    if (undoHeadLinks) undoHeadLinks();
+
+    undoTopPrintCSS = (0, _utils.setCSS)(document, topPrintCSS, 'print', { id: 'top-css' });
     undoHeadLinks = (0, _utils.copyHeadLinks)(frameDocument, document);
 
     if (mode === _modes.TRIGGERED) {

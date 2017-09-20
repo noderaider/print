@@ -6,7 +6,7 @@ export default function copyHeadLinks (sourceDocument, targetDocument) {
   invariant(targetDocument, 'target document is required')
   invariant(targetDocument.head, 'target document must have a head')
   const sourceLinks = sourceDocument.querySelectorAll('head > link')
-  const _undos = new Set()
+  //const _undos = new Set()
   Array.from(sourceLinks).forEach((link) => {
     const _link = document.createElement('link')
     if(_link.getAttribute('media') === 'screen')
@@ -15,8 +15,14 @@ export default function copyHeadLinks (sourceDocument, targetDocument) {
     _link.setAttribute('type', 'text/css')
     _link.setAttribute('media', 'print')
     _link.setAttribute('rel', 'stylesheet')
+    _link.setAttribute('id', 'printCopy')
     targetDocument.head.appendChild(_link)
-    _undos.add(() => targetDocument.head.removeChild(_link))
+    //_undos.add(() => targetDocument.head.removeChild(_link))
   })
-  return () => _undos.forEach((undo) => undo())
+  return () => {
+    const targetLinks = targetDocument.querySelectorAll('#printCopy')
+    Array.from(targetLinks).forEach((link) => {
+      targetDocument.head.removeChild(link)
+    })
+  }
 }

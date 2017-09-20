@@ -8,10 +8,6 @@ var _from = require('babel-runtime/core-js/array/from');
 
 var _from2 = _interopRequireDefault(_from);
 
-var _set = require('babel-runtime/core-js/set');
-
-var _set2 = _interopRequireDefault(_set);
-
 exports.default = copyHeadLinks;
 
 var _invariant = require('invariant');
@@ -26,7 +22,7 @@ function copyHeadLinks(sourceDocument, targetDocument) {
   (0, _invariant2.default)(targetDocument, 'target document is required');
   (0, _invariant2.default)(targetDocument.head, 'target document must have a head');
   var sourceLinks = sourceDocument.querySelectorAll('head > link');
-  var _undos = new _set2.default();
+  //const _undos = new Set()
   (0, _from2.default)(sourceLinks).forEach(function (link) {
     var _link = document.createElement('link');
     if (_link.getAttribute('media') === 'screen') return;
@@ -34,14 +30,14 @@ function copyHeadLinks(sourceDocument, targetDocument) {
     _link.setAttribute('type', 'text/css');
     _link.setAttribute('media', 'print');
     _link.setAttribute('rel', 'stylesheet');
+    _link.setAttribute('id', 'printCopy');
     targetDocument.head.appendChild(_link);
-    _undos.add(function () {
-      return targetDocument.head.removeChild(_link);
-    });
+    //_undos.add(() => targetDocument.head.removeChild(_link))
   });
   return function () {
-    return _undos.forEach(function (undo) {
-      return undo();
+    var targetLinks = targetDocument.querySelectorAll('#printCopy');
+    (0, _from2.default)(targetLinks).forEach(function (link) {
+      targetDocument.head.removeChild(link);
     });
   };
 }

@@ -62,7 +62,10 @@ body > #print-content {
     }
     if(undoTopPrintCSS)
       undoTopPrintCSS()
-    undoTopPrintCSS = topPrintCSS ? setCSS(document, topPrintCSS, 'print', { id: 'top-css' }) : () => {}
+    if (undoHeadLinks)
+      undoHeadLinks()
+    
+    undoTopPrintCSS = setCSS(document, topPrintCSS, 'print', { id: 'top-css' }) 
     undoHeadLinks = copyHeadLinks(frameDocument, document)
 
     if(mode === TRIGGERED) {
