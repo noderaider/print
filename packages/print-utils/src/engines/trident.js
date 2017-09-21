@@ -70,7 +70,7 @@ body > #print-content {
       window.onafterprint = postprint
     }
 
-    frame.removeEventListner('load', init)
+    frame.removeEventListener('load', init)
   }
 
   frame.addEventListener('load', init)
