@@ -1,7 +1,7 @@
 {
   "name": "@tixinc/print-utils",
   "description": "Print utilities for client web applications.",
-  "version": "0.15.5",
+  "version": "0.15.6",
   "main": "lib/index.js",
   "jsnext:main": "dist/bundle.es.js",
   "files": [

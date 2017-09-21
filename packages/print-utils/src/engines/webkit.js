@@ -66,6 +66,23 @@ body > #print-content {
 `
   const framePrintCSS = `
   `
+
+  function printSizing () {
+    const undoCSS = setCSS(document, css, null, { id: 'print-zoom' })
+    let printDirectionsElement = document.getElementById('print-dirctions')
+    if(!printDirectionsElement) {
+      printDirectionsElement = document.createElement('div')
+      printDirectionsElement.innerHTML = 'YOU\'RE DOING IT WRONG!!! =P'
+      printDirectionsElement.setAttribute('id', 'print-directions')
+      document.body.insertBefore(printDirectionsElement, document.body.children[0])
+    }
+  
+    frame.removeEventListener('load', printSizing)
+    undos.add(() => {
+      undoCSS()
+      document.body.removeChild(printDirectionsElement)
+    })
+  }
   let printElement = document.getElementById('print-content')
 
   let undos = new Set()
@@ -80,23 +97,6 @@ body > #print-content {
       printElement.setAttribute('id', 'print-content')
       printElement.setAttribute('style', 'display: none')
       document.body.insertBefore(printElement, document.body.firstChild)
-    }
-
-    function printSizing () {
-      const undoCSS = setCSS(document, css, null, { id: 'print-zoom' })
-      let printDirectionsElement = document.getElementById('print-dirctions')
-      if(!printDirectionsElement) {
-        printDirectionsElement = document.createElement('div')
-        printDirectionsElement.innerHTML = 'YOU\'RE DOING IT WRONG!!! =P'
-        printDirectionsElement.setAttribute('id', 'print-directions')
-        document.body.insertBefore(printDirectionsElement, document.body.children[0])
-      }
-    
-      frame.removeEventListener('load', printSizing)
-      undos.add(() => {
-        undoCSS()
-        document.body.removeChild(printDirectionsElement)
-      })
     }
 
     function init () {
