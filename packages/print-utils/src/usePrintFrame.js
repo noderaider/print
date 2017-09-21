@@ -27,7 +27,7 @@ export default function usePrintFrame( frame
 
 
   console.info('--engine--', engine)
-  const useEngine = engines['gecko']
+  const useEngine = engines[engine]
   if(!useEngine)
     throw new Error(`Unknown engine '${engine}'!`)
 
