@@ -1,7 +1,7 @@
 {
-  "name": "print-utils",
+  "name": "@tixinc/print-utils",
   "description": "Print utilities for client web applications.",
-  "version": "0.15.1",
+  "version": "0.15.4",
   "main": "lib/index.js",
   "jsnext:main": "dist/bundle.es.js",
   "files": [
@@ -18,7 +18,7 @@
     "prebuild": "rimraf lib dist",
     "build:dist": "rollup -c --sourcemap inline --environment NODE_ENV:production",
     "build": "babel src -d lib --ignore __tests__,__mocks__",
-    "preversion": "npm test && npm run build && npm run build:dist",
+    "preversion": "npm run build",
     "test": "jest",
     "coverage": "jest --coverage"
   },

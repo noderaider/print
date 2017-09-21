@@ -77,6 +77,7 @@ function gecko(frame, _ref) {
       window.onbeforeprint = preprint;
       window.onafterprint = postprint;
     }
+    frame.removeEventListener('load', init);
   }
 
   frame.addEventListener('load', init);

@@ -69,6 +69,8 @@ body > #print-content {
       window.onbeforeprint = preprint
       window.onafterprint = postprint
     }
+
+    frame.removeEventListner('load', init)
   }
 
   frame.addEventListener('load', init)

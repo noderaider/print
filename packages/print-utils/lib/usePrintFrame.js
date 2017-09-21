@@ -62,7 +62,7 @@ function usePrintFrame(frame) {
   }
 
   console.info('--engine--', engine);
-  var useEngine = engines[engine];
+  var useEngine = engines['gecko'];
   if (!useEngine) throw new Error('Unknown engine \'' + engine + '\'!');
 
   var _useEngine = useEngine(frame, (0, _extends3.default)({ mode: mode, directionsHTML: directionsHTML }, opts)),

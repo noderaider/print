@@ -26,21 +26,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var css = '\n#print-directions {\n  display: none;\n  color: black;\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  align-items:center;\n  justify-content:center;\n  font-size:1.2rem;\n}\n\n@media print {\n  body > *:not(#print-directions) {\n    display: none !important;\n  }\n  body #print-directions {\n    display: flex !important;\n    flex-direction: column;\n  }\n}\n';
 
-function printSizing(directionsHTML) {
-  var undoCSS = (0, _utils.setCSS)(document, css, null, { id: 'print-zoom' });
-  var printDirectionsElement = document.getElementById('print-directions');
-  if (!printDirectionsElement) {
-    printDirectionsElement = document.createElement('div');
-    printDirectionsElement.innerHTML = directionsHTML;
-    printDirectionsElement.setAttribute('id', 'print-directions');
-    document.body.insertBefore(printDirectionsElement, document.body.children[0]);
-  }
-  return function () {
-    undoCSS();
-    document.body.removeChild(printDirectionsElement);
-  };
-}
-
 function webkit(frame, _ref) {
   var mode = _ref.mode,
       directionsHTML = _ref.directionsHTML;
@@ -54,17 +39,24 @@ function webkit(frame, _ref) {
   var undoHeadLinks = void 0;
   if (mode === _modes.POLLING) {
     (function () {
-      var timeoutID = void 0;
-      var intervalID = void 0;
+      var printSizing = function printSizing() {
+        var undoCSS = (0, _utils.setCSS)(document, css, null, { id: 'print-zoom' });
+        var printDirectionsElement = document.getElementById('print-directions');
+        if (!printDirectionsElement) {
+          printDirectionsElement = document.createElement('div');
+          printDirectionsElement.innerHTML = directionsHTML;
+          printDirectionsElement.setAttribute('id', 'print-directions');
+          document.body.insertBefore(printDirectionsElement, document.body.children[0]);
+        }
 
-      if (!printElement) {
-        printElement = document.createElement('div');
-        printElement.setAttribute('id', 'print-content');
-        printElement.setAttribute('style', 'display: none');
-        document.body.insertBefore(printElement, document.body.firstChild);
-      }
+        frame.removeEventListener('load', printSizing);
+        undos.add(function () {
+          undoCSS();
+          document.body.removeChild(printDirectionsElement);
+        });
+      };
 
-      frame.addEventListener('load', function () {
+      var init = function init() {
         var frameDocument = (0, _utils.resolveDocument)(frame);
         if (undos.size > 0) {
           var _iteratorNormalCompletion = true;
@@ -107,12 +99,24 @@ function webkit(frame, _ref) {
             postprint();
           }, 8000);
         }, 5000);
-      });
+
+        frame.removeEventListener('load', printSizing);
+      };
+
+      var timeoutID = void 0;
+      var intervalID = void 0;
+
+      if (!printElement) {
+        printElement = document.createElement('div');
+        printElement.setAttribute('id', 'print-content');
+        printElement.setAttribute('style', 'display: none');
+        document.body.insertBefore(printElement, document.body.firstChild);
+      }
+
+      frame.addEventListener('load', init);
     })();
   } else if (mode === _modes.TRIGGERED) {
-    frame.addEventListener('load', function () {
-      printSizing(directionsHTML);
-    });
+    frame.addEventListener('load', printSizing);
   }
 
   function preprint() {

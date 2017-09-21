@@ -1,5 +1,5 @@
 {
-  "name": "react-ruler",
+  "name": "@tixinc/react-ruler",
   "version": "0.15.1",
   "main": "lib/index.js",
   "files": [

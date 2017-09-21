@@ -30,25 +30,6 @@ const css = `
 }
 `
 
-function printSizing (directionsHTML) {
-  const undoCSS = setCSS(document, css, null, { id: 'print-zoom' })
-  let printDirectionsElement = document.getElementById('print-directions')
-  if(!printDirectionsElement) {
-    printDirectionsElement = document.createElement('div')
-    printDirectionsElement.innerHTML = directionsHTML
-    printDirectionsElement.setAttribute('id', 'print-directions')
-    document.body.insertBefore(printDirectionsElement, document.body.children[0])
-  }
-  return () => {
-    undoCSS()
-    document.body.removeChild(printDirectionsElement)
-  }
-}
-
-
-
-
-
 export default function webkit (frame, { mode, directionsHTML }) {
   const topPrintCSS = `
 * {
@@ -104,7 +85,24 @@ body > #print-content {
       document.body.insertBefore(printElement, document.body.firstChild)
     }
 
-    frame.addEventListener('load', () => {
+    function printSizing () {
+      const undoCSS = setCSS(document, css, null, { id: 'print-zoom' })
+      let printDirectionsElement = document.getElementById('print-directions')
+      if(!printDirectionsElement) {
+        printDirectionsElement = document.createElement('div')
+        printDirectionsElement.innerHTML = directionsHTML
+        printDirectionsElement.setAttribute('id', 'print-directions')
+        document.body.insertBefore(printDirectionsElement, document.body.children[0])
+      }
+
+      frame.removeEventListener('load', printSizing)
+      undos.add(() => {
+        undoCSS()
+        document.body.removeChild(printDirectionsElement)
+      })
+    }
+
+    function init () {
       const frameDocument = resolveDocument(frame)
       if(undos.size > 0) {
         for(let undo of undos) {
@@ -128,9 +126,13 @@ body > #print-content {
           postprint()
         }, 8000)
       }, 5000)
-    })
+
+      frame.removeEventListener('load', printSizing)
+    }
+
+    frame.addEventListener('load', init)
   } else if (mode === TRIGGERED) {
-    frame.addEventListener('load', () => { printSizing(directionsHTML) })
+    frame.addEventListener('load', printSizing)
   }
 
   function preprint () {

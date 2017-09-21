@@ -75,6 +75,8 @@ function trident(frame, _ref) {
       window.onbeforeprint = preprint;
       window.onafterprint = postprint;
     }
+
+    frame.removeEventListner('load', init);
   }
 
   frame.addEventListener('load', init);

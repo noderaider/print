@@ -26,25 +26,6 @@ const css = `
 }
 `
 
-function printSizing () {
-  const undoCSS = setCSS(document, css, null, { id: 'print-zoom' })
-  let printDirectionsElement = document.getElementById('print-dirctions')
-  if(!printDirectionsElement) {
-    printDirectionsElement = document.createElement('div')
-    printDirectionsElement.innerHTML = 'YOU\'RE DOING IT WRONG!!! =P'
-    printDirectionsElement.setAttribute('id', 'print-directions')
-    document.body.insertBefore(printDirectionsElement, document.body.children[0])
-  }
-  return () => {
-    undoCSS()
-    document.body.removeChild(printDirectionsElement)
-  }
-}
-
-
-
-
-
 
 export default function webkit (frame, { mode }) {
   const topPrintCSS = `
@@ -101,7 +82,24 @@ body > #print-content {
       document.body.insertBefore(printElement, document.body.firstChild)
     }
 
-    frame.addEventListener('load', () => {
+    function printSizing () {
+      const undoCSS = setCSS(document, css, null, { id: 'print-zoom' })
+      let printDirectionsElement = document.getElementById('print-dirctions')
+      if(!printDirectionsElement) {
+        printDirectionsElement = document.createElement('div')
+        printDirectionsElement.innerHTML = 'YOU\'RE DOING IT WRONG!!! =P'
+        printDirectionsElement.setAttribute('id', 'print-directions')
+        document.body.insertBefore(printDirectionsElement, document.body.children[0])
+      }
+    
+      frame.removeEventListener('load', printSizing)
+      undos.add(() => {
+        undoCSS()
+        document.body.removeChild(printDirectionsElement)
+      })
+    }
+
+    function init () {
       const frameDocument = resolveDocument(frame)
       if(undos.size > 0) {
         for(let undo of undos) {
@@ -113,19 +111,10 @@ body > #print-content {
         undoTopPrintCSS()
       undoTopPrintCSS = topPrintCSS ? setCSS(document, topPrintCSS, 'print', { id: 'top-css' }) : () => {}
       undoHeadLinks = copyHeadLinks(frameDocument, document)
-      // if(timeoutID)
-      //   clearTimeout(timeoutID)
-      // if(intervalID)
-      //   clearInterval(intervalID)
-      // timeoutID = setTimeout(() => {
-      //   preprint()
-      //   postprint()
-      //   intervalID = setInterval(() => {
-      //     preprint()
-      //     postprint()
-      //   }, 8000)
-      // }, 5000)
-    })
+      frame.removeEventListener('load', init)
+    }
+
+    frame.addEventListener('load', init)
   } else if (mode === TRIGGERED) {
     frame.addEventListener('load', printSizing)
   }
