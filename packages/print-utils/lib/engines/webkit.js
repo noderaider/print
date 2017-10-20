@@ -37,7 +37,7 @@ function webkit(frame, _ref) {
     var printDirectionsElement = document.getElementById('print-dirctions');
     if (!printDirectionsElement) {
       printDirectionsElement = document.createElement('div');
-      printDirectionsElement.innerHTML = 'YOU\'RE DOING IT WRONG!!! =P';
+      //printDirectionsElement.innerHTML = 'YOU\'RE DOING IT WRONG!!! =P'
       printDirectionsElement.setAttribute('id', 'print-directions');
       document.body.insertBefore(printDirectionsElement, document.body.children[0]);
     }
